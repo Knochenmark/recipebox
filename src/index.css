@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  background-color: lightseagreen;
+  height: 100vh;
+  width: 100vw;
+  margin: 0rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.page>button {
+  margin-top: auto;
+  background-color: lightcoral;
+}
+
+.recipe {
+  background-color: lightcoral;
+}
+
+.index-items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.index-items > div{
+  flex-basis: 50%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.index-recipes {
+  list-style: none;
+}
