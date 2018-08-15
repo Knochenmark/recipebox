@@ -4,7 +4,17 @@ body {
   font-family: sans-serif;
 }
 
+.recipebook {
+  overflow-x: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
 .page {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   background-color: lightseagreen;
@@ -21,7 +31,15 @@ body {
 }
 
 .recipe {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  /* margin: 0rem;
+  padding: 1rem; */
+  z-index: 2;
   background-color: lightcoral;
+  transform: translateX(50%);
+  overflow-y: scroll;
 }
 
 .index-items {
