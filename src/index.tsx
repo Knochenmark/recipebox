@@ -1,34 +1,26 @@
+import './styles/index.css';
+
 import * as React from 'react';
-
 import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-import Recipebox from './Recipebox';
-
-import './index.css';
-
+import { RecipeBook } from './components/RecipeBook';
+import recipeReducer from './recipe-reducer';
 import registerServiceWorker from './registerServiceWorker';
 
-// import { createStore } from 'redux';
+const store = createStore(recipeReducer)
 
-// function mode(state = 0, action) {
-//   switch (action.type) {
-//   case 'INCREMENT':
-//     return state + 1
-//   case 'DECREMENT':
-//     return state - 1
-//   default:
-//     return state
-//   }
-// }
+console.log("store", store.getState());
 
-// let store = createStore(mode)
-
-// store.subscribe(() =>
-//   console.log(store.getState())
-// )
+export const unsubscribe = store.subscribe(() =>
+  console.log("State Changed", store.getState())
+)
 
 ReactDOM.render(
-  <Recipebox />,
+  <Provider store={store}>
+    <RecipeBook />
+  </Provider>,
   document.getElementById('root') as HTMLElement
-);
+)
 registerServiceWorker();
