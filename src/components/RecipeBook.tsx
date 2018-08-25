@@ -10,6 +10,7 @@ import {
 import { getSelectedRecipe } from '../recipe-reducer';
 import IndexPage from './IndexPage';
 import Recipe from './recipe';
+import Ribbon from './ribbon';
 
 interface IRecipebookState {
   recipes: IRecipe[];
@@ -57,7 +58,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
     // {this.state.mode === Mode.index && <IndexPage recipes={this.state.recipes} mode={this.state.mode} />}
 
     const selectedRecipe = getSelectedRecipe(this.props.state);
-    const recipeElement = <Recipe key={selectedRecipe.name} recipe={selectedRecipe} />;
+    const ribbonElement = (!isEditMode) && <Ribbon indexCallback={this.showIndex} />;
 
     const someClassName = this.props.state.isVisible
       ? "page visible" : "page hidden";
@@ -66,7 +67,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
       <div>
         <button className="testButton" onClick={this.handleClick}>Test</button>
         <div className='recipebook'>
-          <IndexPage className={someClassName} recipes={this.props.state.recipes} callback={this.setRecipeName} />
+            {ribbonElement}
           {recipeElement}
         </div>
       </div>
