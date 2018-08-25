@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 
 import { IRecipe } from '../_domain/IRecipe';
 import { IStoreState } from '../_domain/IStoreState';
-import { setIndexVisibilityAction } from '../actions/recipe-actions';
+import {
+  setIndexVisibilityAction,
+  setSelectedRecipeAction
+} from '../actions/recipe-actions';
+import { getSelectedRecipe } from '../recipe-reducer';
 import IndexPage from './IndexPage';
 import Recipe from './recipe';
 
@@ -13,9 +17,9 @@ interface IRecipebookState {
 }
 
 interface IRecipeBookProps {
+  setSelectedRecipe?: any; // TODO: breaks without the optional flag?
   state: IStoreState;
   toggle: any;
-  // setSeletedRecipe: any;
 }
 
 const mapStateToProps = (state: IStoreState) => {
@@ -26,7 +30,7 @@ const mapStateToProps = (state: IStoreState) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    // setSelectedRecipe: (recipeName: string) => dispatch(setSelectedRecipeAction(recipeName)),
+    setSelectedRecipe: (recipeName: string) => dispatch(setSelectedRecipeAction(recipeName)),
     toggle: (isVisible: boolean) => dispatch(setIndexVisibilityAction(isVisible))
   };
 }
@@ -45,25 +49,15 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
     console.log("component state", this.props);
   }
 
-  public indexEntryCallback = () => {
-    // this.props.setSeletedRecipe('SomeName');
-    console.log('index entry clicked')
-  }
-
   public setRecipeName = (recipeName: string) => {
-    console.log('recipeNameClicked', recipeName);
+    this.props.setSelectedRecipe(recipeName);
   }
 
   public render(): JSX.Element {
     // {this.state.mode === Mode.index && <IndexPage recipes={this.state.recipes} mode={this.state.mode} />}
 
-    const isSelectedRecipe = (recipe: any) => {
-      return recipe.name === this.state.selectedRecipe.name;
-    }
-
-    const recipeList = this.state.recipes.filter(isSelectedRecipe).map(recipe => {
-      return <Recipe key={recipe.name} recipe={recipe} />
-    });
+    const selectedRecipe = getSelectedRecipe(this.props.state);
+    const recipeElement = <Recipe key={selectedRecipe.name} recipe={selectedRecipe} />;
 
     const someClassName = this.props.state.isVisible
       ? "page visible" : "page hidden";
@@ -73,6 +67,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
         <button className="testButton" onClick={this.handleClick}>Test</button>
         <div className='recipebook'>
           <IndexPage className={someClassName} recipes={this.props.state.recipes} callback={this.setRecipeName} />
+          {recipeElement}
         </div>
       </div>
     );

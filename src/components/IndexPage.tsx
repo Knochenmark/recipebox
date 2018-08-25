@@ -19,9 +19,15 @@ export default function IndexPage({ recipes, callback, ...props }: IPageProps) {
     }
   });
 
+  const handleCallback = (recipeName: string) => {
+    return () => {
+      callback(recipeName);
+    }
+  }
+
   const indexItems = indices.sort().map(index => {
     const recipeItems = obj[index].map((recipe: any, i: number) => {
-      return <li onClick={callback(recipe.name)} key={index + i}>{recipe.name}</li>
+      return <li onClick={handleCallback(recipe.name)} key={index + i}>{recipe.name}</li>
     });
     return <div key={index}>
       <span>{index}({obj[index].length})</span>
