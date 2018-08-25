@@ -17,7 +17,7 @@ interface IRecipebookState {
 }
 
 interface IRecipeBookProps {
-  setSelectedRecipe?: any; // TODO: breaks without the optional flag?
+  setSelectedRecipe: any;
   state: IStoreState;
   toggle: any;
 }
