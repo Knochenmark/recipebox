@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .recipebook {
@@ -11,18 +11,28 @@ body {
 }
 
 .page {
+  color: #849493;
   z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  background-color: lightseagreen;
+  background-color: #fff;
   height: 100vh;
   width: 100vw;
   margin: 0rem;
   padding: 1rem;
   box-sizing: border-box;
+}
+
+.page>h2{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  line-height: 1.1em;
+  color: #849493;
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
 }
 
 .page>button {
@@ -56,6 +66,16 @@ body {
 
 .index-recipes {
   list-style: none;
+}
+
+.index-recipes>li{
+  color: #ff5537
+}
+
+.index-recipes>li:hover{
+  color: #ff6347;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .testButton {
