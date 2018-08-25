@@ -1,34 +1,54 @@
 import { exampleRecipes } from './_config/exampleRecipes';
+import { IRecipe } from './_domain/IRecipe';
 import { IStoreState } from './_domain/IStoreState';
 import {
   Action,
   actionTypes,
-  ICreateRecipeAction,
-  IIndexAction,
+  IDeleteRecipeAction,
+  ISetEditModeAction,
+  ISetIndexVisibilityAction,
   ISetSelectedRecipeAction
 } from './actions/recipe-actions';
 
 const initialState: IStoreState = {
-  isVisible: true,
+  isEditMode: false,
+  isIndexVisible: true,
   recipes: exampleRecipes,
-  selectedRecipe: {
-    "name": "Tomato soup"
-  }
+  selectedRecipe: exampleRecipes[0]
 }
 
 const recipes = (state: IStoreState = initialState, action: Action) => {
   switch (action.type) {
     case actionTypes.SET_INDEX_VISIBILITY:
-      const setIndexVisibilityAction = action as IIndexAction;
+      const setIndexVisibilityAction = action as ISetIndexVisibilityAction;
       return {
         ...state,
-        isVisible: setIndexVisibilityAction.isVisible
+        isEditMode: false,
+        isIndexVisible: setIndexVisibilityAction.isIndexVisible
       };
-    case actionTypes.CREATE_RECIPE:
-      const createRecipeAction = action as ICreateRecipeAction;
+    case actionTypes.SET_EDIT_MODE:
+      const { isEditMode } = action as ISetEditModeAction;
       return {
         ...state,
-        recipes: [createRecipeAction.recipe, ...state.recipes]
+        isEditMode,
+      }
+    case actionTypes.CREATE_RECIPE:
+      return {
+        ...state,
+        isEditMode: true,
+        isIndexVisible: false,
+        selectedRecipe: null,
+      }
+    case actionTypes.DELETE_RECIPE:
+      const deleteRecipeAction = action as IDeleteRecipeAction;
+      const index = state.recipes.findIndex(recipe => recipe.name === deleteRecipeAction.recipe.name);
+      const newRecipeList = [...state.recipes];
+      newRecipeList.splice(index, 1);
+      return {
+        ...state,
+        isIndexVisible: true,
+        recipes: newRecipeList,
+        selectedRecipe: null,
       }
     case actionTypes.SET_SELECTED_RECIPE:
       const { recipeName } = action as ISetSelectedRecipeAction;
@@ -41,7 +61,9 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
   }
 }
 
-export const getRecipes = (state: IStoreState) => state && state.recipes;
-export const getSelectedRecipe = (state: IStoreState) => state && state.selectedRecipe;
+export const getRecipes = (state: IStoreState): IRecipe[] => state && state.recipes;
+export const getSelectedRecipe = (state: IStoreState): IRecipe => state && state.selectedRecipe;
+export const getEditMode = (state: IStoreState): boolean => state && state.isEditMode;
+export const getIndexVisibility = (state: IStoreState): boolean => state && state.isIndexVisible;
 
 export default recipes

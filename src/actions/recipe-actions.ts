@@ -1,19 +1,30 @@
 import { IRecipe } from '../_domain/IRecipe';
 
 export enum actionTypes {
+  SET_SELECTED_RECIPE = '[Recipe] Set selected Recipe',
   SET_INDEX_VISIBILITY = '[Recipe] Set Index Visibility',
-  CREATE_RECIPE = '[Recipe] Create Recipe',
+  SET_EDIT_MODE = '[Recipe] Set Edit Mode',
   DELETE_RECIPE = '[Recipe] Delete Recipe',
-  SAVE_RECIPE = '[Recipe] Save Recipe',
-  SET_SELECTED_RECIPE = '[Recipe] Set selected Recipe'
+  CREATE_RECIPE = '[Recipe] Create Recipe',
+  EDIT_RECIPE = '[Recipe] Edit Recipe',
 }
 
-export interface IIndexAction {
-  isVisible: boolean;
+export interface ISetIndexVisibilityAction {
+  isIndexVisible: boolean;
+  type: string;
+}
+
+export interface ISetEditModeAction {
+  isEditMode: boolean;
   type: string;
 }
 
 export interface ICreateRecipeAction {
+  recipe: IRecipe;
+  type: string;
+}
+
+export interface IDeleteRecipeAction {
   recipe: IRecipe;
   type: string;
 }
@@ -23,14 +34,23 @@ export interface ISetSelectedRecipeAction {
   type: string;
 }
 
-export const setIndexVisibilityAction = (isVisible: boolean) => ({
-  isVisible,
+export const setIndexVisibilityAction = (isIndexVisible: boolean) => ({
+  isIndexVisible,
   type: actionTypes.SET_INDEX_VISIBILITY
 });
 
-export const createRecipeAction = (recipe: IRecipe) => ({
-  recipe,
+export const setEditModeAction = (isEditMode: boolean) => ({
+  isEditMode,
+  type: actionTypes.SET_EDIT_MODE
+});
+
+export const createRecipeAction = () => ({
   type: actionTypes.CREATE_RECIPE
+});
+
+export const deleteRecipeAction = (recipe: IRecipe) => ({
+  recipe,
+  type: actionTypes.DELETE_RECIPE
 });
 
 export const setSelectedRecipeAction = (recipeName: string) => ({
@@ -38,6 +58,9 @@ export const setSelectedRecipeAction = (recipeName: string) => ({
   type: actionTypes.SET_SELECTED_RECIPE
 });
 
-export type Action = IIndexAction
-  | ICreateRecipeAction
+export type Action
+  = ICreateRecipeAction
+  | IDeleteRecipeAction
+  | ISetEditModeAction
+  | ISetIndexVisibilityAction
   | ISetSelectedRecipeAction;
