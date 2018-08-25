@@ -4,7 +4,8 @@ import {
   Action,
   actionTypes,
   ICreateRecipeAction,
-  IIndexAction
+  IIndexAction,
+  ISetSelectedRecipeAction
 } from './actions/recipe-actions';
 
 const initialState: IStoreState = {
@@ -30,9 +31,10 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
         recipes: [createRecipeAction.recipe, ...state.recipes]
       }
     case actionTypes.SET_SELECTED_RECIPE:
-      // const { recipeName } = <ISetSelectedRecipeAction>action;
+      const { recipeName } = action as ISetSelectedRecipeAction;
       return {
         ...state,
+        selectedRecipe: state.recipes.find(recipe => recipe.name === recipeName)
       }
     default:
       return { ...state };
@@ -40,5 +42,6 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
 }
 
 export const getRecipes = (state: IStoreState) => state && state.recipes;
+export const getSelectedRecipe = (state: IStoreState) => state && state.selectedRecipe;
 
 export default recipes
