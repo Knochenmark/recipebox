@@ -1,19 +1,12 @@
 import * as React from 'react';
 
-enum Mode {
-  index = 0,
-  recipe = 1,
-  create = 2
-}
-
 export interface IPageProps {
   recipes: any[];
-  mode: Mode;
   className: string;
   callback?: any;
 }
 
-export default function IndexPage({ recipes, mode, callback, ...props }: IPageProps) {
+export default function IndexPage({ recipes, callback, ...props }: IPageProps) {
 
   const indices = recipes.map(recipe => recipe.name[0].toUpperCase()).filter((v, i, a) => a.indexOf(v) === i);
   const obj: any = {};

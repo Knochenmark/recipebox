@@ -7,16 +7,9 @@ import { setIndexVisibilityAction } from '../actions/recipe-actions';
 import IndexPage from './IndexPage';
 import Recipe from './recipe';
 
-enum Mode {
-  index = 0,
-  recipe = 1,
-  create = 2
-}
-
 interface IRecipebookState {
   recipes: IRecipe[];
   selectedRecipe: IRecipe;
-  mode: Mode;
 }
 
 interface IRecipeBookProps {
@@ -43,13 +36,7 @@ let initialToggle = true;
 export default class RecipeBookComponent extends React.Component<IRecipeBookProps, IRecipebookState> {
   constructor(props: IRecipeBookProps) {
     super(props);
-    this.state = {
-      mode: Mode.index,
-      recipes: this.props.state.recipes,
-      selectedRecipe: {
-        "name": "Tomato soup"
-      }
-    };
+    this.setRecipeName = this.setRecipeName.bind(this);
   }
 
   public handleClick = () => {
@@ -85,8 +72,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
       <div>
         <button className="testButton" onClick={this.handleClick}>Test</button>
         <div className='recipebook'>
-          <IndexPage className={someClassName} recipes={this.props.state.recipes} mode={this.state.mode} callback={this.setRecipeName} />
-          {recipeList}
+          <IndexPage className={someClassName} recipes={this.props.state.recipes} callback={this.setRecipeName} />
         </div>
       </div>
     );
