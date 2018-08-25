@@ -4,6 +4,13 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+*, *:before, *:after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all .15s ease-in;
+}
+
 .recipebook {
   /* overflow-x: hidden; */
   height: 100vh;
@@ -26,7 +33,7 @@ body {
   box-sizing: border-box;
 }
 
-.page>h2{
+h2{
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   line-height: 1.1em;
@@ -37,19 +44,23 @@ body {
 
 .page>button {
   margin-top: auto;
-  background-color: lightcoral;
+  background-color: lightblue;
 }
 
-.recipe {
+.recipe-container {
   position: relative;
   height: 100%;
   width: 100%;
-  /* margin: 0rem;
-  padding: 1rem; */
   z-index: 2;
-  background-color: lightcoral;
+  padding: 1rem;
+  background-color: lightblue;
   transform: translateX(100%);
   overflow-y: scroll;
+  transition: all 0.4s ease;
+}
+
+.recipe-container.visible {
+  transform: translateX(0%);
 }
 
 .index-items {
@@ -83,4 +94,91 @@ body {
   top: 10px;
   left: 10px;
   z-index: 9999;
+}
+
+.ribbon:hover{
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ribbon{
+  font-size: 12px;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  right: 3rem;
+  margin: 3em;
+  background-image: radial-gradient(circle farthest-side at center top, #FF0000 0%, #990000 100%);
+  width: 4em;
+  height: 10em;
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.ribbon i{
+  width: 90%;
+  height: 120%;
+  display: block;
+  margin: auto;
+  z-index: 100;
+  position: relative;
+  border-right: dashed 0.0625em #333;
+  border-left: dashed 0.0625em #333;
+  overflow: hidden;
+}
+
+.ribbon>i>span{
+  color: #FFF;
+  display: block;
+  text-align: center;
+  top: 55%;
+  right: 1%;
+  margin-top: -2em;
+  transform: rotate(-90deg);
+  position: relative;
+  text-shadow: 0.0625em 0.0625em 0.0625em #333;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.ribbon>i>span>s{
+  width: 0.625em;
+  height: 0.625em;
+  background: #424242;
+  top: 55%;
+  margin-top: -0.3125em;
+  transform: rotate(45deg);
+  display: block;
+  position: absolute;
+  opacity: .5;
+}
+
+.ribbon>i>span>s:nth-of-type(1){
+  margin-left: -1.25em;
+  left: 0;
+}
+.ribbon>i>span>s:nth-of-type(2){
+  right: 0;
+  margin-right: -1.25em;
+}
+
+.ribbon:before{
+  content: "";
+  position: absolute;
+  bottom: -2.4em;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 2.5em solid #990000;
+  border-right: 2.5em solid transparent;
+}
+.ribbon:after{
+  content: "";
+  position: absolute;
+  bottom: -2.4em;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 2.5em solid #990000;
+  border-left: 2.5em solid transparent;
 }
