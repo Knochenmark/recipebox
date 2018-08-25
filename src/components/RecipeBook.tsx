@@ -4,10 +4,17 @@ import { connect } from 'react-redux';
 import { IRecipe } from '../_domain/IRecipe';
 import { IStoreState } from '../_domain/IStoreState';
 import {
+  createRecipeAction,
+  deleteRecipeAction,
+  setEditModeAction,
   setIndexVisibilityAction,
   setSelectedRecipeAction
 } from '../actions/recipe-actions';
-import { getSelectedRecipe } from '../recipe-reducer';
+import {
+  getEditMode,
+  getIndexVisibility,
+  getSelectedRecipe
+} from '../recipe-reducer';
 import IndexPage from './IndexPage';
 import Recipe from './recipe';
 import RecipeForm from './RecipeForm';
@@ -19,9 +26,12 @@ interface IRecipebookState {
 }
 
 interface IRecipeBookProps {
+  createRecipe: any;
+  deleteRecipe: any;
+  setEditMode: any;
   setSelectedRecipe: any;
   state: IStoreState;
-  toggle: any;
+  setIndexVisibility: any;
 }
 
 const mapStateToProps = (state: IStoreState) => {
@@ -32,31 +42,48 @@ const mapStateToProps = (state: IStoreState) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setSelectedRecipe: (recipeName: string) => dispatch(setSelectedRecipeAction(recipeName)),
-    toggle: (isVisible: boolean) => dispatch(setIndexVisibilityAction(isVisible))
+    createRecipe: () => dispatch(createRecipeAction()),
+    deleteRecipe: (recipe: IRecipe) => dispatch(deleteRecipeAction(recipe)),
+    setEditMode: (isEditMode: boolean) => dispatch(setEditModeAction(isEditMode)),
+    setIndexVisibility: (isVisible: boolean) => dispatch(setIndexVisibilityAction(isVisible)),
+    setSelectedRecipe: (recipeName: string) => dispatch(setSelectedRecipeAction(recipeName))
   };
 }
-
-let initialToggle = true;
 
 export default class RecipeBookComponent extends React.Component<IRecipeBookProps, IRecipebookState> {
   constructor(props: IRecipeBookProps) {
     super(props);
     this.setRecipeName = this.setRecipeName.bind(this);
-  }
-
-  public handleClick = () => {
-    this.props.toggle(!initialToggle);
-    initialToggle = !initialToggle;
-    console.log("component state", this.props);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.createRecipe = this.createRecipe.bind(this);
   }
 
   public setRecipeName = (recipeName: string) => {
     this.props.setSelectedRecipe(recipeName);
+    this.props.setIndexVisibility(false);
+  }
+
+  public deleteRecipe = (recipe: IRecipe) => {
+    this.props.deleteRecipe(recipe);
+  }
+
+  public editRecipe = () => {
+    this.props.setEditMode(true);
+  }
+
+  public cancelEditMode = () => {
+    this.props.setEditMode(false);
+  }
+
+  public createRecipe = () => {
+    this.props.createRecipe();
+  }
+
+  public showIndex = () => {
+    this.props.setIndexVisibility(true);
   }
 
   public render(): JSX.Element {
-    // {this.state.mode === Mode.index && <IndexPage recipes={this.state.recipes} mode={this.state.mode} />}
 
     const selectedRecipe = getSelectedRecipe(this.props.state);
     const isEditMode = getEditMode(this.props.state);
@@ -80,11 +107,12 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
 
     return (
       <div>
-        <button className="testButton" onClick={this.handleClick}>Test</button>
         <div className='recipebook'>
           <IndexPage className='page' recipes={this.props.state.recipes} createRecipe={this.createRecipe} setSelectedRecipe={this.setRecipeName} />
+          <div className={recipeContainerClass}>
             {ribbonElement}
-          {recipeElement}
+            {recipeElement}
+          </div>
         </div>
       </div>
     );

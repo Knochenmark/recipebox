@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 export interface IPageProps {
-  recipes: any[];
   className: string;
-  callback?: any;
+  createRecipe: any;
+  recipes: any[];
+  setSelectedRecipe: any;
 }
 
-export default function IndexPage({ recipes, callback, ...props }: IPageProps) {
+export default function IndexPage({ recipes, createRecipe, setSelectedRecipe, ...props }: IPageProps) {
 
   const indices = recipes.map(recipe => recipe.name[0].toUpperCase()).filter((v, i, a) => a.indexOf(v) === i);
   const obj: any = {};
@@ -21,7 +22,13 @@ export default function IndexPage({ recipes, callback, ...props }: IPageProps) {
 
   const handleCallback = (recipeName: string) => {
     return () => {
-      callback(recipeName);
+      setSelectedRecipe(recipeName);
+    }
+  }
+
+  const handleCreateRecipe = () => {
+    return () => {
+      createRecipe();
     }
   }
 
@@ -43,7 +50,7 @@ export default function IndexPage({ recipes, callback, ...props }: IPageProps) {
       <div className="index-items">
         {indexItems}
       </div>
-      <button>Create New Recipe</button>
+      <button onClick={handleCreateRecipe()}>Create New Recipe</button>
     </div>
   );
 }
