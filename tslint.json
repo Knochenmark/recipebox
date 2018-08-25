@@ -4,6 +4,7 @@
     "tslint-react",
     "tslint-config-prettier"
   ],
+  "defaultSeverity": "warning",
   "rules": {
     "no-console": false,
     "no-unused-variable": false
