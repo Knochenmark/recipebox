@@ -35,7 +35,7 @@ export const createRecipeAction = (recipe: IRecipe) => ({
 
 export const setSelectedRecipeAction = (recipeName: string) => ({
   recipeName,
-  type: actionTypes
+  type: actionTypes.SET_SELECTED_RECIPE
 });
 
 export type Action = IIndexAction
