@@ -1,7 +1,8 @@
 import { IRecipe } from './IRecipe';
 
 export interface IStoreState {
+  isEditMode: boolean;
   recipes: IRecipe[];
-  isVisible: boolean;
+  isIndexVisible: boolean;
   selectedRecipe: IRecipe;
 }
