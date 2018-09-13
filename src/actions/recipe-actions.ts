@@ -36,7 +36,7 @@ export interface ISetSelectedRecipeAction {
 }
 
 export interface IUpdateRecipeAction {
-  recipe: IRecipe;
+  updatedRecipe: IRecipe;
   recipeName: string;
   type: string;
 }
