@@ -7,7 +7,8 @@ import {
   IDeleteRecipeAction,
   ISetEditModeAction,
   ISetIndexVisibilityAction,
-  ISetSelectedRecipeAction
+  ISetSelectedRecipeAction,
+  IUpdateRecipeAction
 } from './actions/recipe-actions';
 
 const initialState: IStoreState = {
@@ -31,17 +32,18 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       return {
         ...state,
         isEditMode,
-      }
+      };
     case actionTypes.CREATE_RECIPE:
       return {
         ...state,
         isEditMode: true,
         isIndexVisible: false,
         selectedRecipe: null,
-      }
-    case actionTypes.DELETE_RECIPE:
+      };
+    case actionTypes.DELETE_RECIPE: {
       const deleteRecipeAction = action as IDeleteRecipeAction;
-      const index = state.recipes.findIndex(recipe => recipe.name === deleteRecipeAction.recipe.name);
+      const index = state.recipes.findIndex(recipe =>
+        recipe.name === deleteRecipeAction.recipe.name);
       const newRecipeList = [...state.recipes];
       newRecipeList.splice(index, 1);
       return {
@@ -49,13 +51,27 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
         isIndexVisible: true,
         recipes: newRecipeList,
         selectedRecipe: null,
-      }
-    case actionTypes.SET_SELECTED_RECIPE:
+      };
+    }
+    case actionTypes.SET_SELECTED_RECIPE: {
       const { recipeName } = action as ISetSelectedRecipeAction;
       return {
         ...state,
         selectedRecipe: state.recipes.find(recipe => recipe.name === recipeName)
-      }
+      };
+    }
+    case actionTypes.UPDATE_RECIPE: {
+      const { updatedRecipe, recipeName } = action as IUpdateRecipeAction;
+      const index = state.recipes.findIndex(r =>
+        r.name === recipeName);
+      const newRecipeList = [...state.recipes];
+      newRecipeList.splice(index, 1);
+      newRecipeList.push(updatedRecipe);
+      return {
+        ...state,
+        recipes: newRecipeList
+      };
+    }
     default:
       return { ...state };
   }
