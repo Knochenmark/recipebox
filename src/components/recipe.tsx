@@ -20,7 +20,7 @@ export default function Recipe({
   // const ingredientList =
 
   const bookmarkRecipe = (recipeToBookmark: string) => {
-    return () => bookmarkCallback(recipeToBookmark);
+    return () => bookmarkCallback(recipeToBookmark, !recipe.isBookmarked);
   }
 
   const handleDelete = (recipeToDelete: IRecipe) => {
@@ -29,6 +29,10 @@ export default function Recipe({
 
   const handleEdit = () => {
     return () => editModeCallback();
+  }
+
+  const bookmarkText = () => {
+    return recipe.isBookmarked ? "Bookmarked" : "Not marked";
   }
 
   return (
@@ -42,6 +46,7 @@ export default function Recipe({
       </ul> */}
       <button onClick={handleEdit()}>Edit Recipe</button>
       <button onClick={handleDelete(recipe)}>Delete Recipe</button>
+      <span>{bookmarkText()}</span>
       <button onClick={bookmarkRecipe(recipe.name)}>Bookmark</button>
     </div>
   );
