@@ -5,6 +5,7 @@ import {
   Action,
   actionTypes,
   IDeleteRecipeAction,
+  ISetBookmarkAction,
   ISetEditModeAction,
   ISetIndexVisibilityAction,
   ISetSelectedRecipeAction,
@@ -65,12 +66,25 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       const index = state.recipes.findIndex(r =>
         r.name === recipeName);
       const newRecipeList = [...state.recipes];
-      newRecipeList.splice(index, 1);
+      newRecipeList.splice(index, 1); // TODO spread into new object before splice and removal?
       newRecipeList.push(updatedRecipe);
       return {
         ...state,
         recipes: newRecipeList
       };
+    }
+    case actionTypes.SET_BOOKMARK: {
+      const { recipeName, isBookmarked } = action as ISetBookmarkAction;
+      console.log(recipeName);
+      const bookmarkedRecipe = state.recipes.find(recipe =>
+        recipe.name === recipeName);
+      if (bookmarkedRecipe) {
+        bookmarkedRecipe.isBookmarked = isBookmarked;
+      }
+      return {
+        ...state,
+        recipes: [...state.recipes]
+      }
     }
     default:
       return { ...state };

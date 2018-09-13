@@ -2,20 +2,36 @@ import { IRecipe } from '../_domain/IRecipe';
 
 export const exampleRecipes: IRecipe[] = [
   {
-    "name": "Tomato soup"
+    isBookmarked: false,
+    name: "Tomato soup"
+
   }, {
-    "name": "Fish soup"
+    isBookmarked: false,
+    name: "Fish soup"
+
   }, {
-    "name": "Fish cassarole"
+    isBookmarked: false,
+    name: "Fish cassarole"
+
   }, {
-    "name": "Fish curry"
+    isBookmarked: false,
+    name: "Fish curry"
+
   }, {
-    "name": "Pizza Salami"
+    isBookmarked: false,
+    name: "Pizza Salami"
+
   }, {
-    "name": "Pizza Hawai"
+    isBookmarked: false,
+    name: "Pizza Hawai"
+
   }, {
-    "name": "Zuckerbrot"
+    isBookmarked: false,
+    name: "Zuckerbrot"
+
   }, {
-    "name": "Reis mit Soße"
+    isBookmarked: false,
+    name: "Reis mit Soße"
+
   }
 ];

@@ -6,16 +6,17 @@ import { IStoreState } from '../_domain/IStoreState';
 import {
   createRecipeAction,
   deleteRecipeAction,
+  setBookmark,
   setEditModeAction,
   setIndexVisibilityAction,
   setSelectedRecipeAction,
   updateRecipeAction
-} from '../actions/recipe-actions';
+} from '../actions/RecipeActions';
 import {
   getEditMode,
   getIndexVisibility,
   getSelectedRecipe
-} from '../recipe-reducer';
+} from '../RecipeReducer';
 import IndexPage from './IndexPage';
 import Recipe from './Recipe';
 import RecipeForm from './RecipeForm';
@@ -27,6 +28,7 @@ interface IRecipebookState {
 }
 
 interface IRecipeBookProps {
+  bookmarkRecipe: any;
   createRecipe: any;
   deleteRecipe: any;
   setEditMode: any;
@@ -44,6 +46,8 @@ const mapStateToProps = (state: IStoreState) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
+    bookmarkRecipe: (recipeName: string, isBookmarked: boolean) =>
+      dispatch(setBookmark(recipeName, isBookmarked)),
     createRecipe: () => dispatch(createRecipeAction()),
     deleteRecipe: (recipe: IRecipe) => dispatch(deleteRecipeAction(recipe)),
     setEditMode: (isEditMode: boolean) =>
@@ -78,6 +82,10 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
     this.props.setEditMode(true);
   }
 
+  public bookmarkRecipe = (recipeName: IRecipe, isBookmarked: boolean) => {
+    this.props.bookmarkRecipe(recipeName, isBookmarked);
+  }
+
   public cancelEditMode = () => {
     this.props.setEditMode(false);
   }
@@ -104,6 +112,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
         <Recipe
           key={selectedRecipe.name}
           recipe={selectedRecipe}
+          bookmarkCallback={this.bookmarkRecipe}
           deleteCallback={this.deleteRecipe}
           editModeCallback={this.editRecipe}
         />;
