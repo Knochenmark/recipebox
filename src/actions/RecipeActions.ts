@@ -42,7 +42,7 @@ export interface ISetSelectedRecipeAction {
 }
 
 export interface IUpdateRecipeAction {
-  updatedRecipe: IRecipe;
+  recipe: IRecipe;
   recipeName: string;
   type: string;
 }
@@ -88,4 +88,6 @@ export type Action
   | IDeleteRecipeAction
   | ISetEditModeAction
   | ISetIndexVisibilityAction
-  | ISetSelectedRecipeAction;
+  | ISetSelectedRecipeAction
+  | IUpdateRecipeAction
+  | ISetBookmarkAction;

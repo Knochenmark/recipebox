@@ -62,12 +62,12 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       };
     }
     case actionTypes.UPDATE_RECIPE: {
-      const { updatedRecipe, recipeName } = action as IUpdateRecipeAction;
+      const { recipe, recipeName } = action as IUpdateRecipeAction;
       const index = state.recipes.findIndex(r =>
         r.name === recipeName);
       const newRecipeList = [...state.recipes];
       newRecipeList.splice(index, 1); // TODO spread into new object before splice and removal?
-      newRecipeList.push(updatedRecipe);
+      newRecipeList.push(recipe);
       return {
         ...state,
         recipes: newRecipeList
