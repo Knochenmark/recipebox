@@ -15,5 +15,7 @@ export const exampleRecipes: IRecipe[] = [
     "name": "Pizza Hawai"
   }, {
     "name": "Zuckerbrot"
+  }, {
+    "name": "Reis mit Soße"
   }
 ];
