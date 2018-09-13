@@ -29,15 +29,13 @@ export default class RecipeForm extends React.Component<IRecipeProps, any> {
     this.setState({ name: event.target.value });
   }
 
-  public handleSubmit = (recipeToUpdate: string) => {
-    // e.preventDefault(); // TODO prevent default or the page reloads after submit
-    return () => {
-      const recipe: IRecipe = {
-        isBookmarked: this.state.isBookmarked,
-        name: this.state.name
-      };
-      this.props.updateCallback(recipe, recipeToUpdate);
-    }
+  public handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const recipe: IRecipe = {
+      isBookmarked: this.state.isBookmarked,
+      name: this.state.name
+    };
+    this.props.updateCallback(recipe, this.state.recipeToUpdate);
   }
 
   public render(): JSX.Element {
@@ -46,7 +44,7 @@ export default class RecipeForm extends React.Component<IRecipeProps, any> {
         <h2>
           Recipe Form
         </h2>
-        <form onSubmit={this.handleSubmit(this.state.recipeToUpdate)}>
+        <form onSubmit={this.handleSubmit}>
           <label>
             Recipe Title
           <input
