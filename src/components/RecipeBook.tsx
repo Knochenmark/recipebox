@@ -17,9 +17,9 @@ import {
   getSelectedRecipe
 } from '../recipe-reducer';
 import IndexPage from './IndexPage';
-import Recipe from './recipe';
+import Recipe from './Recipe';
 import RecipeForm from './RecipeForm';
-import Ribbon from './ribbon';
+import Ribbon from './Ribbon';
 
 interface IRecipebookState {
   recipes: IRecipe[];

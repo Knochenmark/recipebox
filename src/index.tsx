@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import { RecipeBook } from './components/RecipeBook';
-import recipeReducer from './recipe-reducer';
+import recipeReducer from './RecipeReducer';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(recipeReducer)

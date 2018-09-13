@@ -9,7 +9,7 @@ import {
   ISetIndexVisibilityAction,
   ISetSelectedRecipeAction,
   IUpdateRecipeAction
-} from './actions/recipe-actions';
+} from './actions/RecipeActions';
 
 const initialState: IStoreState = {
   isEditMode: false,
