@@ -6,6 +6,7 @@ export enum actionTypes {
   SET_EDIT_MODE = '[Recipe] Set Edit Mode',
   DELETE_RECIPE = '[Recipe] Delete Recipe',
   CREATE_RECIPE = '[Recipe] Create Recipe',
+  UPDATE_RECIPE = '[Recipe] Update Recipe',
   EDIT_RECIPE = '[Recipe] Edit Recipe',
 }
 
@@ -33,6 +34,18 @@ export interface ISetSelectedRecipeAction {
   recipeName: string;
   type: string;
 }
+
+export interface IUpdateRecipeAction {
+  recipe: IRecipe;
+  recipeName: string;
+  type: string;
+}
+
+export const updateRecipeAction = (recipe: IRecipe, recipeName: string) => ({
+  recipe,
+  recipeName,
+  type: actionTypes.UPDATE_RECIPE
+});
 
 export const setIndexVisibilityAction = (isIndexVisible: boolean) => ({
   isIndexVisible,
