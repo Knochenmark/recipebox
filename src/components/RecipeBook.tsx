@@ -8,7 +8,8 @@ import {
   deleteRecipeAction,
   setEditModeAction,
   setIndexVisibilityAction,
-  setSelectedRecipeAction
+  setSelectedRecipeAction,
+  updateRecipeAction
 } from '../actions/recipe-actions';
 import {
   getEditMode,
@@ -32,6 +33,7 @@ interface IRecipeBookProps {
   setSelectedRecipe: any;
   state: IStoreState;
   setIndexVisibility: any;
+  updateRecipe: any;
 }
 
 const mapStateToProps = (state: IStoreState) => {
@@ -44,9 +46,14 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     createRecipe: () => dispatch(createRecipeAction()),
     deleteRecipe: (recipe: IRecipe) => dispatch(deleteRecipeAction(recipe)),
-    setEditMode: (isEditMode: boolean) => dispatch(setEditModeAction(isEditMode)),
-    setIndexVisibility: (isVisible: boolean) => dispatch(setIndexVisibilityAction(isVisible)),
-    setSelectedRecipe: (recipeName: string) => dispatch(setSelectedRecipeAction(recipeName))
+    setEditMode: (isEditMode: boolean) =>
+      dispatch(setEditModeAction(isEditMode)),
+    setIndexVisibility: (isVisible: boolean) =>
+      dispatch(setIndexVisibilityAction(isVisible)),
+    setSelectedRecipe: (recipeName: string) =>
+      dispatch(setSelectedRecipeAction(recipeName)),
+    updateRecipe: (recipe: IRecipe, recipeName: string) =>
+      dispatch(updateRecipeAction(recipe, recipeName))
   };
 }
 
@@ -75,6 +82,10 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
     this.props.setEditMode(false);
   }
 
+  public updateRecipe = (recipe: IRecipe, recipeName: string) => {
+    this.props.updateRecipe(recipe, recipeName);
+  }
+
   public createRecipe = () => {
     this.props.createRecipe();
   }
@@ -97,7 +108,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
           editModeCallback={this.editRecipe}
         />;
     } else {
-      recipeElement = <RecipeForm recipe={selectedRecipe} cancelCallback={this.cancelEditMode} />;
+      recipeElement = <RecipeForm recipe={selectedRecipe} updateCallback={this.updateRecipe} cancelCallback={this.cancelEditMode} />;
     }
 
     const ribbonElement = (!isEditMode) && <Ribbon indexCallback={this.showIndex} />;
