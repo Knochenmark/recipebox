@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 import { IRecipe } from '../_domain/IRecipe';
+import HeartFilled from './Icons/HeartFilled';
+import HeartOutlined from './Icons/HeartOutlined';
 
 export interface IRecipeProps {
   bookmarkCallback: any;
@@ -32,7 +34,7 @@ export default function Recipe({
   }
 
   const bookmarkText = () => {
-    return recipe.isBookmarked ? "Bookmarked" : "Not marked";
+    return recipe.isBookmarked ? <HeartFilled /> : <HeartOutlined />;
   }
 
   return (
@@ -46,8 +48,7 @@ export default function Recipe({
       </ul> */}
       <button onClick={handleEdit()}>Edit Recipe</button>
       <button onClick={handleDelete(recipe)}>Delete Recipe</button>
-      <span>{bookmarkText()}</span>
-      <button onClick={bookmarkRecipe(recipe.name)}>Bookmark</button>
+      <span onClick={bookmarkRecipe(recipe.name)}>{bookmarkText()}</span>
     </div>
   );
 }
