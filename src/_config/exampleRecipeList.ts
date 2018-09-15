@@ -1,6 +1,6 @@
 import { IRecipe } from '../_domain/IRecipe';
 
-export const exampleRecipes: IRecipe[] = [
+export const exampleRecipeList: IRecipe[] = [
   {
     isBookmarked: false,
     name: "Tomato soup"
