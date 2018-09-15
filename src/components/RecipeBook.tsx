@@ -64,42 +64,47 @@ const mapDispatchToProps = (dispatch: any) => {
 export default class RecipeBookComponent extends React.Component<IRecipeBookProps, IRecipebookState> {
   constructor(props: IRecipeBookProps) {
     super(props);
-    this.setRecipeName = this.setRecipeName.bind(this);
-    this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.bookmarkRecipe = this.bookmarkRecipe.bind(this);
+    this.cancelEditMode = this.cancelEditMode.bind(this);
     this.createRecipe = this.createRecipe.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.editRecipe = this.editRecipe.bind(this);
+    this.setRecipeName = this.setRecipeName.bind(this);
+    this.showIndex = this.showIndex.bind(this);
+    this.updateRecipe = this.updateRecipe.bind(this);
   }
 
-  public setRecipeName = (recipeName: string) => {
+  public setRecipeName(recipeName: string) {
     this.props.setSelectedRecipe(recipeName);
     this.props.setIndexVisibility(false);
   }
 
-  public deleteRecipe = (recipe: IRecipe) => {
+  public deleteRecipe(recipe: IRecipe) {
     this.props.deleteRecipe(recipe);
   }
 
-  public editRecipe = () => {
+  public editRecipe() {
     this.props.setEditMode(true);
   }
 
-  public bookmarkRecipe = (recipeName: IRecipe, isBookmarked: boolean) => {
+  public bookmarkRecipe(recipeName: IRecipe, isBookmarked: boolean) {
     this.props.bookmarkRecipe(recipeName, isBookmarked);
   }
 
-  public cancelEditMode = () => {
+  public cancelEditMode() {
     this.props.setEditMode(false);
   }
 
-  public updateRecipe = (recipe: IRecipe, recipeName: string) => {
+  public updateRecipe(recipe: IRecipe, recipeName: string) {
     this.props.updateRecipe(recipe, recipeName);
     this.cancelEditMode();
   }
 
-  public createRecipe = () => {
+  public createRecipe() {
     this.props.createRecipe();
   }
 
-  public showIndex = () => {
+  public showIndex() {
     this.props.setIndexVisibility(true);
   }
 
