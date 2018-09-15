@@ -92,6 +92,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
 
   public updateRecipe = (recipe: IRecipe, recipeName: string) => {
     this.props.updateRecipe(recipe, recipeName);
+    this.cancelEditMode();
   }
 
   public createRecipe = () => {

@@ -21,12 +21,12 @@ export default class RecipeForm extends React.Component<IRecipeProps, any> {
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  public handleCancel = () => {
-    return () => this.props.cancelCallback();
+  public handleCancel() {
+    this.props.cancelCallback();
   }
 
-  public handleChange = (event: any) => {
-    this.setState({ name: event.target.value });
+  public handleChange(event: React.ChangeEvent) {
+    this.setState({ name: (event.target as HTMLInputElement).value });
   }
 
   public handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -55,7 +55,7 @@ export default class RecipeForm extends React.Component<IRecipeProps, any> {
             />
           </label>
           <input type="submit" value="Save Recipe" />
-          <button onClick={this.handleCancel()}>Cancel</button>
+          <button onClick={this.handleCancel}>Cancel</button>
         </form>
       </div>
     );
