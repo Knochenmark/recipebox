@@ -14,7 +14,7 @@ export default class RecipeForm extends React.Component<IRecipeProps, any> {
     this.state = {
       isBookmarked: (this.props.recipe && this.props.recipe.isBookmarked) || false,
       name: (this.props.recipe && this.props.recipe.name) || '',
-      recipeToUpdate: this.props.recipe.name // TODO: handle null value
+      recipeToUpdate: this.props.recipe ? this.props.recipe.name : null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,7 +35,9 @@ export default class RecipeForm extends React.Component<IRecipeProps, any> {
       isBookmarked: this.state.isBookmarked,
       name: this.state.name
     };
-    this.props.updateCallback(recipe, this.state.recipeToUpdate);
+    if (this.state.recipeToUpdate) {
+      this.props.updateCallback(recipe, this.state.recipeToUpdate);
+    }
   }
 
   public render(): JSX.Element {
