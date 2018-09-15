@@ -192,3 +192,41 @@ h2{
 .tabBarItem.active{
   color: lightseagreen;
 }
+
+.searchbar {
+  position: relative;
+}
+
+.searchbar-highlight {
+  font-size: 16px;
+  /* user-select: none; */
+  line-height: 35px;
+  border-top: 2px solid #ff5537;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-width: 100%;
+  height: 0;
+  color: transparent;
+  overflow: hidden;
+}
+
+.searchbar input {
+  font-family: 'Montserrat', sans-serif;
+  height: 50px;
+  width: 100%;
+  min-width: 100%;
+  padding: 0;
+  border-radius: 0;
+  line-height: 35px;
+  background-color: transparent;
+  color: #ff5537;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #849493;
+}
+
+.searchbar input:focus ~ .searchbar-highlight{
+  border-top: 2px solid #ff5537;
+}

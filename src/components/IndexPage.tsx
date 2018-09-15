@@ -1,7 +1,9 @@
 import * as React from 'react';
 
 import { ITabBarItem } from '../_domain/ITabBarItem';
+import SearchBar from './SearchBar';
 import TabBar from './TabBar';
+
 export interface IPageProps {
   className: string;
   createRecipe: any;
@@ -62,6 +64,7 @@ export default function IndexPage({ recipes, createRecipe, setSelectedRecipe, ..
     <div className={props.className}>
       <h2>Recipe List</h2>
       <TabBar tabBarItemList={tabItemList} />
+      <SearchBar searchValue='' />
       <div className="index-items">
         {indexItems}
       </div>
