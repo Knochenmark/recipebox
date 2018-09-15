@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { ITabBarItem } from '../_domain/ITabBarItem';
+import TabBar from './TabBar';
 export interface IPageProps {
   className: string;
   createRecipe: any;
@@ -44,9 +46,22 @@ export default function IndexPage({ recipes, createRecipe, setSelectedRecipe, ..
     </div>
   });
 
+  // TODO needs a TabItem component and Tabbar as wrapper should handle onChanges
+  const tabItemList: ITabBarItem[] = [
+    {
+      active: true,
+      name: 'Recipes'
+
+    }, {
+      active: false,
+      name: 'Liked'
+    }
+  ];
+
   return (
     <div className={props.className}>
       <h2>Recipe List</h2>
+      <TabBar tabBarItemList={tabItemList} />
       <div className="index-items">
         {indexItems}
       </div>
