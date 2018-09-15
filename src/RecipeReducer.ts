@@ -1,6 +1,7 @@
-import { exampleRecipes } from './_config/exampleRecipes';
+import { exampleRecipeList } from './_config/exampleRecipeList';
 import { IRecipe } from './_domain/IRecipe';
 import { IStoreState } from './_domain/IStoreState';
+import { LocalStorageWrapper } from './_domain/LocalStorageWrapper';
 import {
   Action,
   actionTypes,
@@ -12,11 +13,18 @@ import {
   IUpdateRecipeAction
 } from './actions/RecipeActions';
 
+const LocalStorage = new LocalStorageWrapper();
+const storageRecipeList = LocalStorage.getItem('recipes');
+const initialRecipeList = storageRecipeList ? storageRecipeList : exampleRecipeList;
+if (!storageRecipeList || storageRecipeList.length === 0) {
+  LocalStorage.setItem('recipes', exampleRecipeList);
+}
+
 const initialState: IStoreState = {
   isEditMode: false,
   isIndexVisible: true,
-  recipes: exampleRecipes,
-  selectedRecipe: exampleRecipes[0]
+  recipes: initialRecipeList,
+  selectedRecipe: initialRecipeList[0]
 }
 
 const recipes = (state: IStoreState = initialState, action: Action) => {
@@ -47,6 +55,7 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
         recipe.name === deleteRecipeAction.recipe.name);
       const newRecipeList = [...state.recipes];
       newRecipeList.splice(index, 1);
+      LocalStorage.setItem('recipes', newRecipeList);
       return {
         ...state,
         isIndexVisible: true,
@@ -63,11 +72,11 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
     }
     case actionTypes.UPDATE_RECIPE: {
       const { recipe, recipeName } = action as IUpdateRecipeAction;
-      const index = state.recipes.findIndex(r =>
-        r.name === recipeName);
+      const index = state.recipes.findIndex(r => r.name === recipeName);
       const newRecipeList = [...state.recipes];
       newRecipeList.splice(index, 1); // TODO spread into new object before splice and removal?
       newRecipeList.push(recipe);
+      LocalStorage.setItem('recipes', newRecipeList);
       return {
         ...state,
         recipes: newRecipeList
@@ -75,12 +84,12 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
     }
     case actionTypes.SET_BOOKMARK: {
       const { recipeName, isBookmarked } = action as ISetBookmarkAction;
-      console.log(recipeName);
       const bookmarkedRecipe = state.recipes.find(recipe =>
         recipe.name === recipeName);
       if (bookmarkedRecipe) {
         bookmarkedRecipe.isBookmarked = isBookmarked;
       }
+      LocalStorage.setItem('recipes', [...state.recipes]);
       return {
         ...state,
         recipes: [...state.recipes]
