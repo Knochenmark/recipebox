@@ -17,8 +17,8 @@ import {
   getIndexVisibility,
   getSelectedRecipe
 } from '../RecipeReducer';
-import IndexPage from './IndexPage';
-import Recipe from './Recipe';
+import IndexPage from './IndexPage/IndexPage';
+import Recipe from './Recipe/Recipe';
 import RecipeForm from './RecipeForm';
 import Ribbon from './Ribbon';
 
@@ -134,7 +134,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
     return (
       <div>
         <div className='recipebook'>
-          <IndexPage className='page' recipes={this.props.state.recipes} createRecipe={this.createRecipe} setSelectedRecipe={this.setRecipeName} />
+          <IndexPage recipes={this.props.state.recipes} createRecipe={this.createRecipe} setSelectedRecipe={this.setRecipeName} />
           <div className={recipeContainerClass}>
             {ribbonElement}
             {recipeElement}
