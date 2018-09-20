@@ -1,11 +1,15 @@
 import * as React from 'react';
 
-import { ITabBarItem } from '../_domain/ITabBarItem';
-import SearchBar from './SearchBar';
-import TabBar from './TabBar';
+import { ITabBarItem } from '../../_domain/ITabBarItem';
+import SearchBar from '../SearchBar/SearchBar';
+import TabBar from '../TabBar';
+import {
+  indexPageItemStyle,
+  indexPageRecipeStyle,
+  indexPageStyle
+} from './IndexPageStyles';
 
 export interface IPageProps {
-  className: string;
   createRecipe: any;
   recipes: any[];
   setSelectedRecipe: any;
@@ -42,7 +46,7 @@ export default function IndexPage({ recipes, createRecipe, setSelectedRecipe, ..
     });
     return <div key={index}>
       <span>{index}({obj[index].length})</span>
-      <ul className="index-recipes">
+      <ul className={indexPageRecipeStyle}>
         {recipeItems}
       </ul>
     </div>
@@ -61,11 +65,11 @@ export default function IndexPage({ recipes, createRecipe, setSelectedRecipe, ..
   ];
 
   return (
-    <div className={props.className}>
+    <div className={indexPageStyle}>
       <h2>Recipe List</h2>
       <TabBar tabBarItemList={tabItemList} />
       <SearchBar searchValue='' />
-      <div className="index-items">
+      <div className={indexPageItemStyle}>
         {indexItems}
       </div>
       <button onClick={handleCreateRecipe()}>Create New Recipe</button>
