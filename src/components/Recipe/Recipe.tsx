@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { IRecipe } from '../_domain/IRecipe';
-import HeartFilled from './Icons/HeartFilled';
-import HeartOutlined from './Icons/HeartOutlined';
+import { IRecipe } from '../../_domain/IRecipe';
+import HeartFilled from '../Icons/HeartFilled';
+import HeartOutlined from '../Icons/HeartOutlined';
+import { recipeStyle } from './RecipeStyles';
 
 export interface IRecipeProps {
   bookmarkCallback: any;
@@ -38,7 +39,7 @@ export default function Recipe({
   }
 
   return (
-    <div className="recipe">
+    <div className={recipeStyle}>
       <h2>
         {recipe.name}
       </h2>
