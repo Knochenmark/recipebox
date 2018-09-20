@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IRecipe } from '../_domain/IRecipe';
-import { IStoreState } from '../_domain/IStoreState';
+import { IRecipe } from '../../_domain/IRecipe';
+import { IStoreState } from '../../_domain/IStoreState';
 import {
   createRecipeAction,
   deleteRecipeAction,
@@ -11,16 +11,17 @@ import {
   setIndexVisibilityAction,
   setSelectedRecipeAction,
   updateRecipeAction
-} from '../actions/RecipeActions';
+} from '../../actions/RecipeActions';
 import {
   getEditMode,
   getIndexVisibility,
   getSelectedRecipe
-} from '../RecipeReducer';
-import IndexPage from './IndexPage/IndexPage';
-import Recipe from './Recipe/Recipe';
-import RecipeForm from './RecipeForm';
-import Ribbon from './Ribbon';
+} from '../../RecipeReducer';
+import IndexPage from '../IndexPage/IndexPage';
+import Recipe from '../Recipe/Recipe';
+import RecipeForm from '../RecipeForm';
+import Ribbon from '../Ribbon';
+import { recipeBookStyle } from './RecipeBookStyles';
 
 interface IRecipebookState {
   recipes: IRecipe[];
@@ -133,7 +134,7 @@ export default class RecipeBookComponent extends React.Component<IRecipeBookProp
 
     return (
       <div>
-        <div className='recipebook'>
+        <div className={recipeBookStyle}>
           <IndexPage recipes={this.props.state.recipes} createRecipe={this.createRecipe} setSelectedRecipe={this.setRecipeName} />
           <div className={recipeContainerClass}>
             {ribbonElement}

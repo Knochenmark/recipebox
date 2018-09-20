@@ -11,12 +11,6 @@ body {
   transition: all .15s ease-in;
 }
 
-.recipebook {
-  overflow-x: hidden;
-  height: 100vh;
-  width: 100vw;
-}
-
 h2 {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
@@ -24,23 +18,6 @@ h2 {
   color: #849493;
   margin-top: 3rem;
   margin-bottom: 0.5rem;
-}
-
-.recipe-container {
-  overflow-y: auto;
-  position: relative;
-  height: 100%;
-  width: 100%;
-  z-index: 2;
-  padding: 1rem;
-  background-color: lightblue;
-  transform: translateX(100%);
-  overflow-y: auto;
-  transition: all 0.4s ease;
-}
-
-.recipe-container.visible {
-  transform: translateX(0%);
 }
 
 .ribbon:hover{
