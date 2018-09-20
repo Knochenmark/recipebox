@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import { RecipeBook } from './components/RecipeBook';
+import { RecipeBook } from './components/RecipeBook/RecipeBook';
 import recipeReducer from './RecipeReducer';
 import registerServiceWorker from './registerServiceWorker';
 

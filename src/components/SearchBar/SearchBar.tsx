@@ -1,5 +1,10 @@
 import * as React from 'react';
 
+import {
+  searchbarHighlightStyle,
+  searchBarStyle
+} from './SearchBarStyles';
+
 export interface ISearchBarProps {
   searchValue: string;
 }
@@ -23,14 +28,14 @@ export default class SearchBar extends React.Component<ISearchBarProps, any> {
 
   public render() {
     return (
-      <div className='searchbar'>
+      <div className={searchBarStyle}>
         <input
           onChange={this.onChange}
           placeholder='Search Recipe...'
           value={this.state.searchValue}
           spellCheck={false}
         />
-        <span className='searchbar-highlight'>
+        <span className={searchbarHighlightStyle}>
           {this.state.searchValue.replace(/ /g, "\u00a0")}
         </span>
       </div>
