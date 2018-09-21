@@ -11,45 +11,37 @@ export interface IRecipeProps {
   deleteCallback: any;
   recipe: IRecipe;
 }
-
-export default function Recipe({
-  recipe,
-  deleteCallback,
-  editModeCallback,
-  bookmarkCallback
-}: IRecipeProps) {
-
-  // Todo: get ingredient list from recipe
-  // const ingredientList =
-
-  const bookmarkRecipe = (recipeToBookmark: string) => {
-    return () => bookmarkCallback(recipeToBookmark, !recipe.isBookmarked);
+export default class RecipeComponent extends React.Component<IRecipeProps, any> {
+  constructor(props: IRecipeProps) {
+    super(props);
+    this.bookmarkRecipe = this.bookmarkRecipe.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
-  const handleDelete = (recipeToDelete: IRecipe) => {
-    return () => deleteCallback(recipeToDelete);
+  public bookmarkRecipe() {
+    this.props.bookmarkCallback(this.props.recipe, !this.props.recipe.isBookmarked);
   }
 
-  const handleEdit = () => {
-    return () => editModeCallback();
+  public handleDelete() {
+    this.props.deleteCallback(this.props.recipe);
   }
 
-  const bookmarkText = () => {
-    return recipe.isBookmarked ? <HeartFilled /> : <HeartOutlined />;
+  public handleEdit() {
+    this.props.editModeCallback();
   }
 
-  return (
-    <div className={recipeStyle}>
-      <h2>
-        {recipe.name}
-      </h2>
-      <span>Ingredients</span>
-      {/* <ul className="index-recipes">
-        {ingredientList}
-      </ul> */}
-      <button onClick={handleEdit()}>Edit Recipe</button>
-      <button onClick={handleDelete(recipe)}>Delete Recipe</button>
-      <span onClick={bookmarkRecipe(recipe.name)}>{bookmarkText()}</span>
-    </div>
-  );
+  public render(): JSX.Element {
+    const bookmarkText = this.props.recipe.isBookmarked ? <HeartFilled /> : <HeartOutlined />;
+    return (
+      <div className={recipeStyle}>
+        <h2>
+          {this.props.recipe.name}
+        </h2>
+        <button onClick={this.handleEdit}>Edit Recipe</button>
+        <button onClick={this.handleDelete}>Delete Recipe</button>
+        <span onClick={this.bookmarkRecipe}>{bookmarkText}</span>
+      </div>
+    );
+  }
 }
