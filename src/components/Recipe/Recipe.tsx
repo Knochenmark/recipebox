@@ -1,47 +1,79 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
 import { IRecipe } from '../../_domain/IRecipe';
+import { IStoreState } from '../../_domain/IStoreState';
+import {
+  deleteRecipeAction,
+  setBookmark,
+  setEditModeAction,
+  setIndexVisibilityAction
+} from '../../actions/RecipeActions';
+import { getSelectedRecipe } from '../../RecipeReducer';
 import HeartFilled from '../Icons/HeartFilled';
 import HeartOutlined from '../Icons/HeartOutlined';
 import { recipeStyle } from './RecipeStyles';
 
-export interface IRecipeProps {
-  bookmarkCallback: any;
-  editModeCallback: any;
-  deleteCallback: any;
-  recipe: IRecipe;
+interface IRecipeStateProps {
+  selectedRecipe: IRecipe;
 }
-export default class RecipeComponent extends React.Component<IRecipeProps, any> {
+
+interface IRecipeDispatchProps {
+  bookmarkRecipe: (recipeName: string, isBookmarked: boolean) => void;
+  deleteRecipe: (recipe: IRecipe) => void;
+  setEditMode: () => void;
+  showIndex: () => void;
+}
+
+interface IRecipeProps {
+  bookmarkRecipe: (recipeName: string, isBookmarked: boolean) => void;
+  deleteRecipe: (recipe: IRecipe) => void;
+  selectedRecipe: IRecipe;
+  setEditMode: () => void;
+  showIndex: () => void;
+}
+
+export class RecipeComponent extends React.Component<IRecipeProps, IRecipeStateProps> {
   constructor(props: IRecipeProps) {
     super(props);
-    this.bookmarkRecipe = this.bookmarkRecipe.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+    this.state = {
+      selectedRecipe: { name: '', isBookmarked: false }
+    };
   }
 
-  public bookmarkRecipe() {
-    this.props.bookmarkCallback(this.props.recipe, !this.props.recipe.isBookmarked);
-  }
-
-  public handleDelete() {
-    this.props.deleteCallback(this.props.recipe);
-  }
-
-  public handleEdit() {
-    this.props.editModeCallback();
+  public componentWillReceiveProps(newProps: IRecipeProps) {
+    this.setState({ selectedRecipe: newProps.selectedRecipe });
   }
 
   public render(): JSX.Element {
-    const bookmarkText = this.props.recipe.isBookmarked ? <HeartFilled /> : <HeartOutlined />;
+    const bookmarkText = this.props.selectedRecipe.isBookmarked ? <HeartFilled /> : <HeartOutlined />;
     return (
       <div className={recipeStyle}>
         <h2>
-          {this.props.recipe.name}
+          {this.props.selectedRecipe.name}
         </h2>
-        <button onClick={this.handleEdit}>Edit Recipe</button>
-        <button onClick={this.handleDelete}>Delete Recipe</button>
-        <span onClick={this.bookmarkRecipe}>{bookmarkText}</span>
+        <button onClick={this.props.setEditMode}>Edit Recipe</button>
+        <button onClick={this.props.deleteRecipe.bind(this, this.props.selectedRecipe)}>Delete Recipe</button>
+        <button onClick={this.props.showIndex}>Go TO Index</button>
+        <span onClick={this.props.bookmarkRecipe.bind(this, this.props.selectedRecipe, !this.props.selectedRecipe.isBookmarked)}>{bookmarkText}</span>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state: IStoreState, ownProps: {}): IRecipeStateProps => {
+  return {
+    selectedRecipe: getSelectedRecipe(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch: any): IRecipeDispatchProps => {
+  return {
+    bookmarkRecipe: (recipeName: string, isBookmarked: boolean) => dispatch(setBookmark(recipeName, isBookmarked)),
+    deleteRecipe: (recipe: IRecipe) => dispatch(deleteRecipeAction(recipe)),
+    setEditMode: () => dispatch(setEditModeAction(true)),
+    showIndex: () => dispatch(setIndexVisibilityAction(true))
+  }
+}
+
+export const Recipe = connect(mapStateToProps, mapDispatchToProps)(RecipeComponent)

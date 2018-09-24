@@ -1,78 +1,92 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
-import { ITabBarItem } from '../../_domain/ITabBarItem';
-import SearchBar from '../SearchBar/SearchBar';
-import TabBar from '../TabBar';
+import { IRecipe } from '../../_domain/IRecipe';
+import { IStoreState } from '../../_domain/IStoreState';
+import {
+  createRecipeAction,
+  setSelectedRecipeAction
+} from '../../actions/RecipeActions';
+import { getRecipes } from '../../RecipeReducer';
 import {
   indexPageItemStyle,
   indexPageRecipeStyle,
   indexPageStyle
 } from './IndexPageStyles';
 
-export interface IPageProps {
-  createRecipe: any;
-  recipes: any[];
-  setSelectedRecipe: any;
+export interface IIndexPageProps {
+  createRecipe: () => void;
+  recipes: IRecipe[];
+  setSelectedRecipe: (recipeName: string) => void;
 }
 
-export default function IndexPage({ recipes, createRecipe, setSelectedRecipe, ...props }: IPageProps) {
+interface IIndexPageStateProps {
+  recipes: IRecipe[];
+}
 
-  const indices = recipes.map(recipe => recipe.name[0].toUpperCase()).filter((v, i, a) => a.indexOf(v) === i);
-  const obj: any = {};
-  recipes.forEach(recipe => {
-    const key = recipe.name[0].toUpperCase();
-    if (obj.hasOwnProperty(key)) {
-      obj[key].push(recipe)
-    } else {
-      obj[key] = [recipe]
-    }
-  });
+interface IIndexPageDispatchProps {
+  createRecipe: () => void;
+  setSelectedRecipe: (recipeName: string) => void;
+}
 
-  const handleCallback = (recipeName: string) => {
-    return () => {
-      setSelectedRecipe(recipeName);
-    }
+export class IndexPageComponent extends React.Component<IIndexPageProps> {
+  constructor(props: IIndexPageProps) {
+    super(props);
   }
 
-  const handleCreateRecipe = () => {
-    return () => {
-      createRecipe();
-    }
-  }
+  public render() {
+    const indices = this.props.recipes
+      .map(recipe => recipe.name[0].toUpperCase())
+      .filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
 
-  const indexItems = indices.sort().map(index => {
-    const recipeItems = obj[index].map((recipe: any, i: number) => {
-      return <li onClick={handleCallback(recipe.name)} key={index + i}>{recipe.name}</li>
+    const obj: any = {};
+    this.props.recipes.forEach((recipe: IRecipe) => {
+      const key = recipe.name[0].toUpperCase();
+      if (obj.hasOwnProperty(key)) {
+        obj[key].push(recipe)
+      } else {
+        obj[key] = [recipe]
+      }
     });
-    return <div key={index}>
-      <span>{index}({obj[index].length})</span>
-      <ul className={indexPageRecipeStyle}>
-        {recipeItems}
-      </ul>
-    </div>
-  });
 
-  // TODO needs a TabItem component and Tabbar as wrapper should handle onChanges
-  const tabItemList: ITabBarItem[] = [
-    {
-      active: true,
-      name: 'Recipes'
-
-    }, {
-      active: false,
-      name: 'Liked'
-    }
-  ];
-
-  return (
-    <div className={indexPageStyle}>
-      <h2>Recipe List</h2>
-      <TabBar tabBarItemList={tabItemList} />
-      <SearchBar searchValue='' />
-      <div className={indexPageItemStyle}>
-        {indexItems}
+    const indexItems = indices.sort().map(index => {
+      const recipeItems = obj[index].map((recipe: IRecipe, i: number) => {
+        return <li onClick={this.props.setSelectedRecipe.bind(this, recipe.name)} key={index + i}>{recipe.name}</li>
+      });
+      return <div key={index}>
+        <span>{index}({obj[index].length})</span>
+        <ul className={indexPageRecipeStyle}>
+          {recipeItems}
+        </ul>
       </div>
-      <button onClick={handleCreateRecipe()}>Create New Recipe</button>
-    </div>
-  );
+    });
+    return (
+      <div className={indexPageStyle}>
+        <h2>Recipe List</h2>
+        {/*
+            <TabBar tabBarItemList={tabItemList} />
+            <SearchBar searchValue='' />
+            */}
+        <div className={indexPageItemStyle}>
+          {indexItems}
+        </div>
+        <button onClick={this.props.createRecipe}>Create New Recipe</button>
+      </div>
+    );
+  }
 }
+
+function mapStateToProps(state: IStoreState): IIndexPageStateProps {
+  return {
+    recipes: getRecipes(state)
+  };
+}
+
+function mapDispatchToProps(dispatch: any): IIndexPageDispatchProps {
+  return {
+    createRecipe: () => dispatch(createRecipeAction()),
+    setSelectedRecipe: (recipeName: string) => dispatch(setSelectedRecipeAction(recipeName))
+  };
+}
+
+export const IndexPage = connect(mapStateToProps, mapDispatchToProps)(IndexPageComponent);

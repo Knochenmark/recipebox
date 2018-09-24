@@ -1,144 +1,66 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IRecipe } from '../../_domain/IRecipe';
 import { IStoreState } from '../../_domain/IStoreState';
-import {
-  createRecipeAction,
-  deleteRecipeAction,
-  setBookmark,
-  setEditModeAction,
-  setIndexVisibilityAction,
-  setSelectedRecipeAction,
-  updateRecipeAction
-} from '../../actions/RecipeActions';
+import { setSelectedRecipeAction } from '../../actions/RecipeActions';
 import {
   getEditMode,
-  getIndexVisibility,
-  getSelectedRecipe
+  getIndexVisibility
 } from '../../RecipeReducer';
-import IndexPage from '../IndexPage/IndexPage';
-import Recipe from '../Recipe/Recipe';
-import RecipeForm from '../RecipeForm';
-import Ribbon from '../Ribbon';
+import { IndexPage } from '../IndexPage/IndexPage';
+import { Recipe } from '../Recipe/Recipe';
+import { RecipeForm } from '../RecipeForm';
 import { recipeBookStyle } from './RecipeBookStyles';
 
-interface IRecipebookState {
-  recipes: IRecipe[];
-  selectedRecipe: IRecipe;
+interface IRecipeBookStateProps {
+  isIndexVisible: boolean;
+  isEditMode: boolean;
+}
+
+interface IRecipeBookDispatchProps {
+  setSelectedRecipe: (recipeName: string) => void;
 }
 
 interface IRecipeBookProps {
-  bookmarkRecipe: any;
-  createRecipe: any;
-  deleteRecipe: any;
-  setEditMode: any;
-  setSelectedRecipe: any;
-  state: IStoreState;
-  setIndexVisibility: any;
-  updateRecipe: any;
+  isIndexVisible: boolean;
+  isEditMode: boolean;
+  setSelectedRecipe: (recipeName: string) => void;
 }
 
-const mapStateToProps = (state: IStoreState) => {
+const mapStateToProps = (state: IStoreState): IRecipeBookStateProps => {
   return {
-    state
+    isEditMode: getEditMode(state),
+    isIndexVisible: getIndexVisibility(state)
   };
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: any): IRecipeBookDispatchProps => {
   return {
-    bookmarkRecipe: (recipeName: string, isBookmarked: boolean) =>
-      dispatch(setBookmark(recipeName, isBookmarked)),
-    createRecipe: () => dispatch(createRecipeAction()),
-    deleteRecipe: (recipe: IRecipe) => dispatch(deleteRecipeAction(recipe)),
-    setEditMode: (isEditMode: boolean) =>
-      dispatch(setEditModeAction(isEditMode)),
-    setIndexVisibility: (isVisible: boolean) =>
-      dispatch(setIndexVisibilityAction(isVisible)),
     setSelectedRecipe: (recipeName: string) =>
       dispatch(setSelectedRecipeAction(recipeName)),
-    updateRecipe: (recipe: IRecipe, recipeName: string) =>
-      dispatch(updateRecipeAction(recipe, recipeName))
   };
 }
 
-export default class RecipeBookComponent extends React.Component<IRecipeBookProps, IRecipebookState> {
+export class RecipeBookComponent extends React.Component<IRecipeBookProps> {
   constructor(props: IRecipeBookProps) {
     super(props);
-    this.bookmarkRecipe = this.bookmarkRecipe.bind(this);
-    this.cancelEditMode = this.cancelEditMode.bind(this);
-    this.createRecipe = this.createRecipe.bind(this);
-    this.deleteRecipe = this.deleteRecipe.bind(this);
-    this.editRecipe = this.editRecipe.bind(this);
     this.setRecipeName = this.setRecipeName.bind(this);
-    this.showIndex = this.showIndex.bind(this);
-    this.updateRecipe = this.updateRecipe.bind(this);
   }
 
   public setRecipeName(recipeName: string) {
     this.props.setSelectedRecipe(recipeName);
-    this.props.setIndexVisibility(false);
-  }
-
-  public deleteRecipe(recipe: IRecipe) {
-    this.props.deleteRecipe(recipe);
-  }
-
-  public editRecipe() {
-    this.props.setEditMode(true);
-  }
-
-  public bookmarkRecipe(recipeName: IRecipe, isBookmarked: boolean) {
-    this.props.bookmarkRecipe(recipeName, isBookmarked);
-  }
-
-  public cancelEditMode() {
-    this.props.setEditMode(false);
-  }
-
-  public updateRecipe(recipe: IRecipe, recipeName: string) {
-    this.props.updateRecipe(recipe, recipeName);
-    this.cancelEditMode();
-  }
-
-  public createRecipe() {
-    this.props.createRecipe();
-  }
-
-  public showIndex() {
-    this.props.setIndexVisibility(true);
   }
 
   public render(): JSX.Element {
-
-    const selectedRecipe = getSelectedRecipe(this.props.state);
-    const isEditMode = getEditMode(this.props.state);
-    let recipeElement;
-    if (!isEditMode) {
-      recipeElement = selectedRecipe &&
-        <Recipe
-          key={selectedRecipe.name}
-          recipe={selectedRecipe}
-          bookmarkCallback={this.bookmarkRecipe}
-          deleteCallback={this.deleteRecipe}
-          editModeCallback={this.editRecipe}
-        />;
-    } else {
-      recipeElement = <RecipeForm recipe={selectedRecipe} updateCallback={this.updateRecipe} cancelCallback={this.cancelEditMode} />;
-    }
-
-    const ribbonElement = (!isEditMode) && <Ribbon indexCallback={this.showIndex} />;
-
-    const recipeContainerClass = getIndexVisibility(this.props.state)
-      ? "recipe-container" : "recipe-container visible";
+    const isEditMode = this.props.isEditMode;
+    const recipeContainerClass = this.props.isIndexVisible ? "recipe-container" : "recipe-container visible";
 
     return (
       <div>
         <div className={recipeBookStyle}>
-          <IndexPage recipes={this.props.state.recipes} createRecipe={this.createRecipe} setSelectedRecipe={this.setRecipeName} />
+          <IndexPage />
           <div className={recipeContainerClass}>
-            {ribbonElement}
-            {recipeElement}
+            {isEditMode ? <RecipeForm /> : <Recipe />}
           </div>
         </div>
       </div>

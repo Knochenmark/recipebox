@@ -6,6 +6,7 @@ import {
   Action,
   actionTypes,
   IDeleteRecipeAction,
+  ISaveRecipeAction,
   ISetBookmarkAction,
   ISetEditModeAction,
   ISetIndexVisibilityAction,
@@ -67,7 +68,8 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       const { recipeName } = action as ISetSelectedRecipeAction;
       return {
         ...state,
-        selectedRecipe: state.recipes.find(recipe => recipe.name === recipeName)
+        isIndexVisible: false,
+        selectedRecipe: state.recipes.find(recipe => recipe.name === recipeName),
       };
     }
     case actionTypes.UPDATE_RECIPE: {
@@ -79,6 +81,7 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       LocalStorage.setItem('recipes', newRecipeList);
       return {
         ...state,
+        isEditMode: false,
         recipes: newRecipeList
       };
     }
@@ -93,6 +96,15 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       return {
         ...state,
         recipes: [...state.recipes]
+      }
+    }
+    case actionTypes.SAVE_RECIPE: {
+      const { recipe } = action as ISaveRecipeAction;
+      return {
+        ...state,
+        isEditMode: false,
+        isIndexVisible: true,
+        recipes: [...state.recipes, recipe]
       }
     }
     default:

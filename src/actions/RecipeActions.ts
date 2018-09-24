@@ -7,7 +7,8 @@ export enum actionTypes {
   SET_INDEX_VISIBILITY = '[Recipe] Set Index Visibility',
   SET_BOOKMARK = '[Recipe] Bookmark Recipe',
   SET_SELECTED_RECIPE = '[Recipe] Set selected Recipe',
-  UPDATE_RECIPE = '[Recipe] Update Recipe'
+  UPDATE_RECIPE = '[Recipe] Update Recipe',
+  SAVE_RECIPE = '[Recipe] Save Recipe'
 }
 
 export interface ISetBookmarkAction {
@@ -47,6 +48,11 @@ export interface IUpdateRecipeAction {
   type: string;
 }
 
+export interface ISaveRecipeAction {
+  recipe: IRecipe;
+  type: string;
+}
+
 export const setBookmark = (recipeName: string, isBookmarked: boolean) => ({
   isBookmarked,
   recipeName,
@@ -73,6 +79,11 @@ export const createRecipeAction = () => ({
   type: actionTypes.CREATE_RECIPE
 });
 
+export const saveRecipeAction = (recipe: IRecipe) => ({
+  recipe,
+  type: actionTypes.CREATE_RECIPE
+});
+
 export const deleteRecipeAction = (recipe: IRecipe) => ({
   recipe,
   type: actionTypes.DELETE_RECIPE
@@ -90,4 +101,5 @@ export type Action
   | ISetIndexVisibilityAction
   | ISetSelectedRecipeAction
   | IUpdateRecipeAction
-  | ISetBookmarkAction;
+  | ISetBookmarkAction
+  | ISaveRecipeAction;
