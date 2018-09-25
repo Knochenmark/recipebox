@@ -55,7 +55,7 @@ export class RecipeComponent extends React.Component<IRecipeProps, IRecipeStateP
         <button onClick={this.props.setEditMode}>Edit Recipe</button>
         <button onClick={this.props.deleteRecipe.bind(this, this.props.selectedRecipe)}>Delete Recipe</button>
         <button onClick={this.props.showIndex}>Go TO Index</button>
-        <span onClick={this.props.bookmarkRecipe.bind(this, this.props.selectedRecipe, !this.props.selectedRecipe.isBookmarked)}>{bookmarkText}</span>
+        <span onClick={this.props.bookmarkRecipe.bind(this, this.props.selectedRecipe.name, !this.props.selectedRecipe.isBookmarked)}>{bookmarkText}</span>
       </div>
     );
   }
