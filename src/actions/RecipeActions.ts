@@ -81,7 +81,7 @@ export const createRecipeAction = () => ({
 
 export const saveRecipeAction = (recipe: IRecipe) => ({
   recipe,
-  type: actionTypes.CREATE_RECIPE
+  type: actionTypes.SAVE_RECIPE
 });
 
 export const deleteRecipeAction = (recipe: IRecipe) => ({
