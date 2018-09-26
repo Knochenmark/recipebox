@@ -37,25 +37,38 @@ export class RecipeComponent extends React.Component<IRecipeProps, IRecipeStateP
   constructor(props: IRecipeProps) {
     super(props);
     this.state = {
-      selectedRecipe: { name: '', isBookmarked: false }
+      selectedRecipe: this.props.selectedRecipe
     };
+    this.bookmarkHandler = this.bookmarkHandler.bind(this)
   }
 
   public componentWillReceiveProps(newProps: IRecipeProps) {
     this.setState({ selectedRecipe: newProps.selectedRecipe });
   }
 
+  public getBookmarkText() {
+    return this.state.selectedRecipe && this.state.selectedRecipe.isBookmarked
+      ? <HeartFilled />
+      : <HeartOutlined />;
+  }
+
+  public bookmarkHandler() {
+    const selectedRecipe = this.props.selectedRecipe;
+    if (selectedRecipe) {
+      this.props.bookmarkRecipe(selectedRecipe.name, !selectedRecipe.isBookmarked);
+    }
+  }
+
   public render(): JSX.Element {
-    const bookmarkText = this.props.selectedRecipe.isBookmarked ? <HeartFilled /> : <HeartOutlined />;
     return (
       <div className={recipeStyle}>
         <h2>
-          {this.props.selectedRecipe.name}
+          {this.props.selectedRecipe && this.props.selectedRecipe.name}
         </h2>
         <button onClick={this.props.setEditMode}>Edit Recipe</button>
         <button onClick={this.props.deleteRecipe.bind(this, this.props.selectedRecipe)}>Delete Recipe</button>
         <button onClick={this.props.showIndex}>Go TO Index</button>
-        <span onClick={this.props.bookmarkRecipe.bind(this, this.props.selectedRecipe.name, !this.props.selectedRecipe.isBookmarked)}>{bookmarkText}</span>
+        <span onClick={this.bookmarkHandler}>{this.getBookmarkText()}</span>
       </div>
     );
   }
