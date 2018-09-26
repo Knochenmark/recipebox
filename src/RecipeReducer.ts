@@ -3,15 +3,15 @@ import { IRecipe } from './_domain/IRecipe';
 import { IStoreState } from './_domain/IStoreState';
 import { LocalStorageWrapper } from './_domain/LocalStorageWrapper';
 import {
-    Action,
-    actionTypes,
-    IDeleteRecipeAction,
-    ISaveRecipeAction,
-    ISetBookmarkAction,
-    ISetEditModeAction,
-    ISetIndexVisibilityAction,
-    ISetSelectedRecipeAction,
-    IUpdateRecipeAction,
+  Action,
+  actionTypes,
+  IDeleteRecipeAction,
+  ISaveRecipeAction,
+  ISetBookmarkAction,
+  ISetEditModeAction,
+  ISetIndexVisibilityAction,
+  ISetSelectedRecipeAction,
+  IUpdateRecipeAction
 } from './actions/RecipeActions';
 
 const LocalStorage = new LocalStorageWrapper();
@@ -90,12 +90,13 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       const bookmarkedRecipe = state.recipes.find(recipe =>
         recipe.name === recipeName);
       if (bookmarkedRecipe) {
-        bookmarkedRecipe.isBookmarked = isBookmarked;
+        Object.assign(bookmarkedRecipe, { isBookmarked });
       }
       LocalStorage.setItem('recipes', [...state.recipes]);
       return {
         ...state,
-        recipes: [...state.recipes]
+        recipes: [...state.recipes],
+        selectedRecipe: { ...bookmarkedRecipe }
       }
     }
     case actionTypes.SAVE_RECIPE: {
