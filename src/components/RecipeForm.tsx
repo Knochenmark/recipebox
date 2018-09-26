@@ -35,10 +35,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
   constructor(props: IRecipeFormProps) {
     super(props);
     this.state = {
-      recipe: {
-        isBookmarked: false,
-        name: ''
-      }
+      recipe: this.props.selectedRecipe
     };
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
@@ -78,7 +75,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
           <input
               required={true}
               type="text"
-              value={this.state.recipe.name}
+              value={this.state.recipe ? this.state.recipe.name : ''}
               onChange={this.onChangeHandler}
             />
           </label>
