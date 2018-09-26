@@ -57,7 +57,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     event.preventDefault();
     const recipe = { ...this.state.recipe };
     if (this.props.selectedRecipe) {
-      this.props.updateRecipeAction(recipe, recipe.name);
+      this.props.updateRecipeAction(recipe, this.props.selectedRecipe.name);
     } else {
       this.props.saveRecipeAction(recipe);
     }
