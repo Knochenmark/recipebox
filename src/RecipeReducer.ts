@@ -82,7 +82,8 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       return {
         ...state,
         isEditMode: false,
-        recipes: newRecipeList
+        recipes: newRecipeList,
+        selectedRecipe: recipe
       };
     }
     case actionTypes.SET_BOOKMARK: {
