@@ -7,10 +7,12 @@ import {
   actionTypes,
   IDeleteRecipeAction,
   ISaveRecipeAction,
+  ISearchValueAction,
   ISetBookmarkAction,
   ISetEditModeAction,
   ISetIndexVisibilityAction,
   ISetSelectedRecipeAction,
+  ISetSelectedTabAction,
   IUpdateRecipeAction
 } from './actions/RecipeActions';
 
@@ -27,10 +29,17 @@ const initialState: IStoreState = {
   recipes: initialRecipeList,
   searchValue: '',
   selectedRecipe: initialRecipeList[0],
+  selectedTab: 'recipe',
 }
 
 const recipes = (state: IStoreState = initialState, action: Action) => {
   switch (action.type) {
+    case actionTypes.SET_SELECTED_TAB:
+      const setSelectedTabAction = action as ISetSelectedTabAction;
+      return {
+        ...state,
+        selectedTab: setSelectedTabAction.selectedTab
+      }
     case actionTypes.SET_SEARCH_VALUE:
       const setSearchValueAction = action as ISearchValueAction;
       return {
@@ -130,5 +139,6 @@ export const getSelectedRecipe = (state: IStoreState): IRecipe => state.selected
 export const getEditMode = (state: IStoreState): boolean => state.isEditMode;
 export const getIndexVisibility = (state: IStoreState): boolean => state.isIndexVisible;
 export const getSearchValue = (state: IStoreState): string => state.searchValue;
+export const getSelectedTab = (state: IStoreState): string => state.selectedTab;
 
 export default recipes

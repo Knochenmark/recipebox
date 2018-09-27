@@ -13,6 +13,7 @@ import {
   getSelectedTab
 } from '../../RecipeReducer';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { TabBar } from '../TabBar';
 import {
   indexPageItemStyle,
   indexPageRecipeStyle,
@@ -23,12 +24,14 @@ export interface IIndexPageProps {
   createRecipe: () => void;
   recipes: IRecipe[];
   searchValue: string;
+  selectedTab: string;
   setSelectedRecipe: (recipeName: string) => void;
 }
 
 interface IIndexPageStateProps {
   recipes: IRecipe[];
   searchValue: string;
+  selectedTab: string;
 }
 
 interface IIndexPageDispatchProps {
@@ -84,12 +87,21 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
         </ul>
       </div>
     });
+
     return (
       <div className={indexPageStyle}>
         <h2>Recipe List</h2>
+        <TabBar />
         <SearchBar />
-          {indexItems}
-        </div>
+        {
+          this.props.selectedTab === 'recipe' &&
+          <div className={indexPageItemStyle}>
+            {indexItems}
+          </div>
+        }
+        {
+          // this.props.selectedTab === 'bookmark' && <Bookmarks />
+        }
         <button onClick={this.props.createRecipe}>Create New Recipe</button>
       </div>
     );
@@ -100,6 +112,7 @@ function mapStateToProps(state: IStoreState): IIndexPageStateProps {
   return {
     searchValue: getSearchValue(state),
     recipes: getRecipes(state),
+    selectedTab: getSelectedTab(state),
   };
 }
 

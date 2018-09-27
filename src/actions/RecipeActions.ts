@@ -10,6 +10,13 @@ export enum actionTypes {
   UPDATE_RECIPE = '[Recipe] Update Recipe',
   SAVE_RECIPE = '[Recipe] Save Recipe',
   SET_SEARCH_VALUE = '[Recipe] Set Search Value',
+  SET_SELECTED_TAB = '[Recipe] Set Selected Tab'
+}
+
+export interface ISetSelectedTabAction {
+  selectedTab: string;
+  type: string;
+}
 
 export interface ISearchValueAction {
   searchValue: string;
@@ -57,6 +64,11 @@ export interface ISaveRecipeAction {
   recipe: IRecipe;
   type: string;
 }
+
+export const setSelectedTabAction = (selectedTab: string) => ({
+  selectedTab,
+  type: actionTypes.SET_SELECTED_TAB
+})
 
 export const setSearchValueAction = (searchValue: string) => ({
   searchValue,
@@ -112,4 +124,6 @@ export type Action
   | ISetSelectedRecipeAction
   | IUpdateRecipeAction
   | ISetBookmarkAction
-  | ISaveRecipeAction;
+  | ISaveRecipeAction
+  | ISearchValueAction
+  | ISetSelectedTabAction;
