@@ -92,6 +92,7 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
       <div className={indexPageStyle}>
         <h2>Recipe List</h2>
         <TabBar />
+        <SearchBar />
         {
           this.props.selectedTab === 'recipe' &&
           <div className={indexPageItemStyle}>
@@ -101,8 +102,6 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
         {
           // this.props.selectedTab === 'bookmark' && <Bookmarks />
         }
-        <SearchBar />
-        {indexItems}
         <button onClick={this.props.createRecipe}>Create New Recipe</button>
       </div>
     );
