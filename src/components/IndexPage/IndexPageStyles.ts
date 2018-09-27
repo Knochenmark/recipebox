@@ -35,7 +35,7 @@ export const indexPageItemStyle = style({
 
 export const indexPageRecipeStyle = style({
   $nest: {
-    '& >li': {
+    '& >li>span': {
       $nest: {
         '&:hover': {
           color: '#ff6347',

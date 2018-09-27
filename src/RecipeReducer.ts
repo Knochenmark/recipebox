@@ -6,6 +6,7 @@ import {
   Action,
   actionTypes,
   IDeleteRecipeAction,
+  ISaveRecipeAction,
   ISetBookmarkAction,
   ISetEditModeAction,
   ISetIndexVisibilityAction,
@@ -47,52 +48,69 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
         ...state,
         isEditMode: true,
         isIndexVisible: false,
-        selectedRecipe: null,
+        selectedRecipe: undefined,
       };
     case actionTypes.DELETE_RECIPE: {
       const deleteRecipeAction = action as IDeleteRecipeAction;
-      const index = state.recipes.findIndex(recipe =>
-        recipe.name === deleteRecipeAction.recipe.name);
-      const newRecipeList = [...state.recipes];
-      newRecipeList.splice(index, 1);
+      const newRecipeList = state.recipes.filter(r =>
+        r.name !== deleteRecipeAction.recipe.name
+      );
       LocalStorage.setItem('recipes', newRecipeList);
       return {
         ...state,
         isIndexVisible: true,
         recipes: newRecipeList,
-        selectedRecipe: null,
+        selectedRecipe: undefined,
       };
     }
     case actionTypes.SET_SELECTED_RECIPE: {
       const { recipeName } = action as ISetSelectedRecipeAction;
       return {
         ...state,
-        selectedRecipe: state.recipes.find(recipe => recipe.name === recipeName)
+        isIndexVisible: false,
+        selectedRecipe: state.recipes.find(recipe => recipe.name === recipeName),
       };
     }
     case actionTypes.UPDATE_RECIPE: {
       const { recipe, recipeName } = action as IUpdateRecipeAction;
-      const index = state.recipes.findIndex(r => r.name === recipeName);
-      const newRecipeList = [...state.recipes];
-      newRecipeList.splice(index, 1); // TODO spread into new object before splice and removal?
-      newRecipeList.push(recipe);
+      const newRecipeList = state.recipes.map(r => {
+        return r.name === recipeName ? recipe : r;
+      });
       LocalStorage.setItem('recipes', newRecipeList);
       return {
         ...state,
-        recipes: newRecipeList
+        isEditMode: false,
+        recipes: newRecipeList,
+        selectedRecipe: recipe
       };
     }
     case actionTypes.SET_BOOKMARK: {
       const { recipeName, isBookmarked } = action as ISetBookmarkAction;
-      const bookmarkedRecipe = state.recipes.find(recipe =>
-        recipe.name === recipeName);
-      if (bookmarkedRecipe) {
-        bookmarkedRecipe.isBookmarked = isBookmarked;
-      }
-      LocalStorage.setItem('recipes', [...state.recipes]);
+      let selectedRecipe;
+      const newRecipes = state.recipes.map(r => {
+        let bookmarkedRecipe;
+        if (r.name === recipeName) {
+          bookmarkedRecipe = { ...r };
+          selectedRecipe = bookmarkedRecipe;
+          bookmarkedRecipe.isBookmarked = isBookmarked;
+        }
+        return bookmarkedRecipe || r;
+      });
+      LocalStorage.setItem('recipes', newRecipes);
       return {
         ...state,
-        recipes: [...state.recipes]
+        recipes: newRecipes,
+        selectedRecipe
+      }
+    }
+    case actionTypes.SAVE_RECIPE: {
+      const { recipe } = action as ISaveRecipeAction;
+      LocalStorage.setItem('recipes', [...state.recipes, recipe]);
+      return {
+        ...state,
+        isEditMode: false,
+        recipes: [...state.recipes, recipe],
+        selectedRecipe: recipe
       }
     }
     default:

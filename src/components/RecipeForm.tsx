@@ -1,42 +1,65 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
 import { IRecipe } from '../_domain/IRecipe';
+import { IStoreState } from '../_domain/IStoreState';
+import {
+  saveRecipeAction,
+  setEditModeAction,
+  updateRecipeAction
+} from '../actions/RecipeActions';
+import { getSelectedRecipe } from '../RecipeReducer';
 
-export interface IRecipeProps {
-  cancelCallback: any;
-  updateCallback: any;
+export interface IRecipeFormProps {
+  selectedRecipe: IRecipe;
+  disableEditMode: () => void;
+  saveRecipeAction: (recipe: IRecipe) => void;
+  updateRecipeAction: (recipe: IRecipe, recipeName: string) => void;
+}
+
+interface IRecipeFormStateProps {
+  selectedRecipe: IRecipe;
+}
+
+interface IRecipeFormDispatchProps {
+  disableEditMode: () => void;
+  saveRecipeAction: (recipe: IRecipe) => void;
+  updateRecipeAction: (recipe: IRecipe, recipeName: string) => void;
+}
+
+interface IRecipeFormState {
   recipe: IRecipe;
 }
 
-export default class RecipeForm extends React.Component<IRecipeProps, any> {
-  constructor(props: IRecipeProps) {
+export class RecipeFormComponent extends React.Component<IRecipeFormProps, IRecipeFormState> {
+  constructor(props: IRecipeFormProps) {
     super(props);
     this.state = {
-      isBookmarked: (this.props.recipe && this.props.recipe.isBookmarked) || false,
-      name: (this.props.recipe && this.props.recipe.name) || '',
-      recipeToUpdate: this.props.recipe ? this.props.recipe.name : null
+      recipe: this.props.selectedRecipe
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.saveRecipe = this.saveRecipe.bind(this);
   }
 
-  public handleCancel() {
-    this.props.cancelCallback();
+  public componentWillReceiveProps(newProps: IRecipeFormProps) {
+    this.setState({
+      recipe: newProps.selectedRecipe
+    })
   }
 
-  public handleChange(event: React.ChangeEvent) {
-    this.setState({ name: (event.target as HTMLInputElement).value });
+  public onChangeHandler(event: React.ChangeEvent) {
+    const newRecipeState = { ...this.state.recipe };
+    newRecipeState.name = (event.target as HTMLInputElement).value;
+    this.setState({ recipe: newRecipeState });
   }
 
-  public handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  public saveRecipe(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const recipe: IRecipe = {
-      isBookmarked: this.state.isBookmarked,
-      name: this.state.name
-    };
-    if (this.state.recipeToUpdate) {
-      this.props.updateCallback(recipe, this.state.recipeToUpdate);
+    const recipe = { ...this.state.recipe };
+    if (this.props.selectedRecipe) {
+      this.props.updateRecipeAction(recipe, this.props.selectedRecipe.name);
+    } else {
+      this.props.saveRecipeAction(recipe);
     }
   }
 
@@ -46,20 +69,36 @@ export default class RecipeForm extends React.Component<IRecipeProps, any> {
         <h2>
           Recipe Form
         </h2>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.saveRecipe}>
           <label>
             Recipe Title
           <input
               required={true}
               type="text"
-              value={this.state.name}
-              onChange={this.handleChange}
+              value={this.state.recipe ? this.state.recipe.name : ''}
+              onChange={this.onChangeHandler}
             />
           </label>
           <input type="submit" value="Save Recipe" />
-          <button onClick={this.handleCancel}>Cancel</button>
+          <button onClick={this.props.disableEditMode}>Cancel</button>
         </form>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state: IStoreState, ownProps: {}): IRecipeFormStateProps => {
+  return {
+    selectedRecipe: getSelectedRecipe(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch: any): IRecipeFormDispatchProps => {
+  return {
+    disableEditMode: () => dispatch(setEditModeAction(false)),
+    saveRecipeAction: (recipe: IRecipe) => dispatch(saveRecipeAction(recipe)),
+    updateRecipeAction: (recipe: IRecipe, recipeName: string) => dispatch(updateRecipeAction(recipe, recipeName))
+  }
+}
+
+export const RecipeForm = connect(mapStateToProps, mapDispatchToProps)(RecipeFormComponent)
