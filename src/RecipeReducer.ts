@@ -25,11 +25,18 @@ const initialState: IStoreState = {
   isEditMode: false,
   isIndexVisible: true,
   recipes: initialRecipeList,
-  selectedRecipe: initialRecipeList[0]
+  searchValue: '',
+  selectedRecipe: initialRecipeList[0],
 }
 
 const recipes = (state: IStoreState = initialState, action: Action) => {
   switch (action.type) {
+    case actionTypes.SET_SEARCH_VALUE:
+      const setSearchValueAction = action as ISearchValueAction;
+      return {
+        ...state,
+        searchValue: setSearchValueAction.searchValue
+      }
     case actionTypes.SET_INDEX_VISIBILITY:
       const setIndexVisibilityAction = action as ISetIndexVisibilityAction;
       return {
@@ -118,9 +125,10 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
   }
 }
 
-export const getRecipes = (state: IStoreState): IRecipe[] => state && state.recipes;
-export const getSelectedRecipe = (state: IStoreState): IRecipe => state && state.selectedRecipe;
-export const getEditMode = (state: IStoreState): boolean => state && state.isEditMode;
-export const getIndexVisibility = (state: IStoreState): boolean => state && state.isIndexVisible;
+export const getRecipes = (state: IStoreState): IRecipe[] => state.recipes;
+export const getSelectedRecipe = (state: IStoreState): IRecipe => state.selectedRecipe;
+export const getEditMode = (state: IStoreState): boolean => state.isEditMode;
+export const getIndexVisibility = (state: IStoreState): boolean => state.isIndexVisible;
+export const getSearchValue = (state: IStoreState): string => state.searchValue;
 
 export default recipes

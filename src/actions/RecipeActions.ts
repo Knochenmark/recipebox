@@ -8,7 +8,12 @@ export enum actionTypes {
   SET_BOOKMARK = '[Recipe] Bookmark Recipe',
   SET_SELECTED_RECIPE = '[Recipe] Set selected Recipe',
   UPDATE_RECIPE = '[Recipe] Update Recipe',
-  SAVE_RECIPE = '[Recipe] Save Recipe'
+  SAVE_RECIPE = '[Recipe] Save Recipe',
+  SET_SEARCH_VALUE = '[Recipe] Set Search Value',
+
+export interface ISearchValueAction {
+  searchValue: string;
+  type: string;
 }
 
 export interface ISetBookmarkAction {
@@ -53,7 +58,12 @@ export interface ISaveRecipeAction {
   type: string;
 }
 
-export const setBookmark = (recipeName: string, isBookmarked: boolean) => ({
+export const setSearchValueAction = (searchValue: string) => ({
+  searchValue,
+  type: actionTypes.SET_SEARCH_VALUE
+})
+
+export const setBookmarkAction = (recipeName: string, isBookmarked: boolean) => ({
   isBookmarked,
   recipeName,
   type: actionTypes.SET_BOOKMARK
