@@ -51,7 +51,11 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
 
     const indexItems = indices.sort().map(index => {
       const recipeItems = obj[index].map((recipe: IRecipe, i: number) => {
-        return <li onClick={this.props.setSelectedRecipe.bind(this, recipe.name)} key={index + i}>{recipe.name}</li>
+        return <li key={index + i}>
+          <span onClick={this.props.setSelectedRecipe.bind(this, recipe.name)}>
+            {recipe.name}
+          </span>
+        </li>
       });
       return <div key={index}>
         <span>{index}({obj[index].length})</span>
