@@ -33,21 +33,14 @@ interface IRecipeProps {
   showIndex: () => void;
 }
 
-export class RecipeComponent extends React.Component<IRecipeProps, IRecipeStateProps> {
+export class RecipeComponent extends React.Component<IRecipeProps> {
   constructor(props: IRecipeProps) {
     super(props);
-    this.state = {
-      selectedRecipe: this.props.selectedRecipe
-    };
     this.bookmarkHandler = this.bookmarkHandler.bind(this)
   }
 
-  public componentWillReceiveProps(newProps: IRecipeProps) {
-    this.setState({ selectedRecipe: newProps.selectedRecipe });
-  }
-
   public getBookmarkText() {
-    return this.state.selectedRecipe && this.state.selectedRecipe.isBookmarked
+    return this.props.selectedRecipe && this.props.selectedRecipe.isBookmarked
       ? <HeartFilled />
       : <HeartOutlined />;
   }
