@@ -7,10 +7,12 @@ import {
   actionTypes,
   IDeleteRecipeAction,
   ISaveRecipeAction,
+  ISearchValueAction,
   ISetBookmarkAction,
   ISetEditModeAction,
   ISetIndexVisibilityAction,
   ISetSelectedRecipeAction,
+  ISetSelectedTabAction,
   IUpdateRecipeAction
 } from './actions/RecipeActions';
 
@@ -25,11 +27,32 @@ const initialState: IStoreState = {
   isEditMode: false,
   isIndexVisible: true,
   recipes: initialRecipeList,
+<<<<<<< Updated upstream
   selectedRecipe: initialRecipeList[0]
+=======
+  searchValue: '',
+  selectedRecipe: initialRecipeList[0],
+  selectedTab: 'recipe',
+>>>>>>> Stashed changes
 }
 
 const recipes = (state: IStoreState = initialState, action: Action) => {
   switch (action.type) {
+<<<<<<< Updated upstream
+=======
+    case actionTypes.SET_SELECTED_TAB:
+      const setSelectedTabAction = action as ISetSelectedTabAction;
+      return {
+        ...state,
+        selectedTab: setSelectedTabAction.selectedTab
+      }
+    case actionTypes.SET_SEARCH_VALUE:
+      const setSearchValueAction = action as ISearchValueAction;
+      return {
+        ...state,
+        searchValue: setSearchValueAction.searchValue
+      }
+>>>>>>> Stashed changes
     case actionTypes.SET_INDEX_VISIBILITY:
       const setIndexVisibilityAction = action as ISetIndexVisibilityAction;
       return {
@@ -118,9 +141,18 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
   }
 }
 
+<<<<<<< Updated upstream
 export const getRecipes = (state: IStoreState): IRecipe[] => state && state.recipes;
 export const getSelectedRecipe = (state: IStoreState): IRecipe => state && state.selectedRecipe;
 export const getEditMode = (state: IStoreState): boolean => state && state.isEditMode;
 export const getIndexVisibility = (state: IStoreState): boolean => state && state.isIndexVisible;
+=======
+export const getRecipes = (state: IStoreState): IRecipe[] => state.recipes;
+export const getSelectedRecipe = (state: IStoreState): IRecipe => state.selectedRecipe;
+export const getEditMode = (state: IStoreState): boolean => state.isEditMode;
+export const getIndexVisibility = (state: IStoreState): boolean => state.isIndexVisible;
+export const getSearchValue = (state: IStoreState): string => state.searchValue;
+export const getSelectedTab = (state: IStoreState): string => state.selectedTab;
+>>>>>>> Stashed changes
 
 export default recipes

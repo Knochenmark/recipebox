@@ -1,28 +1,57 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
-import { ITabBarItem } from '../_domain/ITabBarItem';
+import { IStoreState } from '../_domain/IStoreState';
+import { setSelectedTabAction } from '../actions/RecipeActions';
+import { getSelectedTab } from '../RecipeReducer';
 
-export interface ITabProps {
-  tabBarItemList: ITabBarItem[];
+interface ITabBarStateProps {
+  selectedTab: string;
 }
 
-export default function TabBar({ tabBarItemList, ...props }: ITabProps) {
+interface ITabBarDispatchProps {
+  setSelectedTab: (activeTab: string) => void;
+}
 
-  function setActive(event: any) {
-    console.log(event.target);
+interface ITabBarProps {
+  selectedTab: string;
+  setSelectedTab: (activeTab: string) => void;
+}
+
+export class TabBarComponent extends React.Component<ITabBarProps> {
+
+  private tabItemList: string[] = ['recipe', 'bookmark'];
+
+  constructor(props: ITabBarProps) {
+    super(props);
   }
 
-  const tabItemList = tabBarItemList.map((tab: any) => {
-    const active = tab.active ? 'active' : '';
-    return <div key={tab.name} className={`tabBarItem ${active}`} onClick={setActive}>
-      {tab.name}
-    </div>
-  });
-
-  return (
-    <div className="tabBar">
-      <div>{tabItemList}</div>
-      <div className="underline" />
-    </div>
-  );
+  public render() {
+    const tabs = this.tabItemList.map((tab: any) => {
+      const active = tab === this.props.selectedTab ? 'active' : '';
+      return <div key={tab} className={`tabBarItem ${active}`} onClick={this.props.setSelectedTab.bind(this, tab)}>
+        {tab}
+      </div>
+    });
+    return (
+      <div className="tabBar">
+        <div>{tabs}</div>
+        <div className="underline" />
+      </div>
+    );
+  }
 }
+
+const mapStateToProps = (state: IStoreState, ownProps: {}): ITabBarStateProps => {
+  return {
+    selectedTab: getSelectedTab(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch: any): ITabBarDispatchProps => {
+  return {
+    setSelectedTab: (activeTab: string) => dispatch(setSelectedTabAction(activeTab)),
+  }
+}
+
+export const TabBar = connect(mapStateToProps, mapDispatchToProps)(TabBarComponent)

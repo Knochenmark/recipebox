@@ -9,7 +9,7 @@ export interface ISearchBarProps {
   searchValue: string;
 }
 
-export default class SearchBar extends React.Component<ISearchBarProps, any> {
+export class SearchBar extends React.Component<ISearchBarProps, any> {
 
   constructor(props: ISearchBarProps) {
     super(props);

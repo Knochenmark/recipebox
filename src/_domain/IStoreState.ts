@@ -5,4 +5,6 @@ export interface IStoreState {
   recipes: IRecipe[];
   isIndexVisible: boolean;
   selectedRecipe: IRecipe;
+  searchValue: string;
+  selectedTab: string;
 }

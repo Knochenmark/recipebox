@@ -5,7 +5,7 @@ import { IRecipe } from '../../_domain/IRecipe';
 import { IStoreState } from '../../_domain/IStoreState';
 import {
   deleteRecipeAction,
-  setBookmark,
+  setBookmarkAction,
   setEditModeAction,
   setIndexVisibilityAction
 } from '../../actions/RecipeActions';
@@ -75,7 +75,7 @@ const mapStateToProps = (state: IStoreState, ownProps: {}): IRecipeStateProps =>
 
 const mapDispatchToProps = (dispatch: any): IRecipeDispatchProps => {
   return {
-    bookmarkRecipe: (recipeName: string, isBookmarked: boolean) => dispatch(setBookmark(recipeName, isBookmarked)),
+    bookmarkRecipe: (recipeName: string, isBookmarked: boolean) => dispatch(setBookmarkAction(recipeName, isBookmarked)),
     deleteRecipe: (recipe: IRecipe) => dispatch(deleteRecipeAction(recipe)),
     setEditMode: () => dispatch(setEditModeAction(true)),
     showIndex: () => dispatch(setIndexVisibilityAction(true))
