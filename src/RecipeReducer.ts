@@ -76,7 +76,7 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
       const { recipe, recipeName } = action as IUpdateRecipeAction;
       const index = state.recipes.findIndex(r => r.name === recipeName);
       const newRecipeList = [...state.recipes];
-      newRecipeList.splice(index, 1); // TODO spread into new object before splice and removal?
+      newRecipeList.splice(index, 1);
       newRecipeList.push(recipe);
       LocalStorage.setItem('recipes', newRecipeList);
       return {
