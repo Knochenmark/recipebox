@@ -12,6 +12,7 @@ import {
   getSearchValue,
   getSelectedTab
 } from '../../RecipeReducer';
+import { SearchBar } from '../SearchBar/SearchBar';
 import { TabBar } from '../TabBar';
 import {
   indexPageItemStyle,
@@ -44,12 +45,25 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
   }
 
   public render() {
-    const indices = this.props.recipes
+
+    const recipes = this.props.recipes.filter(i => {
+      if (this.props.searchValue) {
+        if (i.name.includes(this.props.searchValue)) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    });
+
+    const indices = recipes
       .map(recipe => recipe.name[0].toUpperCase())
       .filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
 
     const obj: any = {};
-    this.props.recipes.forEach((recipe: IRecipe) => {
+    recipes.forEach((recipe: IRecipe) => {
       const key = recipe.name[0].toUpperCase();
       if (obj.hasOwnProperty(key)) {
         obj[key].push(recipe)
@@ -78,15 +92,17 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
       <div className={indexPageStyle}>
         <h2>Recipe List</h2>
         <TabBar />
-        {/* <SearchBar /> */}
         {
-          this.props.selectedTab === 'recipe' && <div className={indexPageItemStyle}>
+          this.props.selectedTab === 'recipe' &&
+          <div className={indexPageItemStyle}>
             {indexItems}
           </div>
         }
         {
           // this.props.selectedTab === 'bookmark' && <Bookmarks />
         }
+        <SearchBar />
+        {indexItems}
         <button onClick={this.props.createRecipe}>Create New Recipe</button>
       </div>
     );

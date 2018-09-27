@@ -2,9 +2,9 @@ import { IRecipe } from './IRecipe';
 
 export interface IStoreState {
   isEditMode: boolean;
-  recipes: IRecipe[];
   isIndexVisible: boolean;
-  selectedRecipe: IRecipe;
+  recipes: IRecipe[];
   searchValue: string;
+  selectedRecipe: IRecipe;
   selectedTab: string;
 }
