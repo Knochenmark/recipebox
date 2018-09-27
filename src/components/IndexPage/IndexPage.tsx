@@ -7,7 +7,12 @@ import {
   createRecipeAction,
   setSelectedRecipeAction
 } from '../../actions/RecipeActions';
-import { getRecipes } from '../../RecipeReducer';
+import {
+  getRecipes,
+  getSearchValue,
+  getSelectedTab
+} from '../../RecipeReducer';
+import { SearchBar } from '../SearchBar/SearchBar';
 import {
   indexPageItemStyle,
   indexPageRecipeStyle,
@@ -17,11 +22,13 @@ import {
 export interface IIndexPageProps {
   createRecipe: () => void;
   recipes: IRecipe[];
+  searchValue: string;
   setSelectedRecipe: (recipeName: string) => void;
 }
 
 interface IIndexPageStateProps {
   recipes: IRecipe[];
+  searchValue: string;
 }
 
 interface IIndexPageDispatchProps {
@@ -35,12 +42,25 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
   }
 
   public render() {
-    const indices = this.props.recipes
+
+    const recipes = this.props.recipes.filter(i => {
+      if (this.props.searchValue) {
+        if (i.name.includes(this.props.searchValue)) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    });
+
+    const indices = recipes
       .map(recipe => recipe.name[0].toUpperCase())
       .filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
 
     const obj: any = {};
-    this.props.recipes.forEach((recipe: IRecipe) => {
+    recipes.forEach((recipe: IRecipe) => {
       const key = recipe.name[0].toUpperCase();
       if (obj.hasOwnProperty(key)) {
         obj[key].push(recipe)
@@ -67,11 +87,7 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
     return (
       <div className={indexPageStyle}>
         <h2>Recipe List</h2>
-        {/*
-            <TabBar tabBarItemList={tabItemList} />
-            <SearchBar searchValue='' />
-            */}
-        <div className={indexPageItemStyle}>
+        <SearchBar />
           {indexItems}
         </div>
         <button onClick={this.props.createRecipe}>Create New Recipe</button>
@@ -82,7 +98,8 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
 
 function mapStateToProps(state: IStoreState): IIndexPageStateProps {
   return {
-    recipes: getRecipes(state)
+    searchValue: getSearchValue(state),
+    recipes: getRecipes(state),
   };
 }
 
