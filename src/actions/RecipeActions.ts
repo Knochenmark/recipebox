@@ -1,4 +1,5 @@
 import { IRecipe } from '../_domain/IRecipe';
+import { TabBarItem } from '../_domain/TabBarItem';
 
 export enum actionTypes {
   CREATE_RECIPE = '[Recipe] Create Recipe',
@@ -14,7 +15,7 @@ export enum actionTypes {
 }
 
 export interface ISetSelectedTabAction {
-  selectedTab: string;
+  selectedTab: TabBarItem;
   type: string;
 }
 
@@ -65,7 +66,7 @@ export interface ISaveRecipeAction {
   type: string;
 }
 
-export const setSelectedTabAction = (selectedTab: string) => ({
+export const setSelectedTabAction = (selectedTab: TabBarItem) => ({
   selectedTab,
   type: actionTypes.SET_SELECTED_TAB
 })

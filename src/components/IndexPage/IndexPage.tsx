@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { IStoreState } from '../../_domain/IStoreState';
+import { TabBarItem } from '../../_domain/TabBarItem';
 import {
   createRecipeAction,
   setSelectedRecipeAction
@@ -15,12 +16,12 @@ import { indexPageStyle } from './IndexPageStyles';
 
 export interface IIndexPageProps {
   createRecipe: () => void;
-  selectedTab: string;
+  selectedTab: TabBarItem;
   setSelectedRecipe: (recipeName: string) => void;
 }
 
 interface IIndexPageStateProps {
-  selectedTab: string;
+  selectedTab: TabBarItem;
 }
 
 interface IIndexPageDispatchProps {
@@ -34,15 +35,15 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
   }
 
   public render() {
-    const headline = `${this.props.selectedTab === 'recipe' ? 'Recipe' : 'Bookmark'} List`;
+    const headline = `${this.props.selectedTab === TabBarItem.RECIPES ? 'Recipe' : 'Bookmark'} List`;
 
     return (
       <div className={indexPageStyle}>
         <h2>{headline}</h2>
         <TabBar />
         <SearchBar />
-        {this.props.selectedTab === 'recipe' && <IndexList />}
-        {this.props.selectedTab === 'bookmark' && <BookmarkList />}
+        {this.props.selectedTab === TabBarItem.RECIPES && <IndexList />}
+        {this.props.selectedTab === TabBarItem.BOOKMARKS && <BookmarkList />}
         <button onClick={this.props.createRecipe}>Create New Recipe</button>
       </div>
     );

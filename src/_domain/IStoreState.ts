@@ -1,4 +1,5 @@
 import { IRecipe } from './IRecipe';
+import { TabBarItem } from './TabBarItem';
 
 export interface IStoreState {
   isEditMode: boolean;
@@ -6,5 +7,5 @@ export interface IStoreState {
   recipes: IRecipe[];
   searchValue: string;
   selectedRecipe: IRecipe;
-  selectedTab: string;
+  selectedTab: TabBarItem;
 }

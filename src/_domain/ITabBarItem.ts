@@ -1,4 +1,6 @@
+import { TabBarItem } from './TabBarItem';
+
 export interface ITabBarItem {
-  name: string;
+  name: TabBarItem;
   active: boolean;
 }
