@@ -135,6 +135,8 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
 }
 
 export const getRecipes = (state: IStoreState): IRecipe[] => state.recipes;
+export const getBookmarkedRecipes = (state: IStoreState): IRecipe[] =>
+  state.recipes.filter(r => r.isBookmarked);
 export const getSelectedRecipe = (state: IStoreState): IRecipe => state.selectedRecipe;
 export const getEditMode = (state: IStoreState): boolean => state.isEditMode;
 export const getIndexVisibility = (state: IStoreState): boolean => state.isIndexVisible;
