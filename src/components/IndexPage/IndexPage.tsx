@@ -12,13 +12,10 @@ import {
   getSearchValue,
   getSelectedTab
 } from '../../RecipeReducer';
+import { IndexList } from '../IndexList/IndexList';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { TabBar } from '../TabBar';
-import {
-  indexPageItemStyle,
-  indexPageRecipeStyle,
-  indexPageStyle
-} from './IndexPageStyles';
+import { indexPageStyle } from './IndexPageStyles';
 
 export interface IIndexPageProps {
   createRecipe: () => void;
@@ -45,60 +42,12 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
   }
 
   public render() {
-
-    const recipes = this.props.recipes.filter(i => {
-      if (this.props.searchValue) {
-        if (i.name.includes(this.props.searchValue)) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return true;
-      }
-    });
-
-    const indices = recipes
-      .map(recipe => recipe.name[0].toUpperCase())
-      .filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
-
-    const obj: any = {};
-    recipes.forEach((recipe: IRecipe) => {
-      const key = recipe.name[0].toUpperCase();
-      if (obj.hasOwnProperty(key)) {
-        obj[key].push(recipe)
-      } else {
-        obj[key] = [recipe]
-      }
-    });
-
-    const indexItems = indices.sort().map(index => {
-      const recipeItems = obj[index].map((recipe: IRecipe, i: number) => {
-        return <li key={index + i}>
-          <span onClick={this.props.setSelectedRecipe.bind(this, recipe.name)}>
-            {recipe.name}
-          </span>
-        </li>
-      });
-      return <div key={index}>
-        <span>{index}({obj[index].length})</span>
-        <ul className={indexPageRecipeStyle}>
-          {recipeItems}
-        </ul>
-      </div>
-    });
-
     return (
       <div className={indexPageStyle}>
         <h2>Recipe List</h2>
         <TabBar />
         <SearchBar />
-        {
-          this.props.selectedTab === 'recipe' &&
-          <div className={indexPageItemStyle}>
-            {indexItems}
-          </div>
-        }
+        {this.props.selectedTab === 'recipe' && <IndexList />}
         {
           // this.props.selectedTab === 'bookmark' && <Bookmarks />
         }
