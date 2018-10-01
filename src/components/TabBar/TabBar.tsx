@@ -1,26 +1,31 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IStoreState } from '../_domain/IStoreState';
-import { setSelectedTabAction } from '../actions/RecipeActions';
-import { getSelectedTab } from '../RecipeReducer';
+import { IStoreState } from '../../_domain/IStoreState';
+import { TabBarItem } from '../../_domain/TabBarItem';
+import { setSelectedTabAction } from '../../actions/RecipeActions';
+import { getSelectedTab } from '../../RecipeReducer';
+import {
+  tabBarItemStyle,
+  tabBarStyle
+} from './TabBarStyles';
 
 interface ITabBarStateProps {
-  selectedTab: string;
+  selectedTab: TabBarItem;
 }
 
 interface ITabBarDispatchProps {
-  setSelectedTab: (activeTab: string) => void;
+  setSelectedTab: (activeTab: TabBarItem) => void;
 }
 
 interface ITabBarProps {
-  selectedTab: string;
-  setSelectedTab: (activeTab: string) => void;
+  selectedTab: TabBarItem;
+  setSelectedTab: (activeTab: TabBarItem) => void;
 }
 
 export class TabBarComponent extends React.Component<ITabBarProps> {
 
-  private tabItemList: string[] = ['recipe', 'bookmark'];
+  private tabItemList: TabBarItem[] = [TabBarItem.RECIPES, TabBarItem.BOOKMARKS];
 
   constructor(props: ITabBarProps) {
     super(props);
@@ -29,13 +34,13 @@ export class TabBarComponent extends React.Component<ITabBarProps> {
   public render() {
     const tabs = this.tabItemList.map((tab: any) => {
       const active = tab === this.props.selectedTab ? 'active' : '';
-      return <div key={tab} className={`tabBarItem ${active}`} onClick={this.props.setSelectedTab.bind(this, tab)}>
+      return <div key={tab} className={`${tabBarItemStyle} ${active}`} onClick={this.props.setSelectedTab.bind(this, tab)}>
         {tab}
       </div>
     });
     return (
-      <div className="tabBar">
-        <div>{tabs}</div>
+      <div>
+        <div className={tabBarStyle}>{tabs}</div>
         <div className="underline" />
       </div>
     );
@@ -50,7 +55,7 @@ const mapStateToProps = (state: IStoreState, ownProps: {}): ITabBarStateProps =>
 
 const mapDispatchToProps = (dispatch: any): ITabBarDispatchProps => {
   return {
-    setSelectedTab: (activeTab: string) => dispatch(setSelectedTabAction(activeTab)),
+    setSelectedTab: (activeTab: TabBarItem) => dispatch(setSelectedTabAction(activeTab)),
   }
 }
 

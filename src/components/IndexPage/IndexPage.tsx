@@ -1,34 +1,27 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IRecipe } from '../../_domain/IRecipe';
 import { IStoreState } from '../../_domain/IStoreState';
+import { TabBarItem } from '../../_domain/TabBarItem';
 import {
   createRecipeAction,
   setSelectedRecipeAction
 } from '../../actions/RecipeActions';
-import {
-  getRecipes,
-  getSearchValue,
-  getSelectedTab
-} from '../../RecipeReducer';
+import { getSelectedTab } from '../../RecipeReducer';
+import { BookmarkList } from '../BookmarkList/BookmarkList';
 import { IndexList } from '../IndexList/IndexList';
 import { SearchBar } from '../SearchBar/SearchBar';
-import { TabBar } from '../TabBar';
+import { TabBar } from '../TabBar/TabBar';
 import { indexPageStyle } from './IndexPageStyles';
 
 export interface IIndexPageProps {
   createRecipe: () => void;
-  recipes: IRecipe[];
-  searchValue: string;
-  selectedTab: string;
+  selectedTab: TabBarItem;
   setSelectedRecipe: (recipeName: string) => void;
 }
 
 interface IIndexPageStateProps {
-  recipes: IRecipe[];
-  searchValue: string;
-  selectedTab: string;
+  selectedTab: TabBarItem;
 }
 
 interface IIndexPageDispatchProps {
@@ -42,15 +35,15 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
   }
 
   public render() {
+    const headline = `${this.props.selectedTab === TabBarItem.RECIPES ? 'Recipe' : 'Bookmark'} List`;
+
     return (
       <div className={indexPageStyle}>
-        <h2>Recipe List</h2>
+        <h2>{headline}</h2>
         <TabBar />
         <SearchBar />
-        {this.props.selectedTab === 'recipe' && <IndexList />}
-        {
-          // this.props.selectedTab === 'bookmark' && <Bookmarks />
-        }
+        {this.props.selectedTab === TabBarItem.RECIPES && <IndexList />}
+        {this.props.selectedTab === TabBarItem.BOOKMARKS && <BookmarkList />}
         <button onClick={this.props.createRecipe}>Create New Recipe</button>
       </div>
     );
@@ -59,8 +52,6 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
 
 function mapStateToProps(state: IStoreState): IIndexPageStateProps {
   return {
-    searchValue: getSearchValue(state),
-    recipes: getRecipes(state),
     selectedTab: getSelectedTab(state),
   };
 }

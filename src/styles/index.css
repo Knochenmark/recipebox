@@ -106,7 +106,3 @@ h2 {
   border-top: 2.5em solid #990000;
   border-left: 2.5em solid transparent;
 }
-
-.tabBarItem.active{
-  color: lightseagreen;
-}

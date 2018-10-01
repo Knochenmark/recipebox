@@ -2,6 +2,7 @@ import { exampleRecipeList } from './_config/exampleRecipeList';
 import { IRecipe } from './_domain/IRecipe';
 import { IStoreState } from './_domain/IStoreState';
 import { LocalStorageWrapper } from './_domain/LocalStorageWrapper';
+import { TabBarItem } from './_domain/TabBarItem';
 import {
   Action,
   actionTypes,
@@ -29,7 +30,7 @@ const initialState: IStoreState = {
   recipes: initialRecipeList,
   searchValue: '',
   selectedRecipe: initialRecipeList[0],
-  selectedTab: 'recipe',
+  selectedTab: TabBarItem.RECIPES,
 }
 
 const recipes = (state: IStoreState = initialState, action: Action) => {
@@ -135,10 +136,12 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
 }
 
 export const getRecipes = (state: IStoreState): IRecipe[] => state.recipes;
+export const getBookmarkedRecipes = (state: IStoreState): IRecipe[] =>
+  state.recipes.filter(r => r.isBookmarked);
 export const getSelectedRecipe = (state: IStoreState): IRecipe => state.selectedRecipe;
 export const getEditMode = (state: IStoreState): boolean => state.isEditMode;
 export const getIndexVisibility = (state: IStoreState): boolean => state.isIndexVisible;
 export const getSearchValue = (state: IStoreState): string => state.searchValue;
-export const getSelectedTab = (state: IStoreState): string => state.selectedTab;
+export const getSelectedTab = (state: IStoreState): TabBarItem => state.selectedTab;
 
 export default recipes
