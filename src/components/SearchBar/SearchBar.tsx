@@ -36,7 +36,7 @@ export class SearchBarComponent extends React.Component<ISearchBarProps> {
     this.searchValueInputSubject
       .pipe(
         debounceTime(300),
-        map((v: string) => v.trim())
+        map((v: string) => v.trim().toLowerCase())
       ).subscribe((value: string) => {
         this.props.setSearchValue(value);
       })
