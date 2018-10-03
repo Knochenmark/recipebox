@@ -4,7 +4,7 @@ export const indexPageStyle = style({
   $nest: {
     '& button': {
       backgroundColor: 'lightblue',
-      margin: 'auto'
+      margin: 'auto auto 0 auto'
     }
   },
   backgroundColor: '#fff',

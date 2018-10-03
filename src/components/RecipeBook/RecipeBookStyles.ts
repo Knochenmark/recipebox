@@ -3,10 +3,9 @@ import { style } from 'typestyle';
 export const recipeBookStyle = style({
   $nest: {
     '& .recipe-container': {
-      backgroundColor: 'lightblue',
+      backgroundColor: 'white',
       height: '100%',
       overflowY: 'auto',
-      padding: '1rem',
       position: 'relative',
       transform: 'translateX(100%)',
       transition: 'all 0.4s ease',
