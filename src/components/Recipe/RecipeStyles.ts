@@ -93,7 +93,6 @@ export const recipeIngredientStyle = style({
   flexDirection: 'column',
   fontSize: '0.8rem',
   justifyContent: 'space-around',
-  marginBottom: '1rem',
   textAlign: 'center',
 });
 
