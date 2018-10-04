@@ -9,7 +9,7 @@ export const exampleRecipeList: IRecipe[] = [
     ingredients: [
       '1kg Tomatoes',
       '2 Onions',
-      'Oliveoil',
+      'Olive oil',
       '750ml stock'
     ],
     isBookmarked: false,
@@ -28,7 +28,7 @@ export const exampleRecipeList: IRecipe[] = [
       '400g sea fish',
       '400ml fish stock',
       '1 Tomato',
-      'Oliveoil',
+      'Olive oil',
       'Salt & Pepper'
     ],
     isBookmarked: false,
