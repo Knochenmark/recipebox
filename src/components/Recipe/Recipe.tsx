@@ -12,6 +12,7 @@ import {
 import { getSelectedRecipe } from '../../RecipeReducer';
 import { ConfirmationButton } from '../ConfirmationButton/ConfirmationButton';
 import { IconButton } from '../IconButton/IconButton';
+import { IconButtonColor } from '../IconButton/IconButttonColor';
 import Edit from '../Icons/Edit';
 import HeartFilled from '../Icons/HeartFilled';
 import HeartOutlined from '../Icons/HeartOutlined';
@@ -115,7 +116,7 @@ export class RecipeComponent extends React.Component<IRecipeProps> {
           {ingredientList}
         </div>
         <div className={buttonWrapperStyle}>
-          <IconButton onClickCallback={this.props.setEditMode} buttonText='Edit Recipe' icon={<Edit />} />
+          <IconButton onClickCallback={this.props.setEditMode} buttonText='Edit Recipe' icon={<Edit />} color={IconButtonColor.GREEN} />
           <ConfirmationButton onConfirmCallback={this.props.deleteRecipe.bind(this, this.props.selectedRecipe)} />
         </div>
       </div>
