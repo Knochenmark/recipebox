@@ -1,9 +1,20 @@
 import { style } from 'typestyle';
 
+import cookingImage from '../../assets/cooking04.jpg';
+
 export const recipeStyle = style({
+  backgroundImage: `url(${cookingImage})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  minHeight: '100%',
+});
+
+export const recipeContentStyle = style({
+  backgroundColor: 'rgba(255, 255, 255, 0.55)',
   display: 'flex',
   flexDirection: 'column',
-  minHeight: '100%',
+  minHeight: '55vh',
+  width: '100%',
 });
 
 export const recipeOverlayStyle = style({
