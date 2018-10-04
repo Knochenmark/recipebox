@@ -12,11 +12,10 @@ export const indexPageStyle = style({
   backgroundImage: `url(${cookingImage})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
-
-
   height: '100vh',
   left: 0,
   margin: 0,
+  overflow: 'hidden',
   padding: '1rem',
   position: 'fixed',
   top: 0,
@@ -32,5 +31,19 @@ export const indexPageContentStyle = style({
   flexDirection: 'column',
   height: '100%',
   padding: '1rem',
+  position: 'relative',
   width: '100%',
-})
+});
+
+export const indexPageBackgroundStyle = style({
+  $nest: {
+    '& svg': {
+      fill: 'rgba(0,0,0,0.1)',
+      height: '200px',
+      width: '200px',
+    }
+  },
+  position: 'absolute',
+  right: '0',
+  top: '0',
+});
