@@ -6,14 +6,16 @@ import { IStoreState } from '../_domain/IStoreState';
 import {
   saveRecipeAction,
   setEditModeAction,
+  setIndexVisibilityAction,
   updateRecipeAction
 } from '../actions/RecipeActions';
 import { getSelectedRecipe } from '../RecipeReducer';
 
 export interface IRecipeFormProps {
-  selectedRecipe: IRecipe;
   disableEditMode: () => void;
   saveRecipeAction: (recipe: IRecipe) => void;
+  selectedRecipe: IRecipe;
+  showIndex: () => void;
   updateRecipeAction: (recipe: IRecipe, recipeName: string) => void;
 }
 
@@ -24,6 +26,7 @@ interface IRecipeFormStateProps {
 interface IRecipeFormDispatchProps {
   disableEditMode: () => void;
   saveRecipeAction: (recipe: IRecipe) => void;
+  showIndex: () => void;
   updateRecipeAction: (recipe: IRecipe, recipeName: string) => void;
 }
 
@@ -39,6 +42,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     };
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
+    this.cancelHandler = this.cancelHandler.bind(this);
   }
 
   public componentWillReceiveProps(newProps: IRecipeFormProps) {
@@ -63,6 +67,15 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     }
   }
 
+  public cancelHandler() {
+    if (this.props.selectedRecipe) {
+      this.props.disableEditMode();
+    } else {
+      this.props.disableEditMode();
+      this.props.showIndex();
+    }
+  }
+
   public render(): JSX.Element {
     return (
       <div className="recipe form">
@@ -80,7 +93,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
             />
           </label>
           <input type="submit" value="Save Recipe" />
-          <button onClick={this.props.disableEditMode}>Cancel</button>
+          <button onClick={this.cancelHandler}>Cancel</button>
         </form>
       </div>
     );
@@ -97,6 +110,7 @@ const mapDispatchToProps = (dispatch: any): IRecipeFormDispatchProps => {
   return {
     disableEditMode: () => dispatch(setEditModeAction(false)),
     saveRecipeAction: (recipe: IRecipe) => dispatch(saveRecipeAction(recipe)),
+    showIndex: () => dispatch(setIndexVisibilityAction(true)),
     updateRecipeAction: (recipe: IRecipe, recipeName: string) => dispatch(updateRecipeAction(recipe, recipeName))
   }
 }
