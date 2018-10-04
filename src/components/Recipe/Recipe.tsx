@@ -10,6 +10,9 @@ import {
   setIndexVisibilityAction
 } from '../../actions/RecipeActions';
 import { getSelectedRecipe } from '../../RecipeReducer';
+import { ConfirmationButton } from '../ConfirmationButton/ConfirmationButton';
+import { IconButton } from '../IconButton/IconButton';
+import Edit from '../Icons/Edit';
 import HeartFilled from '../Icons/HeartFilled';
 import HeartOutlined from '../Icons/HeartOutlined';
 import Left from '../Icons/Left';
@@ -45,7 +48,7 @@ interface IRecipeProps {
 export class RecipeComponent extends React.Component<IRecipeProps> {
   constructor(props: IRecipeProps) {
     super(props);
-    this.bookmarkHandler = this.bookmarkHandler.bind(this)
+    this.bookmarkHandler = this.bookmarkHandler.bind(this);
   }
 
   public getBookmarkText() {
@@ -112,8 +115,8 @@ export class RecipeComponent extends React.Component<IRecipeProps> {
           {ingredientList}
         </div>
         <div className={buttonWrapperStyle}>
-          <button onClick={this.props.deleteRecipe.bind(this, this.props.selectedRecipe)}>Delete Recipe</button>
-          <button onClick={this.props.setEditMode}>Edit Recipe</button>
+          <IconButton onClickCallback={this.props.setEditMode} buttonText='Edit Recipe' icon={<Edit />} />
+          <ConfirmationButton onConfirmCallback={this.props.deleteRecipe.bind(this, this.props.selectedRecipe)} />
         </div>
       </div>
     );

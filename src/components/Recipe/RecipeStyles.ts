@@ -25,7 +25,7 @@ export const recipeOverlayStyle = style({
     '& span.back': {
       $nest: {
         '& svg': {
-          marginRight: '2px',
+          marginRight: '3px',
         }
       }
     },
