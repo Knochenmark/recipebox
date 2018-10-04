@@ -2,6 +2,8 @@ import { style } from 'typestyle';
 
 const $black = '#1d242b';
 const $green = '#38B87C';
+const $red = '#F34541';
+const $blue = '#2492FF';
 
 export const iconButtonStyle = style({
   background: 'transparent',
@@ -18,12 +20,33 @@ export const iconButtonIconStyle = style({
     '& i': {
       $nest: {
         '& svg': {
-          fill: $green,
+          fill: '#fff',
           height: '18px',
           margin: '6px',
           width: '18px',
         }
       },
+    },
+    '&.blue': {
+      $nest: {
+        '& svg': {
+          fill: $blue,
+        }
+      }
+    },
+    '&.green': {
+      $nest: {
+        '& svg': {
+          fill: $green,
+        }
+      }
+    },
+    '&.red': {
+      $nest: {
+        '& svg': {
+          fill: $red,
+        }
+      }
     },
   },
   background: $black,
@@ -38,7 +61,18 @@ export const iconButtonIconStyle = style({
 });
 
 export const iconButtonTextStyle = style({
-  background: $green,
+  $nest: {
+    '&.blue': {
+      background: $blue,
+    },
+    '&.green': {
+      background: $green,
+    },
+    '&.red': {
+      background: $red,
+    }
+  },
+  background: $black,
   borderBottomRightRadius: '2px',
   borderTopRightRadius: '2px',
   color: '#fff',
