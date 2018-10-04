@@ -19,6 +19,7 @@ import HeartOutlined from '../Icons/HeartOutlined';
 import Left from '../Icons/Left';
 import {
   buttonWrapperStyle,
+  recipeContentStyle,
   recipeImageStyle,
   recipeIngredientStyle,
   recipeOverlayStyle,
@@ -90,34 +91,36 @@ export class RecipeComponent extends React.Component<IRecipeProps> {
           <span className='bookmark' onClick={this.bookmarkHandler}>{this.getBookmarkText()}</span>
         </div>
         <div className={recipeImageStyle} style={ImageStyle} />
-        <h2 className={recipeTitleStyle}>
-          {this.props.selectedRecipe && this.props.selectedRecipe.name}
-        </h2>
-        <div className={timingWrapperStyle}>
-          <div>
-            <h3>Preparation</h3>
-            <span>{this.props.selectedRecipe && this.props.selectedRecipe.preparationTime
-              ? `${this.props.selectedRecipe.preparationTime}min`
-              : `n/a`}</span>
+        <div className={recipeContentStyle}>
+          <h2 className={recipeTitleStyle}>
+            {this.props.selectedRecipe && this.props.selectedRecipe.name}
+          </h2>
+          <div className={timingWrapperStyle}>
+            <div>
+              <h3>Preparation</h3>
+              <span>{this.props.selectedRecipe && this.props.selectedRecipe.preparationTime
+                ? `${this.props.selectedRecipe.preparationTime}min`
+                : `n/a`}</span>
+            </div>
+            <div>
+              <h3>Cooking</h3>
+              <span>{this.props.selectedRecipe && this.props.selectedRecipe.cookingTime
+                ? `${this.props.selectedRecipe.cookingTime}min`
+                : `n/a`}</span>
+            </div>
+            <div>
+              <h3>Difficulty</h3>
+              <span>{this.props.selectedRecipe ? this.props.selectedRecipe.difficulty : ''}</span>
+            </div>
           </div>
-          <div>
-            <h3>Cooking</h3>
-            <span>{this.props.selectedRecipe && this.props.selectedRecipe.cookingTime
-              ? `${this.props.selectedRecipe.cookingTime}min`
-              : `n/a`}</span>
+          <div className={recipeIngredientStyle}>
+            <h3>Ingredients</h3>
+            {ingredientList}
           </div>
-          <div>
-            <h3>Difficulty</h3>
-            <span>{this.props.selectedRecipe ? this.props.selectedRecipe.difficulty : ''}</span>
+          <div className={buttonWrapperStyle}>
+            <IconButton onClickCallback={this.props.setEditMode} buttonText='Edit Recipe' icon={<Edit />} color={IconButtonColor.GREEN} />
+            <ConfirmationButton onConfirmCallback={this.props.deleteRecipe.bind(this, this.props.selectedRecipe)} />
           </div>
-        </div>
-        <div className={recipeIngredientStyle}>
-          <h3>Ingredients</h3>
-          {ingredientList}
-        </div>
-        <div className={buttonWrapperStyle}>
-          <IconButton onClickCallback={this.props.setEditMode} buttonText='Edit Recipe' icon={<Edit />} color={IconButtonColor.GREEN} />
-          <ConfirmationButton onConfirmCallback={this.props.deleteRecipe.bind(this, this.props.selectedRecipe)} />
         </div>
       </div>
     );
