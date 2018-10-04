@@ -9,7 +9,7 @@ import {
 } from '../../RecipeReducer';
 import { IndexPage } from '../IndexPage/IndexPage';
 import { Recipe } from '../Recipe/Recipe';
-import { RecipeForm } from '../RecipeForm';
+import { RecipeForm } from '../RecipeForm/RecipeForm';
 import { recipeBookStyle } from './RecipeBookStyles';
 
 interface IRecipeBookStateProps {

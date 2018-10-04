@@ -40,7 +40,7 @@ export class ConfirmationButton extends React.Component<IConfirmationButtonProps
       });
       setTimeout(() => {
         this.reset();
-      }, 3000);
+      }, 2000);
     } else {
       this.props.onConfirmCallback();
     }

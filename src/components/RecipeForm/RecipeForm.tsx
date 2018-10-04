@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IRecipe } from '../_domain/IRecipe';
-import { IStoreState } from '../_domain/IStoreState';
+import { IRecipe } from '../../_domain/IRecipe';
+import { IStoreState } from '../../_domain/IStoreState';
 import {
   saveRecipeAction,
   setEditModeAction,
   setIndexVisibilityAction,
   updateRecipeAction
-} from '../actions/RecipeActions';
-import { getSelectedRecipe } from '../RecipeReducer';
+} from '../../actions/RecipeActions';
+import { getSelectedRecipe } from '../../RecipeReducer';
+import { IconButton } from '../IconButton/IconButton';
+import { IconButtonColor } from '../IconButton/IconButttonColor';
+import Cross from '../Icons/Cross';
+import Edit from '../Icons/Edit';
+import { buttonWrapperStyle } from './RecipeFormStyles';
 
 export interface IRecipeFormProps {
   disableEditMode: () => void;
@@ -40,7 +45,8 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     this.state = {
       recipe: this.props.selectedRecipe
     };
-    this.onChangeHandler = this.onChangeHandler.bind(this);
+    // this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onRecipeNameChange = this.onRecipeNameChange.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
     this.cancelHandler = this.cancelHandler.bind(this);
   }
@@ -51,11 +57,18 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     })
   }
 
-  public onChangeHandler(event: React.ChangeEvent) {
+  public onRecipeNameChange(event: React.ChangeEvent) {
     const newRecipeState = { ...this.state.recipe };
     newRecipeState.name = (event.target as HTMLInputElement).value;
     this.setState({ recipe: newRecipeState });
   }
+
+  // public onChangeHandler(event: React.ChangeEvent) {
+  //   const newRecipeState = { ...this.state.recipe };
+  //   const target = event.target as HTMLInputElement;
+  //   newRecipeState[target.name] = target.type === 'text' ? target.value : Number(target.value);
+  //   this.setState({ recipe: newRecipeState });
+  // }
 
   public saveRecipe(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -78,22 +91,48 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
 
   public render(): JSX.Element {
     return (
-      <div className="recipe form">
+      <div className='recipe form'>
         <h2>
-          Recipe Form
+          {this.props.selectedRecipe ? 'Edit Recipe' : 'Create New Recipe'}
         </h2>
-        <form onSubmit={this.saveRecipe}>
+        <form onSubmit={this.saveRecipe} >
           <label>
             Recipe Title
           <input
               required={true}
-              type="text"
+              type='text'
               value={this.state.recipe ? this.state.recipe.name : ''}
-              onChange={this.onChangeHandler}
+              onChange={this.onRecipeNameChange}
             />
           </label>
-          <input type="submit" value="Save Recipe" />
-          <button onClick={this.cancelHandler}>Cancel</button>
+          {/* <label>
+            Preparation Time
+          <input
+              // name='preparationTime'
+              required={true}
+              type='number'
+              step='1'
+              min='0'
+              value={this.state.recipe ? this.state.recipe.preparationTime : 0}
+            // onChange={this.onChangeHandler}
+            />
+          </label>
+          <label>
+            Cooking Time
+          <input
+              // name='cookingTime'
+              required={true}
+              type='number'
+              step='1'
+              min='0'
+              value={this.state.recipe ? this.state.recipe.cookingTime : 0}
+            // onChange={this.onChangeHandler}
+            />
+          </label> */}
+          <div className={buttonWrapperStyle}>
+            <IconButton onClickCallback={this.saveRecipe.bind(this, event)} buttonText='Save Recipe' icon={<Edit />} color={IconButtonColor.GREEN} />
+            <IconButton onClickCallback={this.cancelHandler} buttonText='Cancel' icon={<Cross />} color={IconButtonColor.RED} />
+          </div>
         </form>
       </div>
     );
