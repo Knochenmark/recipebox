@@ -49,5 +49,5 @@ export const iconButtonTextStyle = style({
   position: 'relative',
   textAlign: 'center',
   transition: '0.2s all',
-  width: '120px',
+  width: '130px',
 });

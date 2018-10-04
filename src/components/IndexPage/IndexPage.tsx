@@ -9,6 +9,8 @@ import {
 } from '../../actions/RecipeActions';
 import { getSelectedTab } from '../../RecipeReducer';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
+import { IconButton } from '../IconButton/IconButton';
+import Plus from '../Icons/Plus';
 import { IndexList } from '../IndexList/IndexList';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { TabBar } from '../TabBar/TabBar';
@@ -44,7 +46,7 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
         <SearchBar />
         {this.props.selectedTab === TabBarItem.RECIPES && <IndexList />}
         {this.props.selectedTab === TabBarItem.BOOKMARKS && <BookmarkList />}
-        <button onClick={this.props.createRecipe}>Create New Recipe</button>
+        <IconButton onClickCallback={this.props.createRecipe} buttonText='Create New Recipe' icon={<Plus />} />
       </div>
     );
   }
