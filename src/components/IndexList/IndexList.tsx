@@ -36,10 +36,11 @@ export class IndexListComponent extends React.Component<IIndexListProps> {
   public render() {
     const recipes = this.props.recipes.filter(i => {
       if (this.props.searchValue) {
-        if (i.name.toLowerCase().includes(this.props.searchValue)) {
-          return true;
+        const flipLogic = i.name.length >= this.props.searchValue.length;
+        if (flipLogic) {
+          return i.name.toLowerCase().includes(this.props.searchValue);
         } else {
-          return false;
+          return this.props.searchValue.toLowerCase().includes(i.name.toLowerCase())
         }
       } else {
         return true;
