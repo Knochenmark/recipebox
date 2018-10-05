@@ -1,5 +1,10 @@
 {
   "extends": "./tsconfig.json",
+  "linterOptions": {
+    "exclude": [
+      "node_modules"
+    ]
+  },
   "exclude": [
     "node_modules",
     "build",
