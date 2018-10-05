@@ -5,7 +5,6 @@ script:
   - npm run build
 deploy:
   provider: pages
-  local-dir: build/
   skip_cleanup: true
   github_token: $github_token
   local_dir: build
