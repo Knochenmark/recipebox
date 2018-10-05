@@ -80,10 +80,15 @@ export class BookmarkListComponent extends React.Component<IBookmarkListProps> {
       You havn't bookmarked any recipes yet
     </div>;
 
+    const emptySearchResultList = <div className="empty">
+      No matching recipes found
+    </div>;
+
     return (
       <div className={bookmarkListItemStyle}>
         {indexItems.length > 0 && indexItems}
-        {indexItems.length < 1 && emptyBookmarkList}
+        {(indexItems.length < 1 && this.props.searchValue.length < 1) && emptyBookmarkList}
+        {(indexItems.length < 1 && this.props.searchValue.length > 0) && emptySearchResultList}
       </div>
     );
   }
