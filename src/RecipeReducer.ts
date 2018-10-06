@@ -24,7 +24,7 @@ if (!storageRecipeList || storageRecipeList.length === 0) {
   LocalStorage.setItem('recipes', exampleRecipeList);
 }
 
-const initialState: IStoreState = {
+export const initialState: IStoreState = {
   isEditMode: false,
   isIndexVisible: true,
   recipes: initialRecipeList,
