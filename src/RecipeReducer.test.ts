@@ -4,6 +4,10 @@ import { IStoreState } from './_domain/IStoreState';
 import { TabBarItem } from './_domain/TabBarItem';
 import * as RecipeActions from './actions/RecipeActions';
 import RecipeReducer, { initialState } from './RecipeReducer';
+<<<<<<< HEAD
+=======
+import { LocalStorageWrapper } from './_domain/LocalStorageWrapper';
+>>>>>>> 4c8d117763686cb2c661b739d4e1b520b325e129
 
 describe('Should test Recipes reducer', () => {
   test('test if set selected tab action works correctly', () => {
