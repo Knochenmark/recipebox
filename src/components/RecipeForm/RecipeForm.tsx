@@ -1,6 +1,14 @@
+import {
+  Form,
+  Option,
+  Select,
+  Text
+} from 'informed';
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import { emptyRecipe } from '../../_config/exampleRecipeList';
+import { Difficulty } from '../../_domain/Difficulty';
 import { IRecipe } from '../../_domain/IRecipe';
 import { IStoreState } from '../../_domain/IStoreState';
 import {
@@ -14,7 +22,11 @@ import { IconButton } from '../IconButton/IconButton';
 import { IconButtonColor } from '../IconButton/IconButttonColor';
 import Cross from '../Icons/Cross';
 import Edit from '../Icons/Edit';
-import { buttonWrapperStyle } from './RecipeFormStyles';
+import {
+  buttonWrapperStyle,
+  formStyle,
+  recipeFormContentStyle
+} from './RecipeFormStyles';
 
 export interface IRecipeFormProps {
   disableEditMode: () => void;
@@ -36,43 +48,62 @@ interface IRecipeFormDispatchProps {
 }
 
 interface IRecipeFormState {
-  recipe: IRecipe;
+  cookingTime: number;
+  difficulty: Difficulty;
+  imageUrl: string;
+  name: string;
+  preparationTime: number;
 }
 
 export class RecipeFormComponent extends React.Component<IRecipeFormProps, IRecipeFormState> {
+  private formApi: any;
+
   constructor(props: IRecipeFormProps) {
     super(props);
+    const {
+      cookingTime,
+      difficulty,
+      imageUrl,
+      name,
+      preparationTime,
+    } = this.props.selectedRecipe || emptyRecipe;
     this.state = {
-      recipe: this.props.selectedRecipe
+      cookingTime,
+      difficulty,
+      imageUrl,
+      name,
+      preparationTime,
     };
-    // this.onChangeHandler = this.onChangeHandler.bind(this);
-    this.onRecipeNameChange = this.onRecipeNameChange.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
     this.cancelHandler = this.cancelHandler.bind(this);
+    this.setFormApi = this.setFormApi.bind(this);
   }
 
-  public componentWillReceiveProps(newProps: IRecipeFormProps) {
-    this.setState({
-      recipe: newProps.selectedRecipe
-    })
+  public componentDidMount() {
+    this.formApi.setValue('imageUrl', this.state.imageUrl);
+    this.formApi.setValue('name', this.state.name);
+    this.formApi.setValue('preparationTime', this.state.cookingTime);
+    this.formApi.setValue('cookingTime', this.state.cookingTime);
+    this.formApi.setValue('difficulty', this.state.difficulty);
+    // TODO: Add ingredients input field
   }
 
-  public onRecipeNameChange(event: React.ChangeEvent) {
-    const newRecipeState = { ...this.state.recipe };
-    newRecipeState.name = (event.target as HTMLInputElement).value;
-    this.setState({ recipe: newRecipeState });
-  }
-
-  // public onChangeHandler(event: React.ChangeEvent) {
-  //   const newRecipeState = { ...this.state.recipe };
-  //   const target = event.target as HTMLInputElement;
-  //   newRecipeState[target.name] = target.type === 'text' ? target.value : Number(target.value);
-  //   this.setState({ recipe: newRecipeState });
-  // }
-
-  public saveRecipe(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const recipe = { ...this.state.recipe };
+  public saveRecipe() {
+    const {
+      name,
+      imageUrl,
+      difficulty,
+      preparationTime,
+      cookingTime
+    } = this.formApi.getState().values;
+    const recipe = {
+      ...this.props.selectedRecipe,
+      cookingTime,
+      difficulty,
+      imageUrl,
+      name,
+      preparationTime,
+    };
     if (this.props.selectedRecipe) {
       this.props.updateRecipeAction(recipe, this.props.selectedRecipe.name);
     } else {
@@ -89,51 +120,36 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     }
   }
 
+  public setFormApi(formApi: any) {
+    this.formApi = formApi;
+  }
+
   public render(): JSX.Element {
     return (
-      <div className='recipe form'>
+      <div className={recipeFormContentStyle}>
         <h2>
           {this.props.selectedRecipe ? 'Edit Recipe' : 'Create New Recipe'}
         </h2>
-        <form onSubmit={this.saveRecipe} >
-          <label>
-            Recipe Title
-          <input
-              required={true}
-              type='text'
-              value={this.state.recipe ? this.state.recipe.name : ''}
-              onChange={this.onRecipeNameChange}
-            />
-          </label>
-          {/* <label>
-            Preparation Time
-          <input
-              // name='preparationTime'
-              required={true}
-              type='number'
-              step='1'
-              min='0'
-              value={this.state.recipe ? this.state.recipe.preparationTime : 0}
-            // onChange={this.onChangeHandler}
-            />
-          </label>
-          <label>
-            Cooking Time
-          <input
-              // name='cookingTime'
-              required={true}
-              type='number'
-              step='1'
-              min='0'
-              value={this.state.recipe ? this.state.recipe.cookingTime : 0}
-            // onChange={this.onChangeHandler}
-            />
-          </label> */}
-          <div className={buttonWrapperStyle}>
-            <IconButton onClickCallback={this.saveRecipe.bind(this, event)} buttonText='Save Recipe' icon={<Edit />} color={IconButtonColor.GREEN} />
-            <IconButton onClickCallback={this.cancelHandler} buttonText='Cancel' icon={<Cross />} color={IconButtonColor.RED} />
-          </div>
-        </form>
+        <Form getApi={this.setFormApi} className={formStyle}>
+          <label htmlFor="recipe-image">Image Url</label>
+          <Text field="imageUrl" id="recipe-image" />
+          <label htmlFor="recipe-name">Recipe Title</label>
+          <Text field="name" id="recipe-name" />
+          <label htmlFor="recipe-preparation">Preparation Time</label>
+          <Text field="preparationTime" id="recipe-preparation" />
+          <label htmlFor="recipe-cooking">Cooking Time</label>
+          <Text field="cookingTime" id="recipe-cooking" />
+          <label htmlFor="recipe-difficulty">Difficulty</label>
+          <Select field="difficulty" id="recipe-difficulty">
+            <Option value={Difficulty.BEGINNER}>{Difficulty.BEGINNER}</Option>
+            <Option value={Difficulty.ADVANCED}>{Difficulty.ADVANCED}</Option>
+            <Option value={Difficulty.EXPERT}>{Difficulty.EXPERT}</Option>
+          </Select>
+        </Form>
+        <div className={buttonWrapperStyle}>
+          <IconButton onClickCallback={this.saveRecipe} buttonText='Save Recipe' icon={<Edit />} color={IconButtonColor.GREEN} />
+          <IconButton onClickCallback={this.cancelHandler} buttonText='Cancel' icon={<Cross />} color={IconButtonColor.RED} />
+        </div>
       </div>
     );
   }

@@ -36,3 +36,13 @@ export const exampleRecipeList: IRecipe[] = [
     preparationTime: 15,
   }
 ];
+
+export const emptyRecipe: IRecipe = {
+  cookingTime: 0,
+  difficulty: Difficulty.BEGINNER,
+  imageUrl: '',
+  ingredients: [],
+  isBookmarked: false,
+  name: '',
+  preparationTime: 0,
+}
