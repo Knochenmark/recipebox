@@ -12,6 +12,9 @@ export const exampleRecipeList: IRecipe[] = [
       'Olive oil',
       '750ml stock'
     ],
+    instructions: `Eat owner's food. Spend six hours per day washing, but still have a crusty butthole scratch at the door then walk away destroy house in 5 seconds, sun bathe chase imaginary bugs.
+    Friends are not food chase the pig around the house find a way to fit in tiny box or instead of drinking water from the cat bowl, make sure to steal water from the toilet so destroy the blinds or
+    claw your carpet in places everyone can see - why hide my amazing artistic clawing skills?. Curl into a furry donut.`,
     isBookmarked: false,
     name: "Tomato soup",
     preparationTime: 30,
@@ -31,6 +34,8 @@ export const exampleRecipeList: IRecipe[] = [
       'Olive oil',
       'Salt & Pepper'
     ],
+    instructions: `Soft kitty warm kitty little ball of furr stick butt in face, lick sellotape for pooping rainbow while flying in a toasted bread costume in space. Claws in your leg kitty ipsum dolor sit amet,
+    shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff but jump five feet high and sideways when a shadow moves.`,
     isBookmarked: false,
     name: "Fish soup",
     preparationTime: 15,
@@ -42,6 +47,7 @@ export const emptyRecipe: IRecipe = {
   difficulty: Difficulty.BEGINNER,
   imageUrl: '',
   ingredients: [],
+  instructions: '',
   isBookmarked: false,
   name: '',
   preparationTime: 0,
