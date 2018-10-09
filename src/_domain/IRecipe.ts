@@ -1,11 +1,12 @@
 import { Difficulty } from './Difficulty';
 
 export interface IRecipe {
-  name: string;
-  imageUrl: string;
-  isBookmarked: boolean;
-  preparationTime: number;
   cookingTime: number;
   difficulty: Difficulty;
+  imageUrl: string;
   ingredients: string[];
+  instructions: string;
+  isBookmarked: boolean;
+  name: string;
+  preparationTime: number;
 }
