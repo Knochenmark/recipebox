@@ -22,6 +22,7 @@ import {
   recipeContentStyle,
   recipeImageStyle,
   recipeIngredientStyle,
+  recipeInstructionStyle,
   recipeOverlayStyle,
   recipeStyle,
   recipeTitleStyle,
@@ -65,8 +66,6 @@ export class RecipeComponent extends React.Component<IRecipeProps> {
       this.props.bookmarkRecipe(selectedRecipe.name, !selectedRecipe.isBookmarked);
     }
   }
-
-  // https://dribbble.com/shots/2693613-Food-Big
 
   public render(): JSX.Element {
 
@@ -116,6 +115,10 @@ export class RecipeComponent extends React.Component<IRecipeProps> {
           <div className={recipeIngredientStyle}>
             <h3>Ingredients</h3>
             {ingredientList}
+          </div>
+          <div className={recipeInstructionStyle}>
+            <h3>Instructions</h3>
+            <span>{this.props.selectedRecipe ? this.props.selectedRecipe.instructions : ''}</span>
           </div>
           <div className={buttonWrapperStyle}>
             <IconButton onClickCallback={this.props.setEditMode} buttonText='Edit Recipe' icon={<Edit />} color={IconButtonColor.GREEN} />

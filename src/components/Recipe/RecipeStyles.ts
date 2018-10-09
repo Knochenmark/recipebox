@@ -26,7 +26,7 @@ export const recipeOverlayStyle = style({
         }
       },
       alignItems: 'center',
-      backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      backgroundColor: 'rgba(255, 255, 255, 0.65)',
       borderRadius: '50%',
       display: 'flex',
       height: '36px',
@@ -105,6 +105,27 @@ export const recipeIngredientStyle = style({
   fontSize: '0.8rem',
   justifyContent: 'space-around',
   textAlign: 'center',
+});
+
+export const recipeInstructionStyle = style({
+  $nest: {
+    '& h3': {
+      color: '#8e8e8e',
+      fontSize: '0.9rem',
+      margin: '2rem 0 0.8rem 0',
+      textTransform: 'uppercase',
+    },
+    '& span': {
+      lineHeight: '1.25rem',
+      margin: '0.25rem 3rem',
+    }
+  },
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  fontSize: '0.8rem',
+  justifyContent: 'space-around',
+  textAlign: 'justify',
 });
 
 export const buttonWrapperStyle = style({
