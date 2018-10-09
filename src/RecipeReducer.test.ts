@@ -62,6 +62,21 @@ describe('Should test Recipes reducer', () => {
     expect(actualResult).toEqual(expectedResult);
   });
 
+  test('test if create recipe action works correctly', () => {
+    const expectedResult = {
+      ...initialState,
+      isEditMode: true,
+      isIndexVisible: false,
+      selectedRecipe: undefined,
+    }
+    const createRecipeAction: RecipeActions.ICreateRecipeAction = {
+      type: RecipeActions.actionTypes.CREATE_RECIPE
+    }
+    const actualResult = RecipeReducer(undefined, createRecipeAction);
+
+    expect(actualResult).toEqual(expectedResult);
+  });
+
   test('test if delete recipe action works correctly', () => {
     const expectedResult = {
       /* Type not specified here as the reducer needs to be fixed to return IStoreState type */

@@ -25,7 +25,7 @@ describe('Should test recipe actions and action creators', () => {
     expect(actualResult).toEqual(expectedResult);
   });
 
-  test('test if set bookmark action retuens correct value', () => {
+  test('test if set bookmark action returns correct value', () => {
     const expectedResult: RecipeActions.ISetBookmarkAction = {
       isBookmarked: true,
       recipeName: 'tomato soup',
@@ -72,6 +72,15 @@ describe('Should test recipe actions and action creators', () => {
 
   test('test if create recipe action returns correct value', () => {
     const expectedResult: RecipeActions.ICreateRecipeAction = {
+      type: RecipeActions.actionTypes.CREATE_RECIPE
+    };
+    const actualResult = RecipeActions.createRecipeAction();
+
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  test('test if save recipe action returns correct value', () => {
+    const expectedResult: RecipeActions.ISaveRecipeAction = {
       recipe: exampleRecipeList[0],
       type: RecipeActions.actionTypes.SAVE_RECIPE
     };

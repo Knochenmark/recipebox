@@ -41,7 +41,6 @@ export interface ISetEditModeAction {
 }
 
 export interface ICreateRecipeAction {
-  recipe: IRecipe;
   type: string;
 }
 
