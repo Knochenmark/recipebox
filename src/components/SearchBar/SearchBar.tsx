@@ -30,7 +30,11 @@ interface ISearchBarDispatchProps {
   setSearchValue: (searchValue: string) => void;
 }
 
-export class SearchBarComponent extends React.Component<ISearchBarProps, any> {
+interface ISearchBarState  {
+  searchValue: string;
+}
+
+export class SearchBarComponent extends React.Component<ISearchBarProps, ISearchBarState> {
   private searchValueInputSubject = new Subject<string>();
 
   constructor(props: ISearchBarProps) {
