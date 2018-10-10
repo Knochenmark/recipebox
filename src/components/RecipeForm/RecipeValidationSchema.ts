@@ -12,4 +12,7 @@ export const RecipeValidationSchema = Yup.object().shape({
   cookingTime: Yup.string()
     .required('Required')
     .matches(/^[0-9]*$/, 'Must be a number'),
+  instructions: Yup.string()
+    .min(2, 'Too Short!')
+    .required('Required'),
 });

@@ -33,6 +33,7 @@ interface IRecipeFormValues {
   cookingTime: string;
   difficulty: Difficulty;
   imageUrl: string;
+  instructions: string;
   name: string;
   preparationTime: string;
 }
@@ -60,6 +61,7 @@ interface IRecipeFormState {
   cookingTime: number;
   difficulty: Difficulty;
   imageUrl: string;
+  instructions: string;
   name: string;
   preparationTime: number;
 }
@@ -72,6 +74,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
       cookingTime,
       difficulty,
       imageUrl,
+      instructions,
       name,
       preparationTime,
     } = this.props.selectedRecipe || emptyRecipe;
@@ -79,6 +82,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
       cookingTime,
       difficulty,
       imageUrl,
+      instructions,
       name,
       preparationTime,
     };
@@ -87,12 +91,13 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
   }
 
   public saveRecipe(formValues: any) {
-    const { name, preparationTime, cookingTime, imageUrl, difficulty } = formValues;
+    const { name, preparationTime, cookingTime, imageUrl, difficulty, instructions } = formValues;
     const recipe = {
       ...this.props.selectedRecipe,
       cookingTime: Number(cookingTime),
       difficulty,
       imageUrl,
+      instructions,
       name,
       preparationTime: Number(preparationTime),
     };
@@ -128,6 +133,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
             name: this.state.name,
             preparationTime: this.state.preparationTime,
             difficulty: this.state.difficulty,
+            instructions: this.state.instructions,
           }}
           validationSchema={RecipeValidationSchema}
           onSubmit={this.saveRecipe}
@@ -176,6 +182,15 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                     <select {...field}>
                       {difficultyOptions}
                     </select>
+                  </div>
+                )}
+              />
+              <Field
+                name="instructions"
+                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                  <div>
+                    <textarea rows={4} {...field} placeholder="Add your cooking instructions here" />
+                    {form.touched.instructions && form.errors.instructions && <span>{form.errors.instructions}</span>}
                   </div>
                 )}
               />
