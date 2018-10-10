@@ -69,7 +69,7 @@ export class IndexListComponent extends React.Component<IIndexListProps> {
           </span>
         </li>
       });
-      return <div key={index}>
+      return <div className='recipe' key={index}>
         <span>{index}({obj[index].length})</span>
         <ul className={indexListRecipeStyle}>
           {recipeItems}
@@ -77,9 +77,19 @@ export class IndexListComponent extends React.Component<IIndexListProps> {
       </div>
     });
 
+    const emptyIndexList = <div className="empty">
+      You havn't created any recipes yet
+    </div>;
+
+    const emptySearchResultList = <div className="empty">
+      No matching recipes found
+    </div>;
+
     return (
       <div className={indexListItemStyle}>
-        {indexItems}
+        {indexItems.length > 0 && indexItems}
+        {(indexItems.length < 1 && this.props.searchValue.length < 1) && emptyIndexList}
+        {(indexItems.length < 1 && this.props.searchValue.length > 0) && emptySearchResultList}
       </div>
     );
   }
