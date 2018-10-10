@@ -118,6 +118,7 @@ export const recipeInstructionStyle = style({
     '& span': {
       lineHeight: '1.25rem',
       margin: '0.25rem 3rem',
+      whiteSpace: 'pre-line',
     }
   },
   alignItems: 'center',

@@ -1,9 +1,10 @@
 import {
+  Field,
+  FieldProps,
   Form,
-  Option,
-  Select,
-  Text
-} from 'informed';
+  Formik,
+  FormikProps
+} from 'formik';
 import * as React from 'react';
 import { connect } from 'react-redux';
 
@@ -24,9 +25,18 @@ import Cross from '../Icons/Cross';
 import Edit from '../Icons/Edit';
 import {
   buttonWrapperStyle,
-  formStyle,
   recipeFormContentStyle
 } from './RecipeFormStyles';
+import { RecipeValidationSchema } from './RecipeValidationSchema';
+
+interface IRecipeFormValues {
+  cookingTime: string;
+  difficulty: Difficulty;
+  imageUrl: string;
+  instructions: string;
+  name: string;
+  preparationTime: string;
+}
 
 export interface IRecipeFormProps {
   disableEditMode: () => void;
@@ -51,12 +61,12 @@ interface IRecipeFormState {
   cookingTime: number;
   difficulty: Difficulty;
   imageUrl: string;
+  instructions: string;
   name: string;
   preparationTime: number;
 }
 
 export class RecipeFormComponent extends React.Component<IRecipeFormProps, IRecipeFormState> {
-  private formApi: any;
 
   constructor(props: IRecipeFormProps) {
     super(props);
@@ -64,6 +74,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
       cookingTime,
       difficulty,
       imageUrl,
+      instructions,
       name,
       preparationTime,
     } = this.props.selectedRecipe || emptyRecipe;
@@ -71,38 +82,24 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
       cookingTime,
       difficulty,
       imageUrl,
+      instructions,
       name,
       preparationTime,
     };
     this.saveRecipe = this.saveRecipe.bind(this);
     this.cancelHandler = this.cancelHandler.bind(this);
-    this.setFormApi = this.setFormApi.bind(this);
   }
 
-  public componentDidMount() {
-    this.formApi.setValue('imageUrl', this.state.imageUrl);
-    this.formApi.setValue('name', this.state.name);
-    this.formApi.setValue('preparationTime', this.state.cookingTime);
-    this.formApi.setValue('cookingTime', this.state.cookingTime);
-    this.formApi.setValue('difficulty', this.state.difficulty);
-    // TODO: Add ingredients input field
-  }
-
-  public saveRecipe() {
-    const {
-      name,
-      imageUrl,
-      difficulty,
-      preparationTime,
-      cookingTime
-    } = this.formApi.getState().values;
+  public saveRecipe(formValues: any) {
+    const { name, preparationTime, cookingTime, imageUrl, difficulty, instructions } = formValues;
     const recipe = {
       ...this.props.selectedRecipe,
-      cookingTime,
+      cookingTime: Number(cookingTime),
       difficulty,
       imageUrl,
+      instructions,
       name,
-      preparationTime,
+      preparationTime: Number(preparationTime),
     };
     if (this.props.selectedRecipe) {
       this.props.updateRecipeAction(recipe, this.props.selectedRecipe.name);
@@ -120,36 +117,100 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     }
   }
 
-  public setFormApi(formApi: any) {
-    this.formApi = formApi;
-  }
-
   public render(): JSX.Element {
+    const difficultyOptions = Object.keys(Difficulty).map((d: string, i: number) =>
+      <option key={d} value={Difficulty[d]}>{Difficulty[d]}</option>
+    );
     return (
       <div className={recipeFormContentStyle}>
         <h2>
           {this.props.selectedRecipe ? 'Edit Recipe' : 'Create New Recipe'}
         </h2>
-        <Form getApi={this.setFormApi} className={formStyle}>
-          <label htmlFor="recipe-image">Image Url</label>
-          <Text field="imageUrl" id="recipe-image" />
-          <label htmlFor="recipe-name">Recipe Title</label>
-          <Text field="name" id="recipe-name" />
-          <label htmlFor="recipe-preparation">Preparation Time</label>
-          <Text field="preparationTime" id="recipe-preparation" />
-          <label htmlFor="recipe-cooking">Cooking Time</label>
-          <Text field="cookingTime" id="recipe-cooking" />
-          <label htmlFor="recipe-difficulty">Difficulty</label>
-          <Select field="difficulty" id="recipe-difficulty">
-            <Option value={Difficulty.BEGINNER}>{Difficulty.BEGINNER}</Option>
-            <Option value={Difficulty.ADVANCED}>{Difficulty.ADVANCED}</Option>
-            <Option value={Difficulty.EXPERT}>{Difficulty.EXPERT}</Option>
-          </Select>
-        </Form>
-        <div className={buttonWrapperStyle}>
-          <IconButton onClickCallback={this.saveRecipe} buttonText='Save Recipe' icon={<Edit />} color={IconButtonColor.GREEN} />
-          <IconButton onClickCallback={this.cancelHandler} buttonText='Cancel' icon={<Cross />} color={IconButtonColor.RED} />
-        </div>
+        <Formik
+          initialValues={{
+            cookingTime: this.state.cookingTime,
+            imageUrl: this.state.imageUrl,
+            name: this.state.name,
+            preparationTime: this.state.preparationTime,
+            difficulty: this.state.difficulty,
+            instructions: this.state.instructions,
+          }}
+          validationSchema={RecipeValidationSchema}
+          onSubmit={this.saveRecipe}
+          render={(formikBag: FormikProps<IRecipeFormValues>) => (
+            <Form>
+              <Field
+                name="imageUrl"
+                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                  <div>
+                    <input type="text" {...field} placeholder="Preview Image Url" />
+                    {form.touched.imageUrl && form.errors.imageUrl && <span>{form.errors.imageUrl}</span>}
+                  </div>
+                )}
+              />
+              <Field
+                name="name"
+                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                  <div>
+                    <input type="text" {...field} placeholder="Recipe Name" />
+                    {form.touched.name && form.errors.name && <span>{form.errors.name}</span>}
+                  </div>
+                )}
+              />
+              <Field
+                name="preparationTime"
+                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                  <div>
+                    <input type="text" {...field} placeholder="Preparation Time in min" />
+                    {form.touched.preparationTime && form.errors.preparationTime && <span>{form.errors.preparationTime}</span>}
+                  </div>
+                )}
+              />
+              <Field
+                name="cookingTime"
+                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                  <div>
+                    <input type="text" {...field} placeholder="Cooking Time in min" />
+                    {form.touched.cookingTime && form.errors.cookingTime && <span>{form.errors.cookingTime}</span>}
+                  </div>
+                )}
+              />
+              <Field
+                name="difficulty"
+                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                  <div>
+                    <select {...field}>
+                      {difficultyOptions}
+                    </select>
+                  </div>
+                )}
+              />
+              <Field
+                name="instructions"
+                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                  <div>
+                    <textarea rows={4} {...field} placeholder="Add your cooking instructions here" />
+                    {form.touched.instructions && form.errors.instructions && <span>{form.errors.instructions}</span>}
+                  </div>
+                )}
+              />
+              <div className={buttonWrapperStyle}>
+                <IconButton
+                  isSubmitButton={true}
+                  buttonText='Save Recipe'
+                  icon={<Edit />}
+                  color={IconButtonColor.GREEN}
+                />
+                <IconButton
+                  onClickCallback={this.cancelHandler}
+                  buttonText='Cancel'
+                  icon={<Cross />}
+                  color={IconButtonColor.RED}
+                />
+              </div>
+            </Form>
+          )}
+        />
       </div>
     );
   }

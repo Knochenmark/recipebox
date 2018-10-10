@@ -8,10 +8,11 @@ import {
 import { IconButtonColor } from './IconButttonColor';
 
 interface IIconButtonProps {
-  onClickCallback: () => void;
+  onClickCallback?: () => void;
   icon: any;
   buttonText: string;
   color: IconButtonColor;
+  isSubmitButton?: boolean;
 }
 
 export class IconButton extends React.Component<IIconButtonProps, any> {
@@ -20,8 +21,10 @@ export class IconButton extends React.Component<IIconButtonProps, any> {
   }
 
   public render() {
+    const buttonType = this.props.isSubmitButton ? 'submit' : 'button';
+    const callback = this.props.onClickCallback || undefined;
     return (
-      <button className={iconButtonStyle} onClick={this.props.onClickCallback}>
+      <button type={buttonType} className={iconButtonStyle} onClick={callback}>
         <div className={iconButtonIconStyle + ` ${this.props.color}`}>
           <i>{this.props.icon}</i>
         </div>
