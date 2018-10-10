@@ -78,12 +78,12 @@ export class SearchBarComponent extends React.Component<ISearchBarProps, any> {
         <span className={searchbarHighlightStyle}>
           {str.replace(/ /g, "\u00a0")}
         </span>
-        <i 
-          className={searchBarClearStyle} 
+        <i
+          className={searchBarClearStyle}
           onClick={this.onClear}
-          >
+        >
           <Cross />
-          </i>
+        </i>
       </div>
     );
   }
