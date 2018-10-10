@@ -33,3 +33,14 @@ export const searchbarHighlightStyle = style({
   overflow: 'hidden',
   position: 'absolute'
 });
+
+export const searchBarClearStyle = style({
+  bottom: 0,
+  top: 0,
+  right: '10px',
+  height: '25px',
+  margin: 'auto',
+  cursor: 'pointer',
+  position: 'absolute',
+  fill: '#849493'
+});

@@ -10,9 +10,12 @@ import { IStoreState } from '../../_domain/IStoreState';
 import { setSearchValueAction } from '../../actions/RecipeActions';
 import { getSearchValue } from '../../RecipeReducer';
 import {
+  searchBarClearStyle,
   searchbarHighlightStyle,
-  searchBarStyle
+  searchBarStyle,
 } from './SearchBarStyles';
+
+import Cross from '../Icons/Cross';
 
 interface ISearchBarStateProps {
   searchValue: string;
@@ -27,12 +30,13 @@ interface ISearchBarDispatchProps {
   setSearchValue: (searchValue: string) => void;
 }
 
-export class SearchBarComponent extends React.Component<ISearchBarProps> {
+export class SearchBarComponent extends React.Component<ISearchBarProps, any> {
   private searchValueInputSubject = new Subject<string>();
 
   constructor(props: ISearchBarProps) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.onClear = this.onClear.bind(this);
     this.searchValueInputSubject
       .pipe(
         debounceTime(300),
@@ -40,11 +44,25 @@ export class SearchBarComponent extends React.Component<ISearchBarProps> {
       ).subscribe((value: string) => {
         this.props.setSearchValue(value);
       })
+
+    this.state = {
+      searchValue: '',
+    };
   }
 
   public onChange(event: React.ChangeEvent) {
     const { value } = (event.target as HTMLInputElement);
     this.searchValueInputSubject.next(value);
+    this.setState({
+      searchValue: value,
+    });
+  }
+
+  public onClear() {
+    this.searchValueInputSubject.next('');
+    this.setState({
+      searchValue: '',
+    });
   }
 
   public render() {
@@ -55,10 +73,17 @@ export class SearchBarComponent extends React.Component<ISearchBarProps> {
           onChange={this.onChange}
           placeholder='Search Recipe...'
           spellCheck={false}
+          value={this.state.searchValue}
         />
         <span className={searchbarHighlightStyle}>
           {str.replace(/ /g, "\u00a0")}
         </span>
+        <i 
+          className={searchBarClearStyle} 
+          onClick={this.onClear}
+          >
+          <Cross />
+          </i>
       </div>
     );
   }
