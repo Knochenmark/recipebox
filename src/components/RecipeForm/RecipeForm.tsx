@@ -1,5 +1,6 @@
 import {
   Field,
+  FieldArray,
   FieldProps,
   Form,
   Formik,
@@ -33,6 +34,7 @@ interface IRecipeFormValues {
   cookingTime: string;
   difficulty: Difficulty;
   imageUrl: string;
+  ingredients: string[];
   instructions: string;
   name: string;
   preparationTime: string;
@@ -61,6 +63,7 @@ interface IRecipeFormState {
   cookingTime: number;
   difficulty: Difficulty;
   imageUrl: string;
+  ingredients: string[];
   instructions: string;
   name: string;
   preparationTime: number;
@@ -74,6 +77,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
       cookingTime,
       difficulty,
       imageUrl,
+      ingredients,
       instructions,
       name,
       preparationTime,
@@ -82,6 +86,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
       cookingTime,
       difficulty,
       imageUrl,
+      ingredients,
       instructions,
       name,
       preparationTime,
@@ -91,12 +96,13 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
   }
 
   public saveRecipe(formValues: any) {
-    const { name, preparationTime, cookingTime, imageUrl, difficulty, instructions } = formValues;
+    const { name, preparationTime, cookingTime, imageUrl, difficulty, instructions, ingredients } = formValues;
     const recipe = {
       ...this.props.selectedRecipe,
       cookingTime: Number(cookingTime),
       difficulty,
       imageUrl,
+      ingredients,
       instructions,
       name,
       preparationTime: Number(preparationTime),
@@ -121,6 +127,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     const difficultyOptions = Object.keys(Difficulty).map((d: string, i: number) =>
       <option key={d} value={Difficulty[d]}>{Difficulty[d]}</option>
     );
+
     return (
       <div className={recipeFormContentStyle}>
         <h2>
@@ -134,6 +141,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
             preparationTime: this.state.preparationTime,
             difficulty: this.state.difficulty,
             instructions: this.state.instructions,
+            ingredients: this.state.ingredients,
           }}
           validationSchema={RecipeValidationSchema}
           onSubmit={this.saveRecipe}
@@ -191,6 +199,36 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                   <div>
                     <textarea rows={4} {...field} placeholder="Add your cooking instructions here" />
                     {form.touched.instructions && form.errors.instructions && <span>{form.errors.instructions}</span>}
+                  </div>
+                )}
+              />
+              <FieldArray
+                name="ingredients"
+                render={arrayHelpers => (
+                  <div>
+                    {formikBag.values.ingredients && formikBag.values.ingredients.length > 0 ? (
+                      formikBag.values.ingredients.map((ingredient, index) => (
+                        <div key={index}>
+                          <Field name={`ingredients.${index}`} value={formikBag.values.ingredients[index]} />
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            Remove -
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.push('')}
+                          >
+                            Add +
+                          </button>
+                        </div>
+                      ))
+                    ) : (
+                        <button type="button" onClick={() => arrayHelpers.push('')}>
+                          Add an ingredients
+                        </button>
+                      )}
                   </div>
                 )}
               />
