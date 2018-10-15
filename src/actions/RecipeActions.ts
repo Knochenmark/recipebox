@@ -19,7 +19,7 @@ export interface ISetSelectedTabAction {
   type: string;
 }
 
-export interface ISearchValueAction {
+export interface ISetSearchValueAction {
   searchValue: string;
   type: string;
 }
@@ -125,5 +125,5 @@ export type Action
   | IUpdateRecipeAction
   | ISetBookmarkAction
   | ISaveRecipeAction
-  | ISearchValueAction
+  | ISetSearchValueAction
   | ISetSelectedTabAction;
