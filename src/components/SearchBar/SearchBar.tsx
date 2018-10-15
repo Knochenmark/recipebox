@@ -9,13 +9,12 @@ import {
 import { IStoreState } from '../../_domain/IStoreState';
 import { setSearchValueAction } from '../../actions/RecipeActions';
 import { getSearchValue } from '../../RecipeReducer';
+import Cross from '../Icons/Cross';
 import {
   searchBarClearStyle,
   searchbarHighlightStyle,
-  searchBarStyle,
+  searchBarStyle
 } from './SearchBarStyles';
-
-import Cross from '../Icons/Cross';
 
 interface ISearchBarStateProps {
   searchValue: string;
@@ -30,7 +29,7 @@ interface ISearchBarDispatchProps {
   setSearchValue: (searchValue: string) => void;
 }
 
-interface ISearchBarState  {
+interface ISearchBarState {
   searchValue: string;
 }
 

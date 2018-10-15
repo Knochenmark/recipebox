@@ -8,10 +8,10 @@ import {
   actionTypes,
   IDeleteRecipeAction,
   ISaveRecipeAction,
-  ISearchValueAction,
   ISetBookmarkAction,
   ISetEditModeAction,
   ISetIndexVisibilityAction,
+  ISetSearchValueAction,
   ISetSelectedRecipeAction,
   ISetSelectedTabAction,
   IUpdateRecipeAction
@@ -42,7 +42,7 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
         selectedTab: setSelectedTabAction.selectedTab
       }
     case actionTypes.SET_SEARCH_VALUE:
-      const setSearchValueAction = action as ISearchValueAction;
+      const setSearchValueAction = action as ISetSearchValueAction;
       return {
         ...state,
         searchValue: setSearchValueAction.searchValue

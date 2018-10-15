@@ -25,7 +25,7 @@ describe('Should test Recipes reducer', () => {
       ...initialState,
       searchValue: 'tomato soup'
     };
-    const setSearchValueAction: RecipeActions.ISearchValueAction = {
+    const setSearchValueAction: RecipeActions.ISetSearchValueAction = {
       searchValue: 'tomato soup',
       type: RecipeActions.actionTypes.SET_SEARCH_VALUE
     };

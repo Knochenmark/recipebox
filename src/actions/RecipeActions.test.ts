@@ -16,7 +16,7 @@ describe('Should test recipe actions and action creators', () => {
   });
 
   test('test if set search value action returns correct value', () => {
-    const expectedResult: RecipeActions.ISearchValueAction = {
+    const expectedResult: RecipeActions.ISetSearchValueAction = {
       searchValue: 'tomato',
       type: RecipeActions.actionTypes.SET_SEARCH_VALUE
     };
