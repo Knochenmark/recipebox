@@ -82,11 +82,11 @@ describe('Should test Recipes reducer', () => {
       /* Type not specified here as the reducer needs to be fixed to return IStoreState type */
       ...initialState,
       isIndexVisible: true,
-      recipes: exampleRecipeList.slice(0, 1),
+      recipes: exampleRecipeList.slice(0, 2),
       selectedRecipe: undefined
     };
     const deleteRecipeAction: RecipeActions.IDeleteRecipeAction = {
-      recipe: exampleRecipeList[1],
+      recipe: exampleRecipeList[2],
       type: RecipeActions.actionTypes.DELETE_RECIPE
     };
     const actualResult = RecipeReducer(undefined, deleteRecipeAction);
