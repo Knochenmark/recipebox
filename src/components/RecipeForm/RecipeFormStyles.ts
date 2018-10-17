@@ -2,6 +2,9 @@ import { style } from 'typestyle';
 
 import cookingImage from '../../assets/cooking04.jpg';
 
+const red = '#F34541';
+const green = '#38B87C';
+
 export const buttonWrapperStyle = style({
   alignItems: 'center',
   display: 'flex',
@@ -32,7 +35,7 @@ export const formStyle = style({
 export const recipeFormFieldStyle = style({
   $nest: {
     '& >small': {
-      color: '#F34541'
+      color: red
     }
   },
   display: 'flex',
@@ -52,10 +55,10 @@ export const recipeFormIngredientIconStyle = style({
       margin: '6px',
     },
     '&.remove >svg': {
-      fill: '#F34541'
+      fill: red
     },
     '&.add >svg': {
-      fill: '#38B87C'
+      fill: green
     },
   },
   display: 'flex',
