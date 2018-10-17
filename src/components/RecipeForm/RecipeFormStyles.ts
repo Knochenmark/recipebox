@@ -30,6 +30,11 @@ export const formStyle = style({
 });
 
 export const recipeFormFieldStyle = style({
+  $nest: {
+    '& >small': {
+      color: '#F34541'
+    }
+  },
   display: 'flex',
   flexDirection: 'column',
   margin: '0.5rem 0',

@@ -160,7 +160,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                     <div className={recipeFormFieldStyle}>
                       <label htmlFor='imageUrl'><small>Image Url</small></label>
                       <input type="text" {...field} placeholder="Add a preview image url" />
-                      {form.touched.imageUrl && form.errors.imageUrl && <span>{form.errors.imageUrl}</span>}
+                      {form.touched.imageUrl && form.errors.imageUrl && <small>{form.errors.imageUrl}</small>}
                     </div>
                   )}
                 />
@@ -170,7 +170,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                     <div className={recipeFormFieldStyle}>
                       <label htmlFor='name'><small>Recipe name</small></label>
                       <input type="text" {...field} placeholder="Add a recipe name" />
-                      {form.touched.name && form.errors.name && <span>{form.errors.name}</span>}
+                      {form.touched.name && form.errors.name && <small>{form.errors.name}</small>}
                     </div>
                   )}
                 />
@@ -180,7 +180,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                     <div className={recipeFormFieldStyle}>
                       <label htmlFor='preparationTime'><small>Preparation time in minutes</small></label>
                       <input type="text" {...field} placeholder="Add a preparation time in min" />
-                      {form.touched.preparationTime && form.errors.preparationTime && <span>{form.errors.preparationTime}</span>}
+                      {form.touched.preparationTime && form.errors.preparationTime && <small>{form.errors.preparationTime}</small>}
                     </div>
                   )}
                 />
@@ -190,7 +190,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                     <div className={recipeFormFieldStyle}>
                       <label htmlFor='cookingTime'><small>Cooking time in minutes</small></label>
                       <input type="text" {...field} placeholder="Add a cooking time in min" />
-                      {form.touched.cookingTime && form.errors.cookingTime && <span>{form.errors.cookingTime}</span>}
+                      {form.touched.cookingTime && form.errors.cookingTime && <small>{form.errors.cookingTime}</small>}
                     </div>
                   )}
                 />
@@ -211,7 +211,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                     <div className={recipeFormFieldStyle}>
                       <label htmlFor='instructions'><small>Instructions</small></label>
                       <textarea rows={4} {...field} placeholder="Add your cooking instructions here" />
-                      {form.touched.instructions && form.errors.instructions && <span>{form.errors.instructions}</span>}
+                      {form.touched.instructions && form.errors.instructions && <small>{form.errors.instructions}</small>}
                     </div>
                   )}
                 />
