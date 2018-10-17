@@ -45,6 +45,7 @@ export const recipeFormFieldStyle = style({
 
 export const recipeFormFieldInputStyle = style({
   display: 'flex',
+  margin: '0.2rem',
 });
 
 export const recipeFormIngredientIconStyle = style({
@@ -61,7 +62,7 @@ export const recipeFormIngredientIconStyle = style({
       fill: green
     },
   },
+  alignItems: 'center',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
 });
