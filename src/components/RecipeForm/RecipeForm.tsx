@@ -225,9 +225,12 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                         </div>
                       ))
                     ) : (
-                        <button type="button" onClick={() => arrayHelpers.push('')}>
-                          Add an ingredients
-                        </button>
+                          <IconButton
+                            onClickCallback={() => arrayHelpers.push('')}
+                            buttonText='Add an ingredient'
+                            icon={<Plus />}
+                            color={IconButtonColor.GREEN}
+                          />
                       )}
                   </div>
                 )}
