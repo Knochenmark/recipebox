@@ -210,18 +210,8 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                       formikBag.values.ingredients.map((ingredient, index) => (
                         <div key={index}>
                           <Field name={`ingredients.${index}`} value={formikBag.values.ingredients[index]} />
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
-                            Remove -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.push('')}
-                          >
-                            Add +
-                          </button>
+                            <i className={recipeFormIngredientIconStyle + ' remove'} onClick={() => arrayHelpers.remove(index)}><Remove /></i>
+                            <i className={recipeFormIngredientIconStyle + ' add'} onClick={() => arrayHelpers.push('')}><Plus /></i>
                         </div>
                       ))
                     ) : (
