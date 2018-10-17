@@ -36,6 +36,9 @@ export const recipeFormFieldStyle = style({
   $nest: {
     '& >small': {
       color: red
+    },
+    '& >textarea': {
+      resize: 'none'
     }
   },
   display: 'flex',

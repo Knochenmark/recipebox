@@ -210,7 +210,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
                   render={({ field, form }: FieldProps<IRecipeFormValues>) => (
                     <div className={recipeFormFieldStyle}>
                       <label htmlFor='instructions'><small>Instructions</small></label>
-                      <textarea rows={4} {...field} placeholder="Add your cooking instructions here" />
+                      <textarea rows={8} {...field} placeholder="Add your cooking instructions here" />
                       {form.touched.instructions && form.errors.instructions && <small>{form.errors.instructions}</small>}
                     </div>
                   )}
