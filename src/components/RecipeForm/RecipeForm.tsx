@@ -108,7 +108,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
       cookingTime: Number(cookingTime),
       difficulty,
       imageUrl,
-      ingredients,
+      ingredients: ingredients.filter((ingredient: string) => !!ingredient.trim()),
       instructions,
       name,
       preparationTime: Number(preparationTime),
