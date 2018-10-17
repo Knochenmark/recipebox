@@ -24,9 +24,15 @@ import { IconButton } from '../IconButton/IconButton';
 import { IconButtonColor } from '../IconButton/IconButttonColor';
 import Cross from '../Icons/Cross';
 import Edit from '../Icons/Edit';
+import Plus from '../Icons/Plus';
+import Remove from '../Icons/Remove';
 import {
   buttonWrapperStyle,
-  recipeFormContentStyle
+  formStyle,
+  recipeFormContentStyle,
+  recipeFormFieldInputStyle,
+  recipeFormFieldStyle,
+  recipeFormIngredientIconStyle
 } from './RecipeFormStyles';
 import { RecipeValidationSchema } from './RecipeValidationSchema';
 
@@ -102,7 +108,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
       cookingTime: Number(cookingTime),
       difficulty,
       imageUrl,
-      ingredients,
+      ingredients: ingredients.filter((ingredient: string) => !!ingredient.trim()),
       instructions,
       name,
       preparationTime: Number(preparationTime),
@@ -129,126 +135,128 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     );
 
     return (
-      <div className={recipeFormContentStyle}>
-        <h2>
-          {this.props.selectedRecipe ? 'Edit Recipe' : 'Create New Recipe'}
-        </h2>
-        <Formik
-          initialValues={{
-            cookingTime: this.state.cookingTime,
-            imageUrl: this.state.imageUrl,
-            name: this.state.name,
-            preparationTime: this.state.preparationTime,
-            difficulty: this.state.difficulty,
-            instructions: this.state.instructions,
-            ingredients: this.state.ingredients,
-          }}
-          validationSchema={RecipeValidationSchema}
-          onSubmit={this.saveRecipe}
-          render={(formikBag: FormikProps<IRecipeFormValues>) => (
-            <Form>
-              <Field
-                name="imageUrl"
-                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
-                  <div>
-                    <input type="text" {...field} placeholder="Preview Image Url" />
-                    {form.touched.imageUrl && form.errors.imageUrl && <span>{form.errors.imageUrl}</span>}
-                  </div>
-                )}
-              />
-              <Field
-                name="name"
-                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
-                  <div>
-                    <input type="text" {...field} placeholder="Recipe Name" />
-                    {form.touched.name && form.errors.name && <span>{form.errors.name}</span>}
-                  </div>
-                )}
-              />
-              <Field
-                name="preparationTime"
-                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
-                  <div>
-                    <input type="text" {...field} placeholder="Preparation Time in min" />
-                    {form.touched.preparationTime && form.errors.preparationTime && <span>{form.errors.preparationTime}</span>}
-                  </div>
-                )}
-              />
-              <Field
-                name="cookingTime"
-                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
-                  <div>
-                    <input type="text" {...field} placeholder="Cooking Time in min" />
-                    {form.touched.cookingTime && form.errors.cookingTime && <span>{form.errors.cookingTime}</span>}
-                  </div>
-                )}
-              />
-              <Field
-                name="difficulty"
-                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
-                  <div>
-                    <select {...field}>
-                      {difficultyOptions}
-                    </select>
-                  </div>
-                )}
-              />
-              <Field
-                name="instructions"
-                render={({ field, form }: FieldProps<IRecipeFormValues>) => (
-                  <div>
-                    <textarea rows={4} {...field} placeholder="Add your cooking instructions here" />
-                    {form.touched.instructions && form.errors.instructions && <span>{form.errors.instructions}</span>}
-                  </div>
-                )}
-              />
-              <FieldArray
-                name="ingredients"
-                render={arrayHelpers => (
-                  <div>
-                    {formikBag.values.ingredients && formikBag.values.ingredients.length > 0 ? (
-                      formikBag.values.ingredients.map((ingredient, index) => (
-                        <div key={index}>
-                          <Field name={`ingredients.${index}`} value={formikBag.values.ingredients[index]} />
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
-                            Remove -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.push('')}
-                          >
-                            Add +
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                        <button type="button" onClick={() => arrayHelpers.push('')}>
-                          Add an ingredients
-                        </button>
-                      )}
-                  </div>
-                )}
-              />
-              <div className={buttonWrapperStyle}>
-                <IconButton
-                  isSubmitButton={true}
-                  buttonText='Save Recipe'
-                  icon={<Edit />}
-                  color={IconButtonColor.GREEN}
+      <div className={formStyle}>
+        <div className={recipeFormContentStyle}>
+          <h2>
+            {this.props.selectedRecipe ? 'Edit Recipe' : 'Create New Recipe'}
+          </h2>
+          <Formik
+            initialValues={{
+              cookingTime: this.state.cookingTime,
+              imageUrl: this.state.imageUrl,
+              name: this.state.name,
+              preparationTime: this.state.preparationTime,
+              difficulty: this.state.difficulty,
+              instructions: this.state.instructions,
+              ingredients: this.state.ingredients,
+            }}
+            validationSchema={RecipeValidationSchema}
+            onSubmit={this.saveRecipe}
+            render={(formikBag: FormikProps<IRecipeFormValues>) => (
+              <Form>
+                <Field
+                  name="imageUrl"
+                  render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                    <div className={recipeFormFieldStyle}>
+                      <label htmlFor='imageUrl'><small>Image Url</small></label>
+                      <input type="text" {...field} placeholder="Add a preview image url" />
+                      {form.touched.imageUrl && form.errors.imageUrl && <small>{form.errors.imageUrl}</small>}
+                    </div>
+                  )}
                 />
-                <IconButton
-                  onClickCallback={this.cancelHandler}
-                  buttonText='Cancel'
-                  icon={<Cross />}
-                  color={IconButtonColor.RED}
+                <Field
+                  name="name"
+                  render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                    <div className={recipeFormFieldStyle}>
+                      <label htmlFor='name'><small>Recipe name</small></label>
+                      <input type="text" {...field} placeholder="Add a recipe name" />
+                      {form.touched.name && form.errors.name && <small>{form.errors.name}</small>}
+                    </div>
+                  )}
                 />
-              </div>
-            </Form>
-          )}
-        />
+                <Field
+                  name="preparationTime"
+                  render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                    <div className={recipeFormFieldStyle}>
+                      <label htmlFor='preparationTime'><small>Preparation time in minutes</small></label>
+                      <input type="text" {...field} placeholder="Add a preparation time in min" />
+                      {form.touched.preparationTime && form.errors.preparationTime && <small>{form.errors.preparationTime}</small>}
+                    </div>
+                  )}
+                />
+                <Field
+                  name="cookingTime"
+                  render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                    <div className={recipeFormFieldStyle}>
+                      <label htmlFor='cookingTime'><small>Cooking time in minutes</small></label>
+                      <input type="text" {...field} placeholder="Add a cooking time in min" />
+                      {form.touched.cookingTime && form.errors.cookingTime && <small>{form.errors.cookingTime}</small>}
+                    </div>
+                  )}
+                />
+                <Field
+                  name="difficulty"
+                  render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                    <div className={recipeFormFieldStyle}>
+                      <label htmlFor='difficulty'><small>Difficulty</small></label>
+                      <select {...field}>
+                        {difficultyOptions}
+                      </select>
+                    </div>
+                  )}
+                />
+                <Field
+                  name="instructions"
+                  render={({ field, form }: FieldProps<IRecipeFormValues>) => (
+                    <div className={recipeFormFieldStyle}>
+                      <label htmlFor='instructions'><small>Instructions</small></label>
+                      <textarea rows={8} {...field} placeholder="Add your cooking instructions here" />
+                      {form.touched.instructions && form.errors.instructions && <small>{form.errors.instructions}</small>}
+                    </div>
+                  )}
+                />
+                <FieldArray
+                  name="ingredients"
+                  render={arrayHelpers => (
+                    <div className={recipeFormFieldStyle}>
+                      <label htmlFor='ingredients'><small>Ingredients</small></label>
+                      {formikBag.values.ingredients && formikBag.values.ingredients.length > 0 ? (
+                        formikBag.values.ingredients.map((ingredient, index) => (
+                          <div key={index} className={recipeFormFieldInputStyle}>
+                            <Field name={`ingredients.${index}`} value={formikBag.values.ingredients[index]} />
+                            <i className={recipeFormIngredientIconStyle + ' remove'} onClick={() => arrayHelpers.remove(index)}><Remove /></i>
+                            <i className={recipeFormIngredientIconStyle + ' add'} onClick={() => arrayHelpers.push('')}><Plus /></i>
+                          </div>
+                        ))
+                      ) : (
+                          <IconButton
+                            onClickCallback={() => arrayHelpers.push('')}
+                            buttonText='Add an ingredient'
+                            icon={<Plus />}
+                            color={IconButtonColor.GREEN}
+                          />
+                        )}
+                    </div>
+                  )}
+                />
+                <div className={buttonWrapperStyle}>
+                  <IconButton
+                    isSubmitButton={true}
+                    buttonText='Save Recipe'
+                    icon={<Edit />}
+                    color={IconButtonColor.GREEN}
+                  />
+                  <IconButton
+                    onClickCallback={this.cancelHandler}
+                    buttonText='Cancel'
+                    icon={<Cross />}
+                    color={IconButtonColor.RED}
+                  />
+                </div>
+              </Form>
+            )}
+          />
+        </div>
       </div>
     );
   }

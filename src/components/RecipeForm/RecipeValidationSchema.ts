@@ -5,14 +5,14 @@ export const RecipeValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
-    .required('Required'),
+    .required('This field is required'),
   preparationTime: Yup.string()
-    .required('Required')
+    .required('This field is required')
     .matches(/^[0-9]*$/, 'Must be a number'),
   cookingTime: Yup.string()
-    .required('Required')
+    .required('This field is required')
     .matches(/^[0-9]*$/, 'Must be a number'),
   instructions: Yup.string()
     .min(2, 'Too Short!')
-    .required('Required'),
+    .required('This field is required'),
 });
