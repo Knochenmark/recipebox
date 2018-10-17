@@ -129,6 +129,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
     );
 
     return (
+      <div className={formStyle}>
       <div className={recipeFormContentStyle}>
         <h2>
           {this.props.selectedRecipe ? 'Edit Recipe' : 'Create New Recipe'}
