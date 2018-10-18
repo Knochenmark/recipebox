@@ -97,6 +97,32 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: "Cheese cake",
     preparationTime: 30,
+  }, {
+    cookingTime: 30,
+    difficulty: Difficulty.BEGINNER,
+    imageUrl: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/cornbread_86386_16x9.jpg',
+    ingredients: [
+      '375g plain flour',
+      '225g cornmeal',
+      '1 tsp salt',
+      '4 tsp baking powder',
+      '110g sugar',
+      '480ml oz milk',
+      '2 free-range eggs',
+      '110g butter, melted, plus extra for greasing',
+      'small tin sweetcorn kernels, drained (or use fresh sweetcorn)'
+    ],
+    instructions: `
+    Preheat the oven to 200C/Gas 6. Grease 23cm square baking pan with melted butter.
+
+    In a large bowl, combine all the ingredients together except for the sweetcorn kernels. Mix until you have the consistency of a sponge cake batter, then add the sweetcorn.
+
+    Stir to combine thoroughly, then pour into the prepared baking pan. Bake for about 20 minutes in the top of the oven. (Alternatively, you can bake these in a muffin tray lined with paper cases.)
+
+    The cornbread is ready when it has a golden colour and is springy to the touch. Allow to cool slightly before cutting.`,
+    isBookmarked: false,
+    name: 'Cornbread',
+    preparationTime: 30
   }
 ];
 
