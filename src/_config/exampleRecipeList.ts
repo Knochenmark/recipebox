@@ -123,6 +123,98 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Cornbread',
     preparationTime: 30
+  }, {
+    cookingTime: 40,
+    difficulty: Difficulty.BEGINNER,
+    imageUrl: 'https://c1.staticflickr.com/4/3496/3903180442_8ec5a4de0a_b.jpg',
+    ingredients: [
+      '8 medium leeks, (about 3 pounds), whites and light-green parts only, quartered lengthwise and halved crosswise, cleaned',
+      '1 1/2 pounds salmon fillet, halved lengthwise then crosswise',
+      '2 tablespoons olive oil',
+      'coarse salt and freshly ground pepper',
+      'lemon wedges, for serving'
+    ],
+    instructions: `
+    Preheat oven to 450 degrees. On a large rimmed baking sheet, toss leeks with oil; season with salt and pepper. Roast, tossing once, until beginning to soften, 12 to 15 minutes.
+    
+    Remove leeks from oven, toss with pan juices to coat, and push to edges of baking sheet. Arrange salmon pieces in center, and season generously with salt and pepper.
+    
+    Return to oven; roast until salmon is just opaque throughout, 10 to 15 minutes (depending on thickness). Serve salmon with leeks and lemon wedges.`,
+    isBookmarked: false,
+    name: 'Salmon with leeks',
+    preparationTime: 10,
+  }, {
+    cookingTime: 15,
+    difficulty: Difficulty.BEGINNER,
+    imageUrl: 'https://www.maxpixel.net/static/photo/1x/Green-Vegetables-Beets-Purple-2861272.jpg',
+    ingredients: [
+      '1 can (16 ounces) sliced or diced beets',
+      '2 tablespoons sugar',
+      '1 tablespoon cornstarch',
+      '1/4 teaspoon salt',
+      '3 to 4 tablespoons white vinegar',
+      '2 tablespoons butter'
+    ],
+    instructions: `
+    Drain beets, reserving 1/3 cup juice. In a saucepan, combine the sugar, cornstarch and salt. Stir in beet juice and vinegar; cook and stir over medium-high heat until thickened and bubbly. Cook and stir 2 minutes more. Add beets and butter; heat through.`,
+    isBookmarked: false,
+    name: 'Glazed beets',
+    preparationTime: 15,
+  }, {
+    cookingTime: 30,
+    difficulty: Difficulty.ADVANCED,
+    imageUrl: 'https://c2.staticflickr.com/4/3252/3287806712_4e06886279_z.jpg',
+    ingredients: [
+      '3 cups elbow macaroni, uncooked',
+      '2 tablespoons butter',
+      '2 tablespoons flour',
+      '1 cup half n half (warmed)',
+      '3½ cups Colby Jack cheese, shredded & divided',
+      '½ cup Smoked Cheddar cheese, shredded & divided',
+      '1½ cups whole milk',
+      '2 eggs, slightly beaten',
+      'salt & pepper'
+    ],
+    instructions: `
+    Preheat oven to 350 F.
+
+    Butter an 8x10 casserole dish. Set aside.
+
+    Bring a large pot of seasoned water to a boil. (I season my water generously with salt, pepper, and garlic powder. It should taste a bit salty)
+
+    Cook pasta until a little under al dente ( about 7 minutes)
+
+    Drain and set aside.
+
+    In a large saucepan, over medium heat, melt butter.
+
+    Whisk in flour and continue stirring until golden.
+
+    Slowly whisk in half n half.
+
+    Continue stirring until smooth.
+
+    Stir in 1 cup Colby Jack cheese until sauce is creamy.
+
+    Pour cheese sauce over macaroni, tossing to coat.
+
+    Pour macaroni into prepared pan. Set aside.
+
+    In a large bowl, add milk, 2 cups Colby Jack cheese, and ¼ cup Smoked Cheddar.
+
+    Taste mixture and add salt and pepper until the mixture tastes seasoned to your liking.
+
+    Add in eggs and stir well to make sure the eggs are mixed in.
+
+    Pour egg mixture over the macaroni. (Use a spatula to help push the mixture throughout so that everything isn't just sitting on top). (see note)
+
+    Sprinkle the top with remaining cheeses. (I never need all of it)
+    Bake for 30-35 minutes. (may not need this long so check on it at the 25-minute mark)
+
+    Let sit for 10 minutes before serving.`,
+    isBookmarked: false,
+    name: 'Creamy baked macaroni and cheese',
+    preparationTime: 10,
   }
 ];
 
