@@ -136,9 +136,9 @@ export const exampleRecipeList: IRecipe[] = [
     ],
     instructions: `
     Preheat oven to 450 degrees. On a large rimmed baking sheet, toss leeks with oil; season with salt and pepper. Roast, tossing once, until beginning to soften, 12 to 15 minutes.
-    
+
     Remove leeks from oven, toss with pan juices to coat, and push to edges of baking sheet. Arrange salmon pieces in center, and season generously with salt and pepper.
-    
+
     Return to oven; roast until salmon is just opaque throughout, 10 to 15 minutes (depending on thickness). Serve salmon with leeks and lemon wedges.`,
     isBookmarked: false,
     name: 'Salmon with leeks',
@@ -215,6 +215,32 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Creamy baked macaroni and cheese',
     preparationTime: 10,
+  },
+  {
+	cookingTime: 10,
+    difficulty: Difficulty.BEGINNER,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Koukouvagia.jpg/220px-Koukouvagia.jpg',
+    ingredients: [
+	  'oregano',
+      'salt',
+      'pepper',
+      'olive oil',
+      '60g (2.2 oz) feta cheese',
+      '1 large tomatoe',
+      '1 barley rusk'
+    ],
+    instructions: `Splash a bit of water on the barley and allow it to moisten a bit.
+
+	Either grate the tomato with a large grate or chop it up in very small pieces, and then drain the liquid, then add a little salt.
+
+	Crumble the feta cheese.
+
+	Place the rusk on a plate and spread the grated/chopped tomato on the rusk and then add top it with the crumbled feta cheese.
+
+	Sprinkle a bit of pepper and oregano over the Feta cheese and then pour a touch of olive oil over it.`,
+    isBookmarked: false,
+    name: 'Dakos',
+    preparationTime: 5
   }
 ];
 
