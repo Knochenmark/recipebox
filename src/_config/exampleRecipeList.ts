@@ -253,4 +253,25 @@ export const emptyRecipe: IRecipe = {
   isBookmarked: false,
   name: '',
   preparationTime: 0,
-}
+}, {
+    difficulty: Difficulty.BEGINNER,
+    imageUrl: 'https://assets.marthastewart.com/styles/wmax-750/d26/basic-pizza-dough-ED105199/basic-pizza-dough-ED105199_horiz.jpg?itok=qRNMoEbM',
+    ingredients: [
+  
+'1 cup (250 ml) warm water'
+'1 teaspoon (5 ml) instant yeast'
+'1 teaspoon (5 ml) sugar'
+'2 cups (500 ml) all-purpose flour'
+'1 teaspoon (5 ml) salt'
+    ],
+    instructions: `In a bowl, combine the water, yeast and sugar. Let stand until the mixture foams on top, about 5 minutes.
+In a food processor, it is important to work with the plastic blade or the dough hook. Combine the flour and salt. Increase the speed to medium and add the yeast mixture until a soft ball forms.
+Remove the dough from the bowl and knead for a few minutes on a floured surface to prevent sticking.
+Place in a lightly oiled bowl and cover with a clean cloth. Let the dough rise for about 30 minutes in warm and draft-free area. Cut the dough in half.
+Use the pizza dough immediately or refrigerate it (less than 48 hours), otherwise place it in an airtight bag and freeze.
+This recipe will make two 23-cm (9-inch) thin-crust pizzas or two 20-cm (8-inch) thicker crust pizzas.
+TO HELP YOU WITH THIS RECIPE`,
+    isBookmarked: false,
+    name: "Pizza Dough",
+    preparationTime: 10,
+  }
