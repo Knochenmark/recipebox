@@ -253,4 +253,31 @@ export const emptyRecipe: IRecipe = {
   isBookmarked: false,
   name: '',
   preparationTime: 0,
-}
+}, {
+    cookingTime: 10,
+    difficulty: Difficulty.BEGINNER,
+    imageUrl: 'https://www.graceandgoodeats.com/wp-content/uploads/2015/01/homemade-pancakes.jpg',
+    ingredients: [
+'1 1/2 cups (195 grams) all-purpose flour'
+
+'2 tablespoons sugar',
+
+'1 tablespoon baking powder',
+
+'3/4 teaspoon kosher salt or 1/2 teaspoon of fine sea or table salt',
+
+'1 1/4 cups (295 ml) milk, dairy and non-dairy both will work',
+
+'1 large egg',
+
+'4 tablespoons unsalted butter, melted, plus more for skillet',
+
+'1 teaspoon vanilla extract'
+    ],
+    instructions:
+    'In a large bowl, mix flour, sugar, baking powder and salt. Make a well in the center, and pour in milk, egg and oil. Mix until smooth.
+'Heat a lightly oiled griddle or frying pan over medium high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake' ,
+    isBookmarked: false,
+    name: 'Pancakes',
+    preparationTime: 15,
+  }
