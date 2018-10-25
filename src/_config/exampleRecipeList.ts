@@ -241,19 +241,7 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Dakos',
     preparationTime: 5
-  }
-];
-
-export const emptyRecipe: IRecipe = {
-  cookingTime: 0,
-  difficulty: Difficulty.BEGINNER,
-  imageUrl: '',
-  ingredients: [],
-  instructions: '',
-  isBookmarked: false,
-  name: '',
-  preparationTime: 0,
-}, {
+  } {
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://assets.marthastewart.com/styles/wmax-750/d26/basic-pizza-dough-ED105199/basic-pizza-dough-ED105199_horiz.jpg?itok=qRNMoEbM',
     ingredients: [
@@ -275,3 +263,15 @@ TO HELP YOU WITH THIS RECIPE`,
     name: "Pizza Dough",
     preparationTime: 10,
   }
+];
+
+export const emptyRecipe: IRecipe = {
+  cookingTime: 0,
+  difficulty: Difficulty.BEGINNER,
+  imageUrl: '',
+  ingredients: [],
+  instructions: '',
+  isBookmarked: false,
+  name: '',
+  preparationTime: 0,
+}, 
