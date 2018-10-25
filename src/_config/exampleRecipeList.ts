@@ -242,18 +242,7 @@ export const exampleRecipeList: IRecipe[] = [
     name: 'Dakos',
     preparationTime: 5
   }
-];
-
-export const emptyRecipe: IRecipe = {
-  cookingTime: 0,
-  difficulty: Difficulty.BEGINNER,
-  imageUrl: '',
-  ingredients: [],
-  instructions: '',
-  isBookmarked: false,
-  name: '',
-  preparationTime: 0,
-}, {
+	{
     cookingTime: 10,
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://www.graceandgoodeats.com/wp-content/uploads/2015/01/homemade-pancakes.jpg',
@@ -281,3 +270,15 @@ export const emptyRecipe: IRecipe = {
     name: 'Pancakes',
     preparationTime: 15,
   }
+];
+
+export const emptyRecipe: IRecipe = {
+  cookingTime: 0,
+  difficulty: Difficulty.BEGINNER,
+  imageUrl: '',
+  ingredients: [],
+  instructions: '',
+  isBookmarked: false,
+  name: '',
+  preparationTime: 0,
+}, 
