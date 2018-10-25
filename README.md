@@ -1,6 +1,7 @@
 ![Travis (.org)](https://img.shields.io/travis/knochenmark/recipebox.svg)
 [![GitHub issues](https://img.shields.io/github/issues/knochenmark/recipebox.svg)](https://github.com/Knochenmark/recipebox/issues)
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/knochenmark/recipebox.svg)](https://github.com/Knochenmark/recipebox/pulls)
+![GitHub contributors](https://img.shields.io/github/contributors/knochenmark/recipebox.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/knochenmark/recipebox.svg)
 
 
