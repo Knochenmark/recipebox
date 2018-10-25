@@ -1,4 +1,4 @@
-![Travis (.com) branch](https://img.shields.io/travis/com/knochenmark/recipebox/master.svg)
+![Travis (.com) branch](https://travis-ci.com/Knochenmark/recipebox.svg?branch=master)
 [![GitHub issues](https://img.shields.io/github/issues/knochenmark/recipebox.svg)](https://github.com/Knochenmark/recipebox/issues)
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/knochenmark/recipebox.svg)](https://github.com/Knochenmark/recipebox/pulls)
 ![GitHub contributors](https://img.shields.io/github/contributors/knochenmark/recipebox.svg)
