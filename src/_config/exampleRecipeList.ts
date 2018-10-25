@@ -242,19 +242,7 @@ export const exampleRecipeList: IRecipe[] = [
     name: 'Dakos',
     preparationTime: 5
   }
-];
-
-export const emptyRecipe: IRecipe = {
-  cookingTime: 0,
-  difficulty: Difficulty.BEGINNER,
-  imageUrl: '',
-  ingredients: [],
-  instructions: '',
-  isBookmarked: false,
-  name: '',
-  preparationTime: 0,
-},
-{
+	{
     cookingTime: 15,
     difficulty: Difficulty.Middle,
     imageUrl: 'https://i2.wp.com/cafedelites.com/wp-content/uploads/2018/02/Best-Brownies-Ever-IMAGE-89.jpg?resize=980%2C1470&ssl=1',
@@ -284,3 +272,16 @@ After 10 minutes, carefully remove them out of the pan and allow to cool to room
     name: 'Glazed beets',
     preparationTime: 15,
   }
+];
+
+export const emptyRecipe: IRecipe = {
+  cookingTime: 0,
+  difficulty: Difficulty.BEGINNER,
+  imageUrl: '',
+  ingredients: [],
+  instructions: '',
+  isBookmarked: false,
+  name: '',
+  preparationTime: 0,
+},
+
