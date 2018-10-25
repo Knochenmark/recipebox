@@ -253,4 +253,34 @@ export const emptyRecipe: IRecipe = {
   isBookmarked: false,
   name: '',
   preparationTime: 0,
-}
+},
+{
+    cookingTime: 15,
+    difficulty: Difficulty.Middle,
+    imageUrl: 'https://i2.wp.com/cafedelites.com/wp-content/uploads/2018/02/Best-Brownies-Ever-IMAGE-89.jpg?resize=980%2C1470&ssl=1',
+    ingredients: [
+'1 cup 8oz/240g butter, melted and cooled'
+'2 tablespoons (30ml) vegetable oil'
+'1 1/4 cups (9oz/260g) white sugar'
+'1 cup (7oz/200g) packed light brown sugar'
+'4 (2oz/57g each) large eggs, at room temperature'
+'1 tablespoon (15ml) pure vanilla extract'
+'3/4 teaspoon salt'
+'1 cup (3.5oz/130g) all purpose flour'
+'1 cup (3.5oz/100g) good quality, unsweetened cocoa powder'
+'7 oz (200g) roughly chopped chocolate or large chocolate chips'
+    ],
+    instructions: `
+    Preheat oven to 175°C | 350°F.
+Lightly grease an 8x12-inch square baking pan* with cooking oil spray. Line with parchment paper (or baking paper); set aside.
+Combine melted butter, oil and sugars together in a medium-sized bowl. Whisk well to combine. Add the eggs and vanilla; beat until lighter in colour (another minute).
+
+Sift in flour, cocoa powder and salt. Gently fold the dry ingredients into the wet ingredients until JUST combined (do NOT over beat as doing so well affect the texture of your brownies).
+Fold in 3/4 of the chocolate pieces.
+Pour batter into prepared pan, smoothing the top out evenly, and top with remaining chocolate pieces.
+Bake for 25-30 minutes or until the centre of the brownies in the pan no longer jiggles and is just set to the touch (the brownies will keep baking in the hot pan out of the oven). If testing with a toothpick, the toothpick should come out dirty for fudge-textured brownies.
+After 10 minutes, carefully remove them out of the pan and allow to cool to room temperature before slicing into 16 brownies.`,
+    isBookmarked: false,
+    name: 'Glazed beets',
+    preparationTime: 15,
+  }
