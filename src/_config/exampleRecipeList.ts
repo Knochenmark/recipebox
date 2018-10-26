@@ -60,8 +60,7 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: "Fish soup",
     preparationTime: 35,
-  },
-  {
+  }, {
     cookingTime: 60,
     difficulty: Difficulty.EXPERT,
     imageUrl: 'https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg',
@@ -215,8 +214,7 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Creamy baked macaroni and cheese',
     preparationTime: 10,
-  },
-  {
+  }, {
 	cookingTime: 10,
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Koukouvagia.jpg/220px-Koukouvagia.jpg',
@@ -241,6 +239,32 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Dakos',
     preparationTime: 5
+  }, {
+    cookingTime: 25,
+    difficulty: Difficulty.ADVANCED,
+    imageUrl: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=2000&q=80',
+    ingredients: [
+      '1 lb. farfalle pasta',
+      '2 cups fresh basil leaves',
+      '1/2 cup fresh grated romano or parmesan-reggiano cheese',
+      '1/2 cup extra virgin olive oil',
+      '1/3 cup pine nuts',
+      '3 garlic cloves, minced',
+      'kosher salt',
+      'ground black pepper',
+      '1 pint cherry tomatoes',
+      'spring mix greens'
+    ],
+    instructions: `Cook the pasta according to the package instructions. Drain the pasta, reserving 1/2 cup of the pasta water.  Return the pasta to the pot.
+
+  Using a food processor, pulse the basil and pine nuts several times.  Add cheese and garlic and continue to mix.  Using a spatula, scrape down the sie of the food processor.
+
+  Stream in the olive oil slowly while running the food processor.  Occasionally stop to scrape the sides.  Stir in salt and fresh ground black pepper to taste.
+
+  Add the completed basil mixture and reserved pasta water to the pot; toss the pasta to coat fully. Fold in the tomatoes and sprinkle lightly with pepper, then serve on a bed of mixed greens.`,
+    isBookmarked: false,
+    name: 'Pesto and Tomato Pasta',
+    preparationTime: 10
   }
 ];
 
