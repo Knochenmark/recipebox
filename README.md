@@ -11,9 +11,15 @@ Recipebox utilizes localStorage to store your recipe collection. You can add fur
 
 ## Table of Contents
 
+- [Pre-Requisites](#pre-requisites)
 - [Run the app](#run-the-app)
 - [Test the app](#test-the-app)
 - [Build the app](#build-the-app)
+
+## Pre-Requisites
+
+This project requires [Node.js](https://nodejs.org) 6.x or later to be installed.<br>
+Use either `npm install` or `yarn install` to download dependencies locally.
 
 ## Run the app
 
