@@ -7,10 +7,14 @@ import {
   getEditMode,
   getIndexVisibility
 } from '../../RecipeReducer';
+import Bug from '../Icons/Bug';
 import { IndexPage } from '../IndexPage/IndexPage';
 import { Recipe } from '../Recipe/Recipe';
 import { RecipeForm } from '../RecipeForm/RecipeForm';
-import { recipeBookStyle } from './RecipeBookStyles';
+import {
+  bugStyle,
+  recipeBookStyle
+} from './RecipeBookStyles';
 
 interface IRecipeBookStateProps {
   isIndexVisible: boolean;
@@ -63,6 +67,9 @@ export class RecipeBookComponent extends React.Component<IRecipeBookProps> {
             {isEditMode ? <RecipeForm /> : <Recipe />}
           </div>
         </div>
+        <a href='https://github.com/Knochenmark/recipebox/issues' title='Report a bug' className={bugStyle}>
+          <Bug />
+        </a>
       </div>
     );
   }

@@ -22,6 +22,11 @@ export const recipeOverlayStyle = style({
     '& span': {
       $nest: {
         '& svg': {
+          $nest: {
+            '&:hover': {
+              cursor: 'pointer'
+            }
+          },
           fill: '#FF6C79',
         }
       },
