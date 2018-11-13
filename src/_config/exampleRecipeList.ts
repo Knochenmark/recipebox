@@ -269,7 +269,7 @@ export const exampleRecipeList: IRecipe[] = [
 	{
     cookingTime: 10,
     difficulty: Difficulty.BEGINNER,
-    imageUrl: 'https://www.graceandgoodeats.com/wp-content/uploads/2015/01/homemade-pancakes.jpg',
+    imageUrl: 'https://images.pexels.com/photos/574111/pexels-photo-574111.jpeg?auto=compress',
     ingredients: [
 '1 1/2 cups (195 grams) all-purpose flour'
 
