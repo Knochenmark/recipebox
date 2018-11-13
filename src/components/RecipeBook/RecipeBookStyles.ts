@@ -20,3 +20,28 @@ export const recipeBookStyle = style({
   overflowX: 'hidden',
   width: '100vw'
 });
+
+export const bugStyle = style({
+  $nest: {
+    '& svg': {
+      $nest: {
+        '&:hover': {
+          fill: '#ff5537',
+          cursor: 'pointer'
+        }
+      },
+      fill: '#666',
+      transform: 'rotate(45deg)',
+    }
+  },
+  width: '35px',
+  height: '35px',
+  borderTopLeftRadius: '100%',
+  position: 'absolute',
+  top: '0.5rem',
+  right: '0.5rem',
+  zIndex: 1,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+});

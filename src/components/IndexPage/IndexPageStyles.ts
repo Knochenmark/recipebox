@@ -16,7 +16,7 @@ export const indexPageStyle = style({
   left: 0,
   margin: 0,
   overflow: 'hidden',
-  padding: '1rem',
+  padding: '0.5rem',
   position: 'fixed',
   top: 0,
   width: '100vw',
