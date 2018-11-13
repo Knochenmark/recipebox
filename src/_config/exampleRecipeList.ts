@@ -215,11 +215,11 @@ export const exampleRecipeList: IRecipe[] = [
     name: 'Creamy baked macaroni and cheese',
     preparationTime: 10,
   }, {
-	cookingTime: 10,
+    cookingTime: 10,
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Koukouvagia.jpg/220px-Koukouvagia.jpg',
     ingredients: [
-	  'oregano',
+      'oregano',
       'salt',
       'pepper',
       'olive oil',
@@ -229,13 +229,13 @@ export const exampleRecipeList: IRecipe[] = [
     ],
     instructions: `Splash a bit of water on the barley and allow it to moisten a bit.
 
-	Either grate the tomato with a large grate or chop it up in very small pieces, and then drain the liquid, then add a little salt.
+  Either grate the tomato with a large grate or chop it up in very small pieces, and then drain the liquid, then add a little salt.
 
-	Crumble the feta cheese.
+  Crumble the feta cheese.
 
-	Place the rusk on a plate and spread the grated/chopped tomato on the rusk and then add top it with the crumbled feta cheese.
+  Place the rusk on a plate and spread the grated/chopped tomato on the rusk and then add top it with the crumbled feta cheese.
 
-	Sprinkle a bit of pepper and oregano over the Feta cheese and then pour a touch of olive oil over it.`,
+  Sprinkle a bit of pepper and oregano over the Feta cheese and then pour a touch of olive oil over it.`,
     isBookmarked: false,
     name: 'Dakos',
     preparationTime: 5
@@ -265,31 +265,24 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Pesto and Tomato Pasta',
     preparationTime: 10
-  }
-	{
+  }, {
     cookingTime: 10,
     difficulty: Difficulty.BEGINNER,
-    imageUrl: 'https://www.graceandgoodeats.com/wp-content/uploads/2015/01/homemade-pancakes.jpg',
+    imageUrl: 'https://images.pexels.com/photos/574111/pexels-photo-574111.jpeg?auto=compress',
     ingredients: [
-'1 1/2 cups (195 grams) all-purpose flour'
-
-'2 tablespoons sugar',
-
-'1 tablespoon baking powder',
-
-'3/4 teaspoon kosher salt or 1/2 teaspoon of fine sea or table salt',
-
-'1 1/4 cups (295 ml) milk, dairy and non-dairy both will work',
-
-'1 large egg',
-
-'4 tablespoons unsalted butter, melted, plus more for skillet',
-
-'1 teaspoon vanilla extract'
+      '1 1/2 cups (195 grams) all-purpose flour',
+      '2 tablespoons sugar',
+      '1 tablespoon baking powder',
+      '3/4 teaspoon kosher salt or 1/2 teaspoon of fine sea or table salt',
+      '1 1/4 cups (295 ml) milk, dairy and non-dairy both will work',
+      '1 large egg',
+      '4 tablespoons unsalted butter, melted, plus more for skillet',
+      '1 teaspoon vanilla extract',
+      'maple syrup (optionally)',
     ],
-    instructions:
-    'In a large bowl, mix flour, sugar, baking powder and salt. Make a well in the center, and pour in milk, egg and oil. Mix until smooth.
-'Heat a lightly oiled griddle or frying pan over medium high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake' ,
+    instructions: `In a large bowl, mix flour, sugar, baking powder and salt. Make a well in the center, and pour in milk, egg and oil. Mix until smooth.
+
+    Heat a lightly oiled griddle or frying pan over medium high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake`,
     isBookmarked: false,
     name: 'Pancakes',
     preparationTime: 15,
@@ -305,4 +298,4 @@ export const emptyRecipe: IRecipe = {
   isBookmarked: false,
   name: '',
   preparationTime: 0,
-}, 
+}
