@@ -11,7 +11,12 @@ export enum actionTypes {
   UPDATE_RECIPE = '[Recipe] Update Recipe',
   SAVE_RECIPE = '[Recipe] Save Recipe',
   SET_SEARCH_VALUE = '[Recipe] Set Search Value',
-  SET_SELECTED_TAB = '[Recipe] Set Selected Tab'
+  SET_SELECTED_TAB = '[Recipe] Set Selected Tab',
+  RESET_ALL_RECIPES = '[Recipe] Reset all Recipes'
+}
+
+export interface IResetAllRecipesAction{
+  type: string;
 }
 
 export interface ISetSelectedTabAction {
@@ -64,6 +69,10 @@ export interface ISaveRecipeAction {
   recipe: IRecipe;
   type: string;
 }
+
+export const resetAllRecipesAction = () => ({
+  type: actionTypes.RESET_ALL_RECIPES
+})
 
 export const setSelectedTabAction = (selectedTab: TabBarItem) => ({
   selectedTab,
@@ -126,4 +135,5 @@ export type Action
   | ISetBookmarkAction
   | ISaveRecipeAction
   | ISetSearchValueAction
-  | ISetSelectedTabAction;
+  | ISetSelectedTabAction
+  | IResetAllRecipesAction;
