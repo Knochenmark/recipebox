@@ -130,6 +130,14 @@ const recipes = (state: IStoreState = initialState, action: Action) => {
         selectedRecipe: recipe
       }
     }
+    case actionTypes.RESET_ALL_RECIPES: {
+      LocalStorage.setItem('recipes', exampleRecipeList);
+      return {
+        ...state,
+        recipes: exampleRecipeList,
+        selectedRecipe: exampleRecipeList[0]
+      }
+    }
     default:
       return { ...state };
   }

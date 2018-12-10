@@ -4,7 +4,10 @@ import cookingImage from '../../assets/cooking01.jpg';
 
 export const indexPageStyle = style({
   $nest: {
-    '& button': {
+    '& .button-wrapper': {
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
       margin: 'auto auto 0 auto'
     }
   },
@@ -47,3 +50,7 @@ export const indexPageBackgroundStyle = style({
   right: '0',
   top: '0',
 });
+
+export const dangerButtonStyle = style({
+  display: 'none !important'
+})

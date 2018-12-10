@@ -126,4 +126,18 @@ describe('Should test Recipes reducer', () => {
 
     expect(actualResult).toEqual(expectedResult);
   });
+
+  test('test if reset all recipes action works correctly', () => {
+    const expectedResult = {
+      ...initialState,
+      recipes: exampleRecipeList,
+      selectedRecipe: exampleRecipeList[0]
+    }
+    const resetAllRecipesAction: RecipeActions.IResetAllRecipesAction = {
+      type: RecipeActions.actionTypes.RESET_ALL_RECIPES
+    }
+    const actualResult = RecipeReducer(undefined, resetAllRecipesAction);
+
+    expect(actualResult).toEqual(expectedResult);
+  });
 });

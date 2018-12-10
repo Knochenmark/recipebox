@@ -108,4 +108,13 @@ describe('Should test recipe actions and action creators', () => {
 
     expect(actualResult).toEqual(expectedResult);
   });
+
+  test('test if resetAllRecipes action returns correct value', () => {
+    const expectedResult: RecipeActions.IResetAllRecipesAction = {
+      type: RecipeActions.actionTypes.RESET_ALL_RECIPES
+    };
+    const actualResult = RecipeActions.resetAllRecipesAction();
+
+    expect(actualResult).toEqual(expectedResult);
+  });
 });
