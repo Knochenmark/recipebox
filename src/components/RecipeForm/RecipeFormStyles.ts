@@ -37,6 +37,9 @@ export const recipeFormFieldStyle = style({
     '& >small': {
       color: red
     },
+    '& label>small': {
+      fontWeight: 'bold'
+    },
     '& >textarea': {
       resize: 'none'
     }
