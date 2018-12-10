@@ -12,6 +12,7 @@ interface IIconButtonProps {
   icon: any;
   buttonText: string;
   color: IconButtonColor;
+  styles?: string;
   isSubmitButton?: boolean;
 }
 
@@ -23,8 +24,9 @@ export class IconButton extends React.Component<IIconButtonProps, any> {
   public render() {
     const buttonType = this.props.isSubmitButton ? 'submit' : 'button';
     const callback = this.props.onClickCallback || undefined;
+    const buttonStyles = this.props.styles || ''
     return (
-      <button type={buttonType} className={iconButtonStyle} onClick={callback}>
+      <button type={buttonType} className={iconButtonStyle +' '+ buttonStyles} onClick={callback}>
         <div className={iconButtonIconStyle + ` ${this.props.color}`}>
           <i>{this.props.icon}</i>
         </div>
