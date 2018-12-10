@@ -12,11 +12,13 @@ import { BookmarkList } from '../BookmarkList/BookmarkList';
 import { IconButton } from '../IconButton/IconButton';
 import { IconButtonColor } from '../IconButton/IconButttonColor';
 import Bookmark from '../Icons/Bookmark';
+import Danger from '../Icons/Danger';
 import Plus from '../Icons/Plus';
 import { IndexList } from '../IndexList/IndexList';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { TabBar } from '../TabBar/TabBar';
 import {
+  dangerButtonStyle,
   indexPageBackgroundStyle,
   indexPageContentStyle,
   indexPageStyle
@@ -55,8 +57,11 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
           {this.props.selectedTab === TabBarItem.BOOKMARKS && <BookmarkList />}
           {this.props.selectedTab === TabBarItem.BOOKMARKS
             && <div className={indexPageBackgroundStyle}><Bookmark /></div>}
+          <div className='button-wrapper'>
+            <IconButton styles={dangerButtonStyle} onClickCallback={this.props.resetAllRecipes} buttonText='Reset All Recipes' icon={<Danger />} color={IconButtonColor.RED} />
           <IconButton onClickCallback={this.props.createRecipe} buttonText='Create New Recipe' icon={<Plus />} color={IconButtonColor.GREEN} />
         </div>
+      </div>
       </div>
     );
   }
