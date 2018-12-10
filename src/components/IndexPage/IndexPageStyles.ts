@@ -47,3 +47,7 @@ export const indexPageBackgroundStyle = style({
   right: '0',
   top: '0',
 });
+
+export const dangerButtonStyle = style({
+  display: 'none !important'
+})
