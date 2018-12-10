@@ -5,6 +5,7 @@ import { IStoreState } from '../../_domain/IStoreState';
 import { TabBarItem } from '../../_domain/TabBarItem';
 import {
   createRecipeAction,
+  resetAllRecipesAction,
   setSelectedRecipeAction
 } from '../../actions/RecipeActions';
 import { getSelectedTab } from '../../RecipeReducer';
@@ -26,6 +27,7 @@ import {
 
 export interface IIndexPageProps {
   createRecipe: () => void;
+  resetAllRecipes: () => void;
   selectedTab: TabBarItem;
   setSelectedRecipe: (recipeName: string) => void;
 }
@@ -36,6 +38,7 @@ interface IIndexPageStateProps {
 
 interface IIndexPageDispatchProps {
   createRecipe: () => void;
+  resetAllRecipes: () => void;
   setSelectedRecipe: (recipeName: string) => void;
 }
 
@@ -59,9 +62,9 @@ export class IndexPageComponent extends React.Component<IIndexPageProps> {
             && <div className={indexPageBackgroundStyle}><Bookmark /></div>}
           <div className='button-wrapper'>
             <IconButton styles={dangerButtonStyle} onClickCallback={this.props.resetAllRecipes} buttonText='Reset All Recipes' icon={<Danger />} color={IconButtonColor.RED} />
-          <IconButton onClickCallback={this.props.createRecipe} buttonText='Create New Recipe' icon={<Plus />} color={IconButtonColor.GREEN} />
+            <IconButton onClickCallback={this.props.createRecipe} buttonText='Create New Recipe' icon={<Plus />} color={IconButtonColor.GREEN} />
+          </div>
         </div>
-      </div>
       </div>
     );
   }
@@ -76,6 +79,7 @@ function mapStateToProps(state: IStoreState): IIndexPageStateProps {
 function mapDispatchToProps(dispatch: any): IIndexPageDispatchProps {
   return {
     createRecipe: () => dispatch(createRecipeAction()),
+    resetAllRecipes: () => dispatch(resetAllRecipesAction()),
     setSelectedRecipe: (recipeName: string) => dispatch(setSelectedRecipeAction(recipeName))
   };
 }
