@@ -5,6 +5,8 @@ import { TabBarItem } from './_domain/TabBarItem';
 import * as RecipeActions from './actions/RecipeActions';
 import RecipeReducer, { initialState } from './RecipeReducer';
 
+jest.mock('./_domain/LocalStorageWrapper');
+
 describe('Should test Recipes reducer', () => {
   test('test if set selected tab action works correctly', () => {
     const expectedResult: IStoreState = {
