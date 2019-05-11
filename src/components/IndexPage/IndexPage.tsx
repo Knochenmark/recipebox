@@ -43,10 +43,6 @@ interface IIndexPageDispatchProps {
 }
 
 export class IndexPageComponent extends React.Component<IIndexPageProps> {
-  constructor(props: IIndexPageProps) {
-    super(props);
-  }
-
   public render() {
     const headline = `${this.props.selectedTab === TabBarItem.RECIPES ? 'Recipe' : 'Bookmark'} List`;
 

@@ -17,16 +17,12 @@ interface IIconButtonProps {
 }
 
 export class IconButton extends React.Component<IIconButtonProps, any> {
-  constructor(props: IIconButtonProps) {
-    super(props);
-  }
-
   public render() {
     const buttonType = this.props.isSubmitButton ? 'submit' : 'button';
     const callback = this.props.onClickCallback || undefined;
     const buttonStyles = this.props.styles || ''
     return (
-      <button type={buttonType} className={iconButtonStyle +' '+ buttonStyles} onClick={callback}>
+      <button type={buttonType} className={iconButtonStyle + ' ' + buttonStyles} onClick={callback}>
         <div className={iconButtonIconStyle + ` ${this.props.color}`}>
           <i>{this.props.icon}</i>
         </div>

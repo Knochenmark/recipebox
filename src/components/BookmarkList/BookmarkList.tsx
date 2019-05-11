@@ -29,10 +29,6 @@ interface IIndexItemDispatchProps {
 }
 
 export class BookmarkListComponent extends React.Component<IBookmarkListProps> {
-  constructor(props: IBookmarkListProps) {
-    super(props);
-  }
-
   public render() {
     const bookmarkedRecipes = this.props.bookmarkedRecipes.filter(i => {
       if (this.props.searchValue) {

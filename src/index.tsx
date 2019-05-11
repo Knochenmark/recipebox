@@ -9,7 +9,7 @@ import { RecipeBook } from './components/RecipeBook/RecipeBook';
 import recipeReducer from './RecipeReducer';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(recipeReducer)
+const store = createStore(recipeReducer as any)
 
 console.log("store", store.getState());
 
