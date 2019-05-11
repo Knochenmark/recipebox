@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "cliOptions": {
-    "exclude": [
-      "node_modules"
-    ]
-  },
-}

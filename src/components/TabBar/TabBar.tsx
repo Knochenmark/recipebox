@@ -24,12 +24,7 @@ interface ITabBarProps {
 }
 
 export class TabBarComponent extends React.Component<ITabBarProps> {
-
   private tabItemList: TabBarItem[] = [TabBarItem.RECIPES, TabBarItem.BOOKMARKS];
-
-  constructor(props: ITabBarProps) {
-    super(props);
-  }
 
   public render() {
     const tabs = this.tabItemList.map((tab: any) => {

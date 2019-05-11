@@ -29,10 +29,6 @@ interface IIndexItemDispatchProps {
 }
 
 export class IndexListComponent extends React.Component<IIndexListProps> {
-  constructor(props: IIndexListProps) {
-    super(props);
-  }
-
   public render() {
     const recipes = this.props.recipes.filter(i => {
       if (this.props.searchValue) {

@@ -130,7 +130,7 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
   }
 
   public render(): JSX.Element {
-    const difficultyOptions = Object.keys(Difficulty).map((d: string, i: number) =>
+    const difficultyOptions = Object.keys(Difficulty).map((d: any) =>
       <option key={d} value={Difficulty[d]}>{Difficulty[d]}</option>
     );
 
@@ -142,10 +142,10 @@ export class RecipeFormComponent extends React.Component<IRecipeFormProps, IReci
           </h2>
           <Formik
             initialValues={{
-              cookingTime: this.state.cookingTime,
+              cookingTime: String(this.state.cookingTime),
               imageUrl: this.state.imageUrl,
               name: this.state.name,
-              preparationTime: this.state.preparationTime,
+              preparationTime: String(this.state.preparationTime),
               difficulty: this.state.difficulty,
               instructions: this.state.instructions,
               ingredients: this.state.ingredients,
