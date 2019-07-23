@@ -1,4 +1,6 @@
-import { style } from 'typestyle';
+import {
+  style
+} from 'typestyle';
 
 import cookingImage from '../../assets/cooking01.jpg';
 
@@ -46,6 +48,7 @@ export const indexPageBackgroundStyle = style({
       width: '200px',
     }
   },
+  pointerEvents: 'none',
   position: 'absolute',
   right: '0',
   top: '0',
