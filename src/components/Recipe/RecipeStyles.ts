@@ -6,7 +6,7 @@ export const recipeStyle = style({
   backgroundImage: `url(${cookingImage})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
-  minHeight: '100%',
+  minHeight: '100%'
 });
 
 export const recipeContentStyle = style({
@@ -14,7 +14,7 @@ export const recipeContentStyle = style({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '55vh',
-  width: '100%',
+  width: '100%'
 });
 
 export const recipeOverlayStyle = style({
@@ -27,7 +27,7 @@ export const recipeOverlayStyle = style({
               cursor: 'pointer'
             }
           },
-          fill: '#FF6C79',
+          fill: '#FF6C79'
         }
       },
       alignItems: 'center',
@@ -36,22 +36,22 @@ export const recipeOverlayStyle = style({
       display: 'flex',
       height: '36px',
       justifyContent: 'center',
-      width: '36px',
+      width: '36px'
     },
     '& span.back': {
       $nest: {
         '& svg': {
-          marginRight: '3px',
+          marginRight: '4px'
         }
       }
     },
     '& span.bookmark': {
       $nest: {
         '& svg': {
-          marginTop: '2px',
+          marginTop: '2px'
         }
       }
-    },
+    }
   },
   alignItems: 'center',
   display: 'flex',
@@ -60,20 +60,20 @@ export const recipeOverlayStyle = style({
   margin: '0 1rem',
   position: 'absolute',
   right: '0',
-  top: '1rem',
+  top: '1rem'
 });
 
 export const recipeTitleStyle = style({
   color: '#FF6C79',
   marginBottom: '1.5rem',
   marginTop: '1rem',
-  textAlign: 'center',
+  textAlign: 'center'
 });
 
 export const recipeImageStyle = style({
   height: '45vh',
   margin: '0 auto',
-  width: '100%',
+  width: '100%'
 });
 
 export const timingWrapperStyle = style({
@@ -81,7 +81,7 @@ export const timingWrapperStyle = style({
     '& h3': {
       color: '#8e8e8e',
       fontSize: '0.8rem',
-      textTransform: 'uppercase',
+      textTransform: 'uppercase'
     }
   },
   color: '#333',
@@ -89,54 +89,55 @@ export const timingWrapperStyle = style({
   fontSize: '0.9rem',
   fontWeight: 'bold',
   justifyContent: 'space-around',
-  textAlign: 'center',
+  textAlign: 'center'
 });
 
 export const recipeIngredientStyle = style({
   $nest: {
     '& h3': {
       color: '#8e8e8e',
-      fontSize: '0.9rem',
+      fontSize: '1rem',
       margin: '2rem 0 0.8rem 0',
-      textTransform: 'uppercase',
+      textTransform: 'uppercase'
     },
     '& span': {
-      margin: '0.25rem',
+      lineHeight: '1.25rem'
     }
   },
   alignItems: 'center',
   display: 'flex',
   flexDirection: 'column',
-  fontSize: '0.8rem',
+  fontSize: '0.9rem',
   justifyContent: 'space-around',
   textAlign: 'center',
+  margin: '0 3rem'
 });
 
 export const recipeInstructionStyle = style({
   $nest: {
     '& h3': {
       color: '#8e8e8e',
-      fontSize: '0.9rem',
+      fontSize: '1rem',
       margin: '2rem 0 0.8rem 0',
-      textTransform: 'uppercase',
+      textTransform: 'uppercase'
     },
     '& span': {
       lineHeight: '1.25rem',
-      margin: '0.25rem 3rem',
-      whiteSpace: 'pre-line',
+      margin: '0 3rem',
+      whiteSpace: 'pre-line'
     }
   },
   alignItems: 'center',
   display: 'flex',
   flexDirection: 'column',
-  fontSize: '0.8rem',
+  fontSize: '0.9rem',
   justifyContent: 'space-around',
-  textAlign: 'justify',
+  textAlign: 'justify'
 });
 
 export const buttonWrapperStyle = style({
   alignItems: 'center',
   display: 'flex',
   justifyContent: 'center',
-  marginTop: 'auto',
+  marginTop: 'auto'
 });
