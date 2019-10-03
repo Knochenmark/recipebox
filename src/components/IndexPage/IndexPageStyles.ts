@@ -1,6 +1,4 @@
-import {
-  style
-} from 'typestyle';
+import { style } from 'typestyle';
 
 import cookingImage from '../../assets/cooking01.jpg';
 
@@ -37,7 +35,7 @@ export const indexPageContentStyle = style({
   height: '100%',
   padding: '1rem',
   position: 'relative',
-  width: '100%',
+  width: '100%'
 });
 
 export const indexPageBackgroundStyle = style({
@@ -45,15 +43,24 @@ export const indexPageBackgroundStyle = style({
     '& svg': {
       fill: 'rgba(0,0,0,0.1)',
       height: '200px',
-      width: '200px',
+      width: '200px'
     }
   },
   pointerEvents: 'none',
   position: 'absolute',
   right: '0',
-  top: '0',
+  top: '0'
 });
 
 export const dangerButtonStyle = style({
   display: 'none !important'
-})
+});
+
+export const chipContainerStyle = style({
+  margin: '1rem 0',
+  $nest: {
+    '*': {
+      marginRight: '0.5rem'
+    }
+  }
+});
