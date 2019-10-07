@@ -15,7 +15,7 @@ export const exampleRecipeList: IRecipe[] = [
       'Salt & Pepper',
       'Thymian, dried',
       '3 Teaspoons Tomato paste',
-      'Parsley'
+      'Parsley',
     ],
     instructions: `Carefully remove the tomato skin by cutting a cross into the tomatoes and pouring hot water over them. Then cut the tomatoes into small pieces. Also cut the onions into small cubes and press the garlic cloves.
 
@@ -25,9 +25,10 @@ export const exampleRecipeList: IRecipe[] = [
 
     Finally salt to your taste and serve with a little parsley.`,
     isBookmarked: false,
-    name: "Tomato soup",
+    name: 'Tomato soup',
     preparationTime: 20,
-  }, {
+  },
+  {
     cookingTime: 25,
     difficulty: Difficulty.ADVANCED,
     imageUrl: 'https://images.pexels.com/photos/209540/pexels-photo-209540.jpeg',
@@ -58,9 +59,10 @@ export const exampleRecipeList: IRecipe[] = [
 
     Serve with lemon quarters and fresh cut dill.`,
     isBookmarked: false,
-    name: "Fish soup",
+    name: 'Fish soup',
     preparationTime: 35,
-  }, {
+  },
+  {
     cookingTime: 60,
     difficulty: Difficulty.EXPERT,
     imageUrl: 'https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg',
@@ -94,9 +96,10 @@ export const exampleRecipeList: IRecipe[] = [
 
     Add the filling into the springform pan, even out the surface and bake it for 1hour.`,
     isBookmarked: false,
-    name: "Cheese cake",
+    name: 'Cheese cake',
     preparationTime: 30,
-  }, {
+  },
+  {
     cookingTime: 30,
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/cornbread_86386_16x9.jpg',
@@ -109,7 +112,7 @@ export const exampleRecipeList: IRecipe[] = [
       '480ml oz milk',
       '2 free-range eggs',
       '110g butter, melted, plus extra for greasing',
-      'small tin sweetcorn kernels, drained (or use fresh sweetcorn)'
+      'small tin sweetcorn kernels, drained (or use fresh sweetcorn)',
     ],
     instructions: `
     Preheat the oven to 200C/Gas 6. Grease 23cm square baking pan with melted butter.
@@ -121,8 +124,9 @@ export const exampleRecipeList: IRecipe[] = [
     The cornbread is ready when it has a golden colour and is springy to the touch. Allow to cool slightly before cutting.`,
     isBookmarked: false,
     name: 'Cornbread',
-    preparationTime: 30
-  }, {
+    preparationTime: 30,
+  },
+  {
     cookingTime: 40,
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://c1.staticflickr.com/4/3496/3903180442_8ec5a4de0a_b.jpg',
@@ -131,7 +135,7 @@ export const exampleRecipeList: IRecipe[] = [
       '1 1/2 pounds salmon fillet, halved lengthwise then crosswise',
       '2 tablespoons olive oil',
       'coarse salt and freshly ground pepper',
-      'lemon wedges, for serving'
+      'lemon wedges, for serving',
     ],
     instructions: `
     Preheat oven to 450 degrees. On a large rimmed baking sheet, toss leeks with oil; season with salt and pepper. Roast, tossing once, until beginning to soften, 12 to 15 minutes.
@@ -142,7 +146,8 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Salmon with leeks',
     preparationTime: 10,
-  }, {
+  },
+  {
     cookingTime: 15,
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://www.maxpixel.net/static/photo/1x/Green-Vegetables-Beets-Purple-2861272.jpg',
@@ -152,14 +157,15 @@ export const exampleRecipeList: IRecipe[] = [
       '1 tablespoon cornstarch',
       '1/4 teaspoon salt',
       '3 to 4 tablespoons white vinegar',
-      '2 tablespoons butter'
+      '2 tablespoons butter',
     ],
     instructions: `
     Drain beets, reserving 1/3 cup juice. In a saucepan, combine the sugar, cornstarch and salt. Stir in beet juice and vinegar; cook and stir over medium-high heat until thickened and bubbly. Cook and stir 2 minutes more. Add beets and butter; heat through.`,
     isBookmarked: false,
     name: 'Glazed beets',
     preparationTime: 15,
-  }, {
+  },
+  {
     cookingTime: 30,
     difficulty: Difficulty.ADVANCED,
     imageUrl: 'https://c2.staticflickr.com/4/3252/3287806712_4e06886279_z.jpg',
@@ -172,7 +178,7 @@ export const exampleRecipeList: IRecipe[] = [
       '½ cup Smoked Cheddar cheese, shredded & divided',
       '1½ cups whole milk',
       '2 eggs, slightly beaten',
-      'salt & pepper'
+      'salt & pepper',
     ],
     instructions: `
     Preheat oven to 350 F.
@@ -214,7 +220,8 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Creamy baked macaroni and cheese',
     preparationTime: 10,
-  }, {
+  },
+  {
     cookingTime: 10,
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Koukouvagia.jpg/220px-Koukouvagia.jpg',
@@ -225,7 +232,7 @@ export const exampleRecipeList: IRecipe[] = [
       'olive oil',
       '60g (2.2 oz) feta cheese',
       '1 large tomatoe',
-      '1 barley rusk'
+      '1 barley rusk',
     ],
     instructions: `Splash a bit of water on the barley and allow it to moisten a bit.
 
@@ -238,8 +245,9 @@ export const exampleRecipeList: IRecipe[] = [
   Sprinkle a bit of pepper and oregano over the Feta cheese and then pour a touch of olive oil over it.`,
     isBookmarked: false,
     name: 'Dakos',
-    preparationTime: 5
-  }, {
+    preparationTime: 5,
+  },
+  {
     cookingTime: 25,
     difficulty: Difficulty.ADVANCED,
     imageUrl: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=2000&q=80',
@@ -253,7 +261,7 @@ export const exampleRecipeList: IRecipe[] = [
       'kosher salt',
       'ground black pepper',
       '1 pint cherry tomatoes',
-      'spring mix greens'
+      'spring mix greens',
     ],
     instructions: `Cook the pasta according to the package instructions. Drain the pasta, reserving 1/2 cup of the pasta water.  Return the pasta to the pot.
 
@@ -264,8 +272,9 @@ export const exampleRecipeList: IRecipe[] = [
   Add the completed basil mixture and reserved pasta water to the pot; toss the pasta to coat fully. Fold in the tomatoes and sprinkle lightly with pepper, then serve on a bed of mixed greens.`,
     isBookmarked: false,
     name: 'Pesto and Tomato Pasta',
-    preparationTime: 10
-  }, {
+    preparationTime: 10,
+  },
+  {
     cookingTime: 10,
     difficulty: Difficulty.BEGINNER,
     imageUrl: 'https://images.pexels.com/photos/574111/pexels-photo-574111.jpeg?auto=compress',
@@ -286,7 +295,25 @@ export const exampleRecipeList: IRecipe[] = [
     isBookmarked: false,
     name: 'Pancakes',
     preparationTime: 15,
-  }
+  },
+  {
+    cookingTime: 35,
+    difficulty: Difficulty.BEGINNER,
+    imageUrl: 'https://images.media-allrecipes.com/userphotos/600x600/1003056.jpg',
+    ingredients: [
+      '1 pound bacon',
+      '1 large head cabbage, chopped',
+      '1 large onion, chopped',
+      '1 (8 ounce) package sliced fresh mushrooms',
+      '60g (2.2 oz) feta cheese',
+      'salt and ground black pepper to taste',
+    ],
+    instructions: `Place bacon in a large skillet and cook over medium-high heat, turning occasionally, until evenly browned, about 10 minutes. Drain the bacon slices on paper towels; crumble when cooled. Drain all but 3 tablespoons of bacon drippings from skillet.
+    Cook and stir cabbage, onion, and mushrooms in the remaining bacon drippings until tender and lightly browned, about 20 minutes. Fold bacon into cabbage mixture. Season with salt and black pepper.`,
+    isBookmarked: false,
+    name: 'Southern Fried Cabbage with Bacon, Mushrooms, and Onions',
+    preparationTime: 10,
+  },
 ];
 
 export const emptyRecipe: IRecipe = {
@@ -298,4 +325,4 @@ export const emptyRecipe: IRecipe = {
   isBookmarked: false,
   name: '',
   preparationTime: 0,
-}
+};
