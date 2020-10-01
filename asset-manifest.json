@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/recipebox/static/css/main.ce1dc18d.chunk.css",
+    "main.js": "/recipebox/static/js/main.d5ab5fbc.chunk.js",
+    "main.js.map": "/recipebox/static/js/main.d5ab5fbc.chunk.js.map",
+    "runtime-main.js": "/recipebox/static/js/runtime-main.516a01f5.js",
+    "runtime-main.js.map": "/recipebox/static/js/runtime-main.516a01f5.js.map",
+    "static/js/2.9ba9f0a4.chunk.js": "/recipebox/static/js/2.9ba9f0a4.chunk.js",
+    "static/js/2.9ba9f0a4.chunk.js.map": "/recipebox/static/js/2.9ba9f0a4.chunk.js.map",
+    "index.html": "/recipebox/index.html",
+    "precache-manifest.ab0a0bd087b95455f0337a13513b4f02.js": "/recipebox/precache-manifest.ab0a0bd087b95455f0337a13513b4f02.js",
+    "service-worker.js": "/recipebox/service-worker.js",
+    "static/css/main.ce1dc18d.chunk.css.map": "/recipebox/static/css/main.ce1dc18d.chunk.css.map",
+    "static/js/2.9ba9f0a4.chunk.js.LICENSE.txt": "/recipebox/static/js/2.9ba9f0a4.chunk.js.LICENSE.txt",
+    "static/media/cooking01.jpg": "/recipebox/static/media/cooking01.6427e47b.jpg",
+    "static/media/cooking04.jpg": "/recipebox/static/media/cooking04.699b9b10.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.516a01f5.js",
+    "static/js/2.9ba9f0a4.chunk.js",
+    "static/css/main.ce1dc18d.chunk.css",
+    "static/js/main.d5ab5fbc.chunk.js"
+  ]
+}
